@@ -49,11 +49,17 @@ body > header {
   #header-content {
     padding: @baseLineHeight 0;
   }
+  .navbar-inner {
+    background: darken(@grayLighter, 5%);
+    border: none;
+  }
 }
 
 // xpose styles for a HMTL5 based site footer
 body > footer {
     margin-top: @baseLineHeight;
     padding: @baseLineHeight 0;
-    border-top: 1px solid @grayLighter;
+    border-top: 10px solid @grayLighter;
+    background: @app-color;
+    color: @app-green;
 }
