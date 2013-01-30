@@ -4674,6 +4674,7 @@ body > header #main-nav .selected > a:focus {
 }
 #header {
   border-top: 5px solid #92c83e;
+  margin-bottom: 20px;
 }
 #header #header-content {
   padding: 20px 0;
