@@ -5,6 +5,29 @@
 @app-green-dark:        #637b2d;
 @app-color:             #201e06;
 
+// Bootstrap combat overrides
+// --------------------------
+
+input.context,
+input.standalone,
+input.destructive,
+input.searchButton {
+  .btn();
+  margin-right: @line-height-base / 2;
+}
+
+input.context {
+  .btn-primary();
+}
+
+input.destructive {
+  .btn-danger();
+}
+
+.mceIframeContainer {
+    padding:@line-height-base;
+}
+
 
 body {
     //background: #f5f5f5;

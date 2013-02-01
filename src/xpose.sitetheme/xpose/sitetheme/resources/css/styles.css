@@ -4021,6 +4021,7 @@ input[type="checkbox"] + label,
   margin-left: 5px;
 }
 input.datetime-widget,
+select.datetime-widget,
 .ArchetypesCalendarWidget select {
   width: auto;
 }
@@ -4030,7 +4031,7 @@ input.datetime-widget,
 #archetypes-fieldname-title input {
   height: 30px;
   line-height: 30px;
-  font-size: 25px;
+  font-size: 17.5px;
   font-weight: bold;
   width: 100%;
   color: #555555;
@@ -4040,9 +4041,19 @@ input.datetime-widget,
 #form-widgets-IBasic-description,
 #archetypes-fieldname-description textarea#description {
   color: #555555;
-  font-size: 1.25em;
+  font-size: 14px;
   font-weight: bold;
   width: 100%;
+}
+div.fieldTextFormat {
+  text-align: right;
+}
+div.fieldTextFormat label {
+  font-weight: normal;
+  color: #999999;
+}
+div.fieldTextFormat select {
+  width: 120px;
 }
 #content-core label {
   font-weight: bold;
@@ -4053,6 +4064,9 @@ input.datetime-widget,
   margin-bottom: 10px;
   color: #999999;
   font-weight: normal;
+}
+div.field {
+  margin-bottom: 10px;
 }
 div.formHelp {
   color: #737373;
@@ -4306,6 +4320,8 @@ ul.formTabs {
   padding-left: 0;
   list-style: none;
   border-bottom: 1px solid #ddd;
+  margin: 0 0 10px;
+  list-style-type: none;
 }
 ul.formTabs:before,
 ul.formTabs:after {
@@ -4631,6 +4647,117 @@ table.grid th {
 }
 .visualClear {
   clear: both;
+}
+input.context,
+input.standalone,
+input.destructive,
+input.searchButton {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #a7a9aa;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #a7a9aa;
+  border-color: #a7a9aa;
+  margin-right: 10px;
+}
+input.context:focus,
+input.standalone:focus,
+input.destructive:focus,
+input.searchButton:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+input.context:hover,
+input.standalone:hover,
+input.destructive:hover,
+input.searchButton:hover {
+  color: #fff;
+  text-decoration: none;
+}
+input.context:active,
+input.standalone:active,
+input.destructive:active,
+input.searchButton:active,
+input.context.active,
+input.standalone.active,
+input.destructive.active,
+input.searchButton.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+input.context.disabled,
+input.standalone.disabled,
+input.destructive.disabled,
+input.searchButton.disabled,
+input.context[disabled],
+input.standalone[disabled],
+input.destructive[disabled],
+input.searchButton[disabled],
+fieldset[disabled] input.context,
+fieldset[disabled] input.standalone,
+fieldset[disabled] input.destructive,
+fieldset[disabled] input.searchButton {
+  cursor: default;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+input.context:hover,
+input.standalone:hover,
+input.destructive:hover,
+input.searchButton:hover,
+input.context:focus,
+input.standalone:focus,
+input.destructive:focus,
+input.searchButton:focus,
+input.context:active,
+input.standalone:active,
+input.destructive:active,
+input.searchButton:active {
+  background-color: #9a9c9d;
+  border-color: #8d9091;
+}
+input.context .counter,
+input.standalone .counter,
+input.destructive .counter,
+input.searchButton .counter {
+  position: relative;
+  top: -1px;
+}
+input.context {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+input.context:hover,
+input.context:focus,
+input.context:active {
+  background-color: #357ebd;
+  border-color: #3071a9;
+}
+input.destructive {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+input.destructive:hover,
+input.destructive:focus,
+input.destructive:active {
+  background-color: #d43f3a;
+  border-color: #c9302c;
+}
+.mceIframeContainer {
+  padding: 20px;
 }
 #topbar + #header {
   margin-top: 50px;

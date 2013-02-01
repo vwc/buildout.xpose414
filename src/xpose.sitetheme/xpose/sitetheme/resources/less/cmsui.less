@@ -135,6 +135,7 @@ input[type="checkbox"] + label,
 }
 
 input.datetime-widget,
+select.datetime-widget,
 .ArchetypesCalendarWidget select {
     width: auto;
 }
@@ -145,7 +146,7 @@ input.datetime-widget,
 #archetypes-fieldname-title input {
     height: @line-height-base * 1.5;
     line-height: @line-height-base * 1.5;
-    font-size: @line-height-base * 1.25;
+    font-size: @font-size-base * 1.25;
     font-weight: bold;
     width: 100%;
     color: @gray;
@@ -156,9 +157,21 @@ input.datetime-widget,
 #form-widgets-IBasic-description,
 #archetypes-fieldname-description textarea#description {
     color:@gray;
-    font-size:1.25em;
+    font-size: @font-size-base;
     font-weight: bold;
     width: 100%;
+}
+
+div.fieldTextFormat {
+    //padding: @line-height-base;
+    text-align: right;
+    label {
+        font-weight: normal;
+        .muted();
+    }
+    select {
+        width: 120px;
+    }
 }
 
 #content-core label {
@@ -171,7 +184,7 @@ input.datetime-widget,
 }
 
 div.field {
-    //.controls();
+    margin-bottom: @line-height-base / 2;
 }
 
 div.formHelp {
@@ -423,6 +436,8 @@ ul.formTabs {
     background: transparent;
     .nav();
     .nav-tabs();
+    margin: 0 0 @line-height-base / 2;
+    list-style-type: none;
     li {
         float: left;
         margin-bottom: -1px;
