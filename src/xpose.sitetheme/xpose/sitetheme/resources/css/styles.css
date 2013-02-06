@@ -5057,6 +5057,16 @@ body > header #main-nav .selected > a:focus {
   margin-bottom: 0px;
   font-weight: 700;
 }
+.splashbar {
+  background: #eeeeee;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.splashbar.hero {
+  background: #92c83e;
+  padding: 20px;
+  text-align: left;
+}
 body > footer {
   margin-top: 20px;
   padding: 20px 0;
