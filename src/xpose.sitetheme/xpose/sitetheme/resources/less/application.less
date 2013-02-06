@@ -75,12 +75,28 @@ body > header {
   margin-bottom: @line-height-base;
   #header-content {
     padding: @line-height-base 0;
+    #logo a {
+      display:block;
+      .size(240px, 75px);
+      .hide-text();
+      background: url(../img/logo.png) no-repeat 0 0 transparent;
+    }
+    #header-content-inner {
+      padding-top: @line-height-base * 3;
+    }
   }
   .navbar-inner {
     background: darken(@grayLighter, 5%);
     border: none;
   }
 }
+
+.text-highlight {
+  color: @app-green;
+  margin-bottom: 0px;
+  font-weight: 700;
+}
+
 
 // xpose styles for a HMTL5 based site footer
 body > footer {
