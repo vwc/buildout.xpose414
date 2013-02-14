@@ -12,6 +12,7 @@ eggs
 fake-eggs
 parts
 dist
+.codeintel
 .installed.cfg
 .mr.developer.cfg
 var
