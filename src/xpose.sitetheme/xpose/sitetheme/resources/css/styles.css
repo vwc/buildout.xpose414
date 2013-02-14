@@ -5067,6 +5067,50 @@ body > header #main-nav .selected > a:focus {
   padding: 20px;
   text-align: left;
 }
+.speech-bubble {
+  position: relative;
+  padding: 10px 0;
+  margin: 20px 0;
+  color: #fff;
+  background: #637b2d;
+}
+.speech-bubble h3 {
+  background: #fff;
+  color: #637b2d;
+  padding: 2px 10px;
+}
+.speech-bubble p {
+  padding: 2px 10px;
+}
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 20px;
+  border-width: 30px 30px 0 0;
+  border-style: solid;
+  border-color: #637b2d transparent;
+  display: block;
+  width: 0;
+}
+#sidebar dl.portlet {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+#sidebar dl.portlet:before,
+#sidebar dl.portlet:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+#sidebar dl.portlet:after {
+  clear: both;
+}
 body > footer {
   margin-top: 20px;
   padding: 20px 0;
