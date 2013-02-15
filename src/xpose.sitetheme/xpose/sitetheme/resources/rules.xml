@@ -76,6 +76,10 @@
         <rules css:if-content="body.template-frontpage-view">
             <replace css:theme="#fp-testimonials"
                 css:content="#fp-testimonials" />
+            <replace css:theme-children="#fp-service-row"
+                css:content-children="#fp-service-row" />
+            <replace css:theme-children="#fp-service-row-2"
+                css:content-children="#fp-service-row-2" />
         </rules>
         
         <before css:content=".portalMessage" css:theme="#content" />

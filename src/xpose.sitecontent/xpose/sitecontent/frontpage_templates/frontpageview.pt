@@ -36,6 +36,46 @@
         </div>
       </section>
 
+      <section id="fp-service-row">
+        <tal:block tal:define="items view/sections_first_row">
+          <div class="row">
+            <tal:block tal:repeat="item items">
+              <div class="span4">
+                <div class="panel" tal:define="idx repeat/item/number"
+                  tal:attributes="class python:'panel panel-top-' + str(idx)">
+                  <div class="panel-header"><i class="icon-circle"></i></div>
+                  <h4 tal:content="item/Title" />
+                  <p tal:content="item/Description" />
+                  <a href="" class="btn btn-primary pull-right"
+                    tal:attributes="href item/getURL"
+                    tal:content="item/Title" />
+                </div>
+              </div>
+            </tal:block>
+          </div>
+        </tal:block>
+      </section>
+
+      <section id="fp-service-row-2">
+        <tal:block tal:define="items view/sections_second_row">
+          <div class="row">
+            <tal:block tal:repeat="item items">
+              <div class="span4">
+                <div class="panel" tal:define="idx repeat/item/number"
+                  tal:attributes="class python:'panel panel-top-' + str(idx)">
+                  <div class="panel-header"><i class="icon-circle"></i></div>
+                  <h4 tal:content="item/Title" />
+                  <p tal:content="item/Description" />
+                  <a href="" class="btn btn-primary pull-right"
+                    tal:attributes="href item/getURL"
+                    tal:content="item/Title" />
+                </div>
+              </div>
+            </tal:block>
+          </div>
+        </tal:block>
+      </section>
+
       <section id="content-core">
         <p class="lead" tal:condition="context/Description"
           tal:content="context/Description" />

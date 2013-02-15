@@ -5,6 +5,7 @@ from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.contentlisting.interfaces import IContentListing
 
+from xpose.sitecontent.contentpage import IContentPage
 from xpose.sitecontent.testimonial import ITestimonial
 
 
@@ -15,6 +16,23 @@ class FrontPageView(grok.View):
 
     def update(self):
         self.has_quotes = len(self.testimonials()) > 0
+
+    def sections_first_row(self):
+        sections = self.main_sections()
+        return sections[:3]
+
+    def sections_second_row(self):
+        sections = self.main_sections()
+        return sections[3:]
+
+    def main_sections(self):
+        catalog = api.portal.get_tool(name="portal_catalog")
+        items = catalog(object_provides=IContentPage.__identifier__,
+                        review_state='published',
+                        sort_on='getObjPositionInParent',
+                        sort_limit=6)[:6]
+        results = IContentListing(items)
+        return results
 
     def quote(self):
         quotes = self.testimonials()

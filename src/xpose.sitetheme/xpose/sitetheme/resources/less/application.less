@@ -122,6 +122,58 @@ body > header {
     padding: @line-height-base;
     text-align: left;
   }
+  &.seperator h2 {
+    text-transform: uppercase;
+  }
+}
+
+.buzzbox {
+  .buzzbox-header {
+    height: 115px;
+    background:url(../img/sprite.png) no-repeat 0 0 transparent;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+}
+
+#fp-service-row,
+#fp-service-row-2 {
+  padding-bottom: @line-height-base;
+  .panel h4 {
+    background:url(../img/arrow.png) no-repeat 0px 7px transparent;
+    padding: @line-height-base / 2 0 @line-height-base / 2 @line-height-base;
+  }
+  .panel-header {
+    .center-block();
+    text-align:center;
+    .size(130px, 100px);
+    //border: 1px solid @grayLight;
+    background:url(../img/sprite.png) no-repeat 0 -235px transparent;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+  .panel-top-2 .panel-header {
+    .size(80px, 100px);
+    background-position: -135px -235px;
+  }
+  .panel-top-3 .panel-header {
+    .size(80px, 100px);
+    background-position: -218px -235px;
+  }
+}
+#fp-service-row-2 {
+  .panel-header {
+    .size(80px, 100px);
+    background:url(../img/sprite.png) no-repeat -297px -235px transparent;
+  }
+  .panel-top-2 .panel-header {
+    .size(110px, 100px);
+    background-position: -375px -235px;
+  }
+  .panel-top-3 .panel-header {
+    .size(90px, 100px);
+    background-position: -488px -235px;
+  }
 }
 
 // Testimonial speech bubble component

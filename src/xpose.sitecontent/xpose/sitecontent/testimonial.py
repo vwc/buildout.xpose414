@@ -31,6 +31,10 @@ class ITestimonial(form.Schema, IImageScaleTraversable):
         title=_(u"Company Name"),
         required=True,
     )
+    website = schema.URI(
+        title=_(u"Company Website"),
+        required=False,
+    )
     statement = schema.Text(
         title=_(u"Statement"),
         description=_(u"Enter customer statement"),
