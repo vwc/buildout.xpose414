@@ -217,12 +217,12 @@ textarea {
   line-height: 20px;
 }
 a {
-  color: #428bca;
+  color: #92c83e;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #2a6496;
+  color: #689029;
   text-decoration: underline;
 }
 a:focus {
@@ -1656,14 +1656,14 @@ fieldset[disabled] .btn-link {
   border-color: transparent;
 }
 .btn-link {
-  color: #428bca;
+  color: #92c83e;
   font-weight: normal;
   cursor: pointer;
   border-radius: 0;
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #2a6496;
+  color: #689029;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -2264,14 +2264,14 @@ fieldset[disabled] .btn-link:focus {
 .dropdown-menu li > a:focus {
   text-decoration: none;
   color: #ffffff;
-  background-color: #357ebd;
-  background-image: -moz-linear-gradient(top, #428bca, #357ebd);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#428bca), to(#357ebd));
-  background-image: -webkit-linear-gradient(top, #428bca, #357ebd);
-  background-image: -o-linear-gradient(top, #428bca, #357ebd);
-  background-image: linear-gradient(to bottom, #428bca, #357ebd);
+  background-color: #85b834;
+  background-image: -moz-linear-gradient(top, #92c83e, #85b834);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#92c83e), to(#85b834));
+  background-image: -webkit-linear-gradient(top, #92c83e, #85b834);
+  background-image: -o-linear-gradient(top, #92c83e, #85b834);
+  background-image: linear-gradient(to bottom, #92c83e, #85b834);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff92c83e', endColorstr='#ff85b834', GradientType=0);
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
@@ -2279,14 +2279,14 @@ fieldset[disabled] .btn-link:focus {
   color: #ffffff;
   text-decoration: none;
   outline: 0;
-  background-color: #357ebd;
-  background-image: -moz-linear-gradient(top, #428bca, #357ebd);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#428bca), to(#357ebd));
-  background-image: -webkit-linear-gradient(top, #428bca, #357ebd);
-  background-image: -o-linear-gradient(top, #428bca, #357ebd);
-  background-image: linear-gradient(to bottom, #428bca, #357ebd);
+  background-color: #85b834;
+  background-image: -moz-linear-gradient(top, #92c83e, #85b834);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#92c83e), to(#85b834));
+  background-image: -webkit-linear-gradient(top, #92c83e, #85b834);
+  background-image: -o-linear-gradient(top, #92c83e, #85b834);
+  background-image: linear-gradient(to bottom, #92c83e, #85b834);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff92c83e', endColorstr='#ff85b834', GradientType=0);
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
@@ -2446,7 +2446,7 @@ button.close {
 .nav-pills > .active > a:hover,
 .nav-pills > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #92c83e;
 }
 .nav-stacked > li {
   float: none;
@@ -2481,8 +2481,8 @@ button.close {
 .nav-list > .active > a:focus {
   z-index: 2;
   color: #fff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #92c83e;
+  border-color: #92c83e;
 }
 .nav > .disabled > a {
   color: #999999;
@@ -3531,7 +3531,7 @@ button.close {
 }
 a.thumbnail:hover,
 a.thumbnail:focus {
-  border-color: #428bca;
+  border-color: #92c83e;
 }
 .thumbnail > img {
   display: block;
@@ -3603,7 +3603,7 @@ a.counter:focus {
 }
 .nav-list > .active > a > .counter,
 .nav-pills > .active > a > .counter {
-  color: #428bca;
+  color: #92c83e;
   background-color: #fff;
 }
 .nav-pills > li > a > .counter {
@@ -4126,13 +4126,13 @@ dd.image-caption {
 #category a.link-category,
 #category span.selectedTag {
   padding: 0.25em 0.5em;
-  background: #428bca;
+  background: #92c83e;
   color: #fff;
   border-radius: 0.5em;
   border-radius: 4px;
 }
 #category a.link-category:hover {
-  background: #2a6496;
+  background: #689029;
 }
 #category .separator {
   display: none;

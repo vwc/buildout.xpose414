@@ -54,8 +54,7 @@ class View(grok.View):
     def redirect_to_subpage(self):
         pages = self.subpages()
         page = pages[0]
-        target_url = page.absolute_url()
-        import pdb; pdb.set_trace( )
+        target_url = page.getURL()
         return target_url
 
     def subpages(self):

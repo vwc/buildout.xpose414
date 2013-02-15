@@ -26,7 +26,13 @@
               <h2><a href="" tal:attributes="href item/getURL"
                     tal:content="item/Title" /></h2>
             </header>
-            <section class="facet-body">
+            <section class="facet-body"
+              tal:define="item_obj item/getObject">
+              <img tal:condition="item/image"
+                  tal:define="scales item_obj/@@images"
+                  tal:replace="structure python: scales.tag('image',
+                               width=120, height=120, direction='down')"
+                  />
               <p class="muted" tal:condition="item/Description"
                 tal:content="item/Description" />
             </section>
