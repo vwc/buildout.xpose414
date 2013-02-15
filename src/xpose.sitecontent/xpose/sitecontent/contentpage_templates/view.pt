@@ -28,11 +28,13 @@
             </header>
             <section class="facet-body"
               tal:define="item_obj item/getObject">
-              <img tal:condition="item/image"
-                  tal:define="scales item_obj/@@images"
-                  tal:replace="structure python: scales.tag('image',
-                               width=120, height=120, direction='down')"
-                  />
+              <div tal:condition="item/image"
+                class="pull-left">
+                <img tal:define="scales item_obj/@@images"
+                    tal:replace="structure python: scales.tag('image',
+                                 width=120, height=120, direction='down')"
+                    />
+              </div>
               <p class="muted" tal:condition="item/Description"
                 tal:content="item/Description" />
             </section>
@@ -40,6 +42,7 @@
               <a href="" tal:attributes="href item/getURL"
                 i18n:translate="">Read more</a>
             </footer>
+            <hr class="visualClear" />
           </article>
         </tal:subitems>
       </section>

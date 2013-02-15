@@ -5135,6 +5135,22 @@ body > header #main-nav .selected > a:focus {
   text-transform: none;
   font-size: 17.5px;
 }
+#content h1 {
+  background: url(../img/arrow.png) no-repeat 0 7px transparent;
+  padding-left: 20px;
+}
+.facet .facet-body img {
+  padding: 4px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  margin: 0 20px 20px 0;
+}
 body > footer {
   margin-top: 20px;
   padding: 20px 0;
