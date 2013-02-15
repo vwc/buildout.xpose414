@@ -142,8 +142,33 @@ body > header {
 // -----------------
 
 #sidebar {
+  padding-top: @line-height-base;
   dl.portlet {
-    .well();
+    
+  }
+  ul.navTree {
+    .nav();
+    li {
+      font-size: @font-size-large;
+      margin: 0  0 @line-height-base / 2 0;
+      display: block;
+      a {
+        color: @grayLight;
+        text-transform: uppercase;
+        font-size: @font-size-base * 1.5;
+        &.navTreeCurrentItem,
+        &.navTreeCurrentNode {
+          color: @app-color;
+        }
+      }
+    }
+    &.navTreeLevel1 {
+      padding: @line-height-base / 2 0;
+      li > a {
+        text-transform: none;
+        font-size: @font-size-large;
+      }
+    }
   }
 }
 

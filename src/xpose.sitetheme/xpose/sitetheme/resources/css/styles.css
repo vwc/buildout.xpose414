@@ -5093,19 +5093,47 @@ body > header #main-nav .selected > a:focus {
   display: block;
   width: 0;
 }
-#sidebar dl.portlet {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+#sidebar {
+  padding-top: 20px;
 }
-#sidebar dl.portlet blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, 0.15);
+#sidebar ul.navTree {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+#sidebar ul.navTree:before,
+#sidebar ul.navTree:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+#sidebar ul.navTree:after {
+  clear: both;
+}
+#sidebar ul.navTree li {
+  font-size: 17.5px;
+  margin: 0 0 10px 0;
+  display: block;
+}
+#sidebar ul.navTree li a {
+  color: #999999;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+#sidebar ul.navTree li a.navTreeCurrentItem,
+#sidebar ul.navTree li a.navTreeCurrentNode {
+  color: #201e06;
+}
+#sidebar ul.navTree.navTreeLevel1 {
+  padding: 10px 0;
+}
+#sidebar ul.navTree.navTreeLevel1 li > a {
+  text-transform: none;
+  font-size: 17.5px;
 }
 body > footer {
   margin-top: 20px;
