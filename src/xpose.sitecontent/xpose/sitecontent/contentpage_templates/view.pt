@@ -17,16 +17,25 @@
           tal:content="context/Description" />
       </header>
       <section id="content-core">
-        <div class="alert">
-          <h4>Information</h4>
-          <p>Content page - the main content of the site</p>
-        </div>
-        <p class="muted">
-          This view will automatically list all cotnent pages aka subcontents
-          or display the topmost sub item as the default page.
-        </p>
         <div tal:condition="context/text"
           tal:content="structure context/text/output" />
+        <tal:subitems tal:condition="view/has_subpages">
+          <article tal:repeat="item view/subpages"
+            class="facet">
+            <header class="facet-header">
+              <h2><a href="" tal:attributes="href item/getURL"
+                    tal:content="item/Title" /></h2>
+            </header>
+            <section class="facet-body">
+              <p class="muted" tal:condition="item/Description"
+                tal:content="item/Description" />
+            </section>
+            <footer class="facet-footer">
+              <a href="" tal:attributes="href item/getURL"
+                i18n:translate="">Read more</a>
+            </footer>
+          </article>
+        </tal:subitems>
       </section>
     </article>
   </metal:content-core>

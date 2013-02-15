@@ -1,4 +1,7 @@
+from Acquisition import aq_inner
 from five import grok
+from plone import api
+
 from plone.directives import dexterity, form
 
 from zope import schema
@@ -35,3 +38,11 @@ class View(grok.View):
     grok.context(ITestimonials)
     grok.require('zope2.View')
     grok.name('view')
+
+    def update(self):
+        self.has_items = len(self.testimonials()) > 0
+
+    def testimonials(self):
+        context = aq_inner(self.context)
+        items = context.restrictedTraverse('@@folderListing')()
+        return items

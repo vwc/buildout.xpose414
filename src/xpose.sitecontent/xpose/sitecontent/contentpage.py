@@ -1,3 +1,4 @@
+from Acquisition import aq_inner
 from five import grok
 from zope import schema
 from plone import api
@@ -40,3 +41,26 @@ class View(grok.View):
     grok.context(IContentPage)
     grok.require('zope2.View')
     grok.name('view')
+
+    def update(self):
+        self.has_subpages = len(self.subpages()) > 0
+        if self.has_single_subpage():
+            redirect_url = self.redirect_to_subpage()
+            self.request.response.redirect(redirect_url)
+
+    def has_single_subpage(self):
+        return len(self.subpages()) == 1
+
+    def redirect_to_subpage(self):
+        pages = self.subpages()
+        page = pages[0]
+        target_url = page.absolute_url()
+        import pdb; pdb.set_trace( )
+        return target_url
+
+    def subpages(self):
+        context = aq_inner(self.context)
+        items = context.restrictedTraverse('@@folderListing')(
+            portal_type='xpose.sitecontent.contentpage',
+            review_state='published')
+        return items

@@ -2,31 +2,47 @@ from five import grok
 from plone.directives import dexterity, form
 
 from zope import schema
-from zope.schema.interfaces import IContextSourceBinder
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-
-from zope.interface import invariant, Invalid
-
-from z3c.form import group, field
 
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.namedfile.field import NamedImage, NamedFile
-from plone.namedfile.field import NamedBlobImage, NamedBlobFile
+from plone.namedfile.field import NamedBlobImage
 
-from plone.app.textfield import RichText
-
-from z3c.relationfield.schema import RelationList, RelationChoice
-from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from xpose.sitecontent import MessageFactory as _
 
-
-# Interface class; used to define content-type schema.
 
 class ITestimonial(form.Schema, IImageScaleTraversable):
     """
     A customer quote
     """
+    title = schema.TextLine(
+        title=_(u"Title"),
+        required=True,
+    )
+    customer = schema.TextLine(
+        title=_("Customer"),
+        required=True,
+    )
+    position = schema.TextLine(
+        title=_(u"Position in Company"),
+        description=_(u"Optional position like CEO"),
+        required=False,
+    )
+    company = schema.TextLine(
+        title=_(u"Company Name"),
+        required=True,
+    )
+    statement = schema.Text(
+        title=_(u"Statement"),
+        description=_(u"Enter customer statement"),
+        required=True,
+    )
+    logo = NamedBlobImage(
+        title=_(u"Company Logo"),
+        description=_(u"Upload optional company logo. Since this image file "
+                      u"will only be displayed in a scaled down version the "
+                      u"uploaded file should be small"),
+        required=False,
+    )
 
 
 class Testimonial(dexterity.Item):
