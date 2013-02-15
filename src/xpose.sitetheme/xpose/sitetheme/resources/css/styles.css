@@ -5716,6 +5716,36 @@ body > header #main-nav .selected > a:focus {
   padding: 20px;
   text-align: left;
 }
+.splashbar.hero #hero-header {
+  border-bottom: 2px solid #201e06;
+  margin: 0 0 20px 0;
+  padding: 11px 14px;
+}
+.splashbar.hero #hero-header ul.nav {
+  width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.splashbar.hero #hero-header ul.nav li {
+  width: 200px;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: #fff;
+  position: relative;
+}
+.splashbar.hero #hero-header ul.nav li:after {
+  content: "";
+  background: #201e06;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -17px;
+  left: 50%;
+  margin-left: -5px;
+}
 .splashbar.seperator h2 {
   text-transform: uppercase;
 }

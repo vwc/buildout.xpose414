@@ -121,6 +121,33 @@ body > header {
     background: @app-green;
     padding: @line-height-base;
     text-align: left;
+    #hero-header {
+      border-bottom: 2px solid @app-color;
+      margin: 0 0 @line-height-base 0;
+      padding: @padding-large;
+      ul.nav {
+        width: 600px;
+        .center-block();
+        text-align: center;
+        li {
+          width: 200px;
+          font-size: @font-size-base * 2;
+          text-transform: uppercase;
+          color: #fff;
+          position:relative;
+          &:after {
+            content: "";
+            background: @app-color;
+            .square(10px);
+            border-radius: 50%;
+            position: absolute;
+            bottom: -@line-height-base + 3;
+            left: 50%;
+            margin-left:-5px;
+          }
+        }
+      }
+    }
   }
   &.seperator h2 {
     text-transform: uppercase;
