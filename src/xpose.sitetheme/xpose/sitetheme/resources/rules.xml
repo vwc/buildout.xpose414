@@ -51,7 +51,7 @@
             css:content-children="#portal-personaltools" />
 
         <!-- Logo (link target) -->
-        <copy attributes="href" css:content="#portal-logo" css:theme="a.brand" />
+        <copy attributes="href" css:content="#portal-logo" css:theme="#logo" />
 
         <!-- Site actions -->
         <!--<replace css:content="#portal-siteactions li" css:theme-children="#global-nav" />-->
