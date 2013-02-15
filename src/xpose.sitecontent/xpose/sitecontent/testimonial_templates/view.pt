@@ -9,8 +9,13 @@
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
-    <article id="testimonials">
+    <article id="testimonials"
+      tal:define="cstate context/@@plone_context_state;
+                  parent cstate/parent">
       <header class="page-header">
+        <a href="" class="pull-right btn"
+          tal:attributes="href parent/absolute_url"
+          i18n:translate="">Back to parent</a>
         <h1 class="documentFirstHeading"
           tal:content="context/Title" />
       </header>

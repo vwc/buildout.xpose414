@@ -20,17 +20,42 @@
         <p class="lead" tal:condition="context/Description"
           tal:content="context/Description" />
 
-        <div class="alert">
+        <div class="alert" tal:condition="not:view/has_items">
           <h4>Information</h4>
-          <p>This page will show an overview of all customer quotes</p>
+          <p i18n:translate="">
+            This folder does not have any published testimonials yet.
+          </p>
+          <a href="" class="btn"
+            i18n:translate=""
+            tal:define="context_url context/absolute_url"
+            tal:attributes="href python:context_url + '/++add++xpose.sitecontent.testimonial'">
+            Add Testimonial</a>
         </div>
 
-        <article>
-          <blockquote>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-          </blockquote>
-        </article>
+        <div tal:define="
+            Batch python:modules['Products.CMFPlone'].Batch;
+            b_size python:int(request.get('b_size', 20));
+            b_start python:int(request.get('b_start', 0));
+            results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+            batch python:Batch(results, b_size, b_start);">
+            <article tal:repeat="item results">
+              <h4><a href="" tal:attributes="href item/getURL"
+                    tal:content="item/Title" />
+              </h4>
+              <blockquote>
+                <p tal:content="item/statement">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+                <small><span tal:replace="item/customer" />
+                  <cite title="Source Title" class="discreet">
+                    <span tal:replace="item/position" />,
+                    <span tal:content="item/company">Source Title</span>
+                  </cite>
+                </small>
+              </blockquote>
+            </article>
+          <div metal:use-macro="context/batch_macros/macros/navigation" />
+        </div>
 
       </section>
     </section>

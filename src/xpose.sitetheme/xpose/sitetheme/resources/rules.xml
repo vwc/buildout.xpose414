@@ -5,6 +5,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <!-- Add alternativ theme templates -->
+    <theme href="frontpage.html" css:if-content="body.template-frontpage-view" />
     <!-- xpose to add minimal theme template for the
          tiles editiong overlays -->
     <!--<theme href="minimal.html" if-path="@@edit-tile" />-->
