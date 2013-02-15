@@ -1,7 +1,9 @@
+import random
 from five import grok
 from plone import api
 
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.contentlisting.interfaces import IContentListing
 
 from xpose.sitecontent.testimonial import ITestimonial
 
@@ -11,8 +13,17 @@ class FrontPageView(grok.View):
     grok.require('zope2.View')
     grok.name('frontpage-view')
 
+    def update(self):
+        self.has_quotes = len(self.testimonials()) > 0
+
+    def quote(self):
+        quotes = self.testimonials()
+        quote = random.choice(quotes)
+        return quote
+
     def testimonials(self):
         catalog = api.portal.get_tool(name="portal_catalog")
         items = catalog(object_provides=ITestimonial.__identifier__,
                         review_state="published")
-        return items
+        results = IContentListing(items)
+        return results

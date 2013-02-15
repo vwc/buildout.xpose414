@@ -72,6 +72,11 @@
         <!-- Document Content -->
         <replace css:content-children="#content" 
             css:theme-children="#content" />
+
+        <rules css:if-content="body.template-frontpage-view">
+            <replace css:theme="#fp-testimonials"
+                css:content="#fp-testimonials" />
+        </rules>
         
         <before css:content=".portalMessage" css:theme="#content" />
         <replace css:content-children="#viewlet-below-content"

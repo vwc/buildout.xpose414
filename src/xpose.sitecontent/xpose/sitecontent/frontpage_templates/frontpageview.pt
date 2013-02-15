@@ -16,15 +16,29 @@
           tal:content="context/Title" />
       </header>
 
-      <section id="content-core">
+      <section id="fp-testimonials">
+        <div class="speech-bubble" tal:condition="view/has_quotes">
+          <tal:item tal:define="item view/quote">
+            <p>Some introductional text for this quote</p>
+            <h3><span tal:replace="item/customer" />,
+              <span tal:replace="item/position" />
+            </h3>
+            <p tal:content="item/company" />
+            <p><i class="icon-quote-left"></i>
+              <span tal:content="item/statement">A quote a day keeps the CEO at bay</span>
+              <i class="icon-quote-right"></i>
+            </p>
+          </tal:item>
+        </div>
+        <div class="alert" tal:condition="not:view/has_quotes">
+          <h4>Testimonials</h4>
+          <p>No testimonials available yet</p>
+        </div>
+      </section>
 
+      <section id="content-core">
         <p class="lead" tal:condition="context/Description"
           tal:content="context/Description" />
-
-        <div class="alert">
-          <h4>Information</h4>
-          <p>This is the frontpage view</p>
-        </div>
 
       </section>
     </section>
