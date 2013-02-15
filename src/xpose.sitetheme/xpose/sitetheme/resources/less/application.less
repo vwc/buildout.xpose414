@@ -155,12 +155,19 @@ body > header {
 }
 
 .buzzbox {
+  color: #fff;
   .buzzbox-header {
     height: 115px;
     background:url(../img/sprite.png) no-repeat 0 0 transparent;
     text-indent: -9999px;
     overflow: hidden;
   }
+}
+
+.panel {
+  border-right: 1px solid @grayLight;
+  border-bottom: 1px solid @grayLight;
+  padding: @line-height-base;
 }
 
 #fp-service-row,
@@ -300,4 +307,25 @@ body > footer {
     border-top: 10px solid @grayLighter;
     background: @app-color;
     color: @app-green;
+    .panel {
+      border-color: @app-green;
+      border-width: 0px 1px 0px 0px;
+      min-height: 100px;
+      h5 {
+        margin-top: 0px;
+      }
+    }
+    #subForm {
+      label {
+        display: none;
+      }
+    }
+    #footer-social {
+      li > a {
+        .square(25px);
+        border-radius: 50%;
+        background: @link-color;
+        color: #fff;
+      }
+    }
 }

@@ -5749,11 +5749,19 @@ body > header #main-nav .selected > a:focus {
 .splashbar.seperator h2 {
   text-transform: uppercase;
 }
+.buzzbox {
+  color: #fff;
+}
 .buzzbox .buzzbox-header {
   height: 115px;
   background: url(../img/sprite.png) no-repeat 0 0 transparent;
   text-indent: -9999px;
   overflow: hidden;
+}
+.panel {
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+  padding: 20px;
 }
 #fp-service-row,
 #fp-service-row-2 {
@@ -5910,4 +5918,22 @@ body > footer {
   border-top: 10px solid #eeeeee;
   background: #201e06;
   color: #92c83e;
+}
+body > footer .panel {
+  border-color: #92c83e;
+  border-width: 0px 1px 0px 0px;
+  min-height: 100px;
+}
+body > footer .panel h5 {
+  margin-top: 0px;
+}
+body > footer #subForm label {
+  display: none;
+}
+body > footer #footer-social li > a {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #92c83e;
+  color: #fff;
 }
