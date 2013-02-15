@@ -59,6 +59,19 @@ body > header {
             }
         }
     }
+    #main-nav .selected {
+      position: relative;
+      &:after {
+        content: "";
+        background: @app-color;
+        .square(10px);
+        border-radius: 50%;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        margin-left:-5px;
+      }
+    }
     // Active nav items
     #main-nav .selected > a,
     #main-nav .selected > a:hover,
@@ -84,6 +97,9 @@ body > header {
     #header-content-inner {
       padding-top: @line-height-base * 3;
     }
+  }
+  .navbar > .container {
+    border-bottom: 2px solid @app-color;
   }
   .navbar-inner {
     background: darken(@grayLighter, 5%);
@@ -179,6 +195,9 @@ body > header {
   h1 {
     background: url(../img/arrow.png) no-repeat 0 @font-size-base / 2  transparent;
     padding-left: @line-height-base;
+  }
+  h2 {
+    border-bottom: 1px solid @grayLighter;
   }
 }
 

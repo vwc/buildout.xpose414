@@ -13,17 +13,18 @@
       <header class="page-header">
         <h1 class="documentFirstHeading"
           tal:content="context/Title" />
-        <p class="lead" tal:condition="context/Description"
-          tal:content="context/Description" />
       </header>
       <section id="content-core">
-        <div class="alert alert-success">
-          <h4>Information</h4>
-          <p>Testimonial view (to be done)</p>
-        </div>
         <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+          <p tal:content="context/statement">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+          </p>
+          <small><span tal:replace="context/customer" />
+            <cite title="Source Title" class="discreet">
+              <span tal:replace="context/position" />,
+              <span tal:content="context/company">Source Title</span>
+            </cite>
+          </small>
         </blockquote>
       </section>
     </article>

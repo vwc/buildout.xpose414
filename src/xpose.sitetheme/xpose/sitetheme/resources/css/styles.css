@@ -5019,6 +5019,20 @@ body > header #editbar-wrapper + #logo .navbar-inner,
 body > header #editbar-wrapper + nav .navbar-inner {
   border-radius: 0px;
 }
+body > header #main-nav .selected {
+  position: relative;
+}
+body > header #main-nav .selected:after {
+  content: "";
+  background: #201e06;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+}
 body > header #main-nav .selected > a,
 body > header #main-nav .selected > a:hover,
 body > header #main-nav .selected > a:focus {
@@ -5047,6 +5061,9 @@ body > header #main-nav .selected > a:focus {
 }
 #header #header-content #header-content-inner {
   padding-top: 60px;
+}
+#header .navbar > .container {
+  border-bottom: 2px solid #201e06;
 }
 #header .navbar-inner {
   background: #e1e1e1;
@@ -5138,6 +5155,9 @@ body > header #main-nav .selected > a:focus {
 #content h1 {
   background: url(../img/arrow.png) no-repeat 0 7px transparent;
   padding-left: 20px;
+}
+#content h2 {
+  border-bottom: 1px solid #eeeeee;
 }
 .facet .facet-body img {
   padding: 4px;
