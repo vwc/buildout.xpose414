@@ -2,6 +2,8 @@ import random
 from five import grok
 from plone import api
 
+from Acquisition import aq_inner
+
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.contentlisting.interfaces import IContentListing
 
@@ -26,8 +28,11 @@ class FrontPageView(grok.View):
         return sections[3:]
 
     def main_sections(self):
+        context = aq_inner(self.context)
         catalog = api.portal.get_tool(name="portal_catalog")
         items = catalog(object_provides=IContentPage.__identifier__,
+                        path=dict(query='/'.join(context.getPhysicalPath()),
+                                  depth=1),
                         review_state='published',
                         sort_on='getObjPositionInParent',
                         sort_limit=6)[:6]

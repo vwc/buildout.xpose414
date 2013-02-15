@@ -5821,10 +5821,14 @@ body > header #main-nav .selected > a:focus {
 .speech-bubble h3 {
   background: #fff;
   color: #637b2d;
-  padding: 2px 10px;
+  padding: 20px 10px;
+  font-size: 16.8px;
 }
 .speech-bubble p {
   padding: 2px 10px;
+}
+.speech-bubble p.company-name {
+  border-bottom: 1px solid #92c83e;
 }
 .speech-bubble:after {
   content: "";
@@ -5929,11 +5933,4 @@ body > footer .panel h5 {
 }
 body > footer #subForm label {
   display: none;
-}
-body > footer #footer-social li > a {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #92c83e;
-  color: #fff;
 }

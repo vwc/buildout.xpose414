@@ -19,16 +19,27 @@
       <section id="fp-testimonials">
         <div class="speech-bubble" tal:condition="view/has_quotes">
           <tal:item tal:define="item view/quote">
-            <p>Some introductional text for this quote</p>
-            <h3><span tal:replace="item/customer" />,
+            <p>Mein Start &ndash; Ziel &ndash; Sieg</p>
+            <h3><em tal:content="item/customer" />,
               <span tal:replace="item/position" />
+              <span tal:condition="item/logo"
+                class="pull-right thumbnail">
+                <img tal:define="item_obj item/getObject;
+                                 scales item_obj/@@images"
+                    tal:replace="structure python: scales.tag('logo',
+                                 width=36, height=36, direction='down')"
+                    />
+              </span>
             </h3>
-            <p tal:content="item/company" />
+            <p class="company-name" tal:content="item/company" />
             <p><i class="icon-quote-left"></i>
               <span tal:content="item/statement">A quote a day keeps the CEO at bay</span>
               <i class="icon-quote-right"></i>
             </p>
+            <p href="" class="pull-right"
+              tal:content="item/website" />
           </tal:item>
+          <div class="visualClear"><!-- --></div>
         </div>
         <div class="alert" tal:condition="not:view/has_quotes">
           <h4>Testimonials</h4>

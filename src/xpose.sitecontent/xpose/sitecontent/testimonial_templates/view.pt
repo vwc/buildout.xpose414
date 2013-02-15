@@ -27,7 +27,8 @@
           <small><span tal:replace="context/customer" />
             <cite title="Source Title" class="discreet">
               <span tal:replace="context/position" />,
-              <span tal:content="context/company">Source Title</span>
+              <span tal:content="context/company">Source Title</span> &mdash;
+              <span tal:replace="context/website" />
             </cite>
           </small>
         </blockquote>

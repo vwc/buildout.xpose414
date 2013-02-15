@@ -222,10 +222,14 @@ body > header {
   h3 {
     background: #fff;
     color: @app-green-dark;
-    padding: @padding-small;
+    padding: @line-height-base @line-height-base / 2;
+    font-size: @font-size-base * 1.2;
   }
   p {
     padding: @padding-small;
+    &.company-name {
+      border-bottom: 1px solid @app-green;
+    }
   }
 }
 .speech-bubble:after {
@@ -322,10 +326,10 @@ body > footer {
     }
     #footer-social {
       li > a {
-        .square(25px);
-        border-radius: 50%;
-        background: @link-color;
-        color: #fff;
+        //.square(25px);
+        //border-radius: 50%;
+        //background: @link-color;
+        //color: #fff;
       }
     }
 }
