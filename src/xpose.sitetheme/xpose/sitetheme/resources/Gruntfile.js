@@ -161,6 +161,11 @@ module.exports = function (grunt) {
                 pattern: '../dist/js/rms.js',
                 replacement: 'js/rms.min.js',
                 recursive: true
+            },
+            'clean-logo': {
+                path: 'dist/',
+                pattern: '../assets/img/logo.png',
+                replacement: '/++theme++xpose.sitetheme/assets/img/logo.png'
             }
         },
 
