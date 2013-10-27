@@ -1,86 +1,20 @@
+//
 // Custom application specific styles
 //--------------------------------------
 
-@app-green:             #92c83e;
-@app-green-dark:        #637b2d;
-@app-color:             #201e06;
-
-// Bootstrap combat overrides
-// --------------------------
-
-input.context,
-input.standalone,
-input.destructive,
-input.searchButton {
-  .btn();
-  margin-right: @line-height-base / 2;
+.app-toolbar + .app-navbar {
+    margin-top: @navbar-height;
 }
 
-input.context {
-  .btn-primary();
+.navbar-brand {
+    min-width: (@navbar-height * 5);
 }
 
-input.destructive {
-  .btn-danger();
-}
+// Worspace content
 
-.mceIframeContainer {
-    padding:@line-height-base;
-}
-
-
-body {
-    //background: #f5f5f5;
-    color: @app-color;
-}
-
-#topbar + #header {
-  //border-top: 5px solid @app-green;
-  margin-top: @navbar-height;
-  .navbar-inner {
-    border-radius: 0px;
-    .container {
-        .container-fixed();
-    }
-  }
-}
-
-// Header styles
-// --------------------------
-body > header {
-    #toolbar + nav,
-    #editbar-wrapper + #logo,
-    #editbar-wrapper + nav {
-        margin-top: @navbar-height;
-        .navbar-inner {
-            border-radius: 0px;
-            .container {
-                //.container-fixed();
-            }
-        }
-    }
-    #main-nav .selected {
-      position: relative;
-      &:after {
-        content: "";
-        background: @app-color;
-        .square(10px);
-        border-radius: 50%;
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        margin-left:-5px;
-      }
-    }
-    // Active nav items
-    #main-nav .selected > a,
-    #main-nav .selected > a:hover,
-    #main-nav .selected > a:focus {
-      color: @navbar-link-color-active;
-      text-decoration: none;
-      background-color: @navbar-link-bg-active;
-      box-shadow: inset 0 3px 8px rgba(0,0,0,.125);
-    }
+.app-content-workspace {
+    margin-left: (@navbar-height * 5);
+    padding-top: @navbar-height;
 }
 
 #header {
@@ -102,7 +36,7 @@ body > header {
     border-bottom: 2px solid @app-color;
   }
   .navbar-inner {
-    background: darken(@grayLighter, 5%);
+    background: darken(@gray-lighter, 5%);
     border: none;
   }
 }
@@ -114,7 +48,7 @@ body > header {
 }
 
 .splashbar {
-  background: @grayLighter;
+  background: @gray-lighter;
   margin-bottom: @line-height-base / 2;
   text-align: center;
   &.hero {
@@ -124,7 +58,7 @@ body > header {
     #hero-header {
       border-bottom: 2px solid @app-color;
       margin: 0 0 @line-height-base 0;
-      padding: @padding-large;
+      padding: @line-height-computed;
       ul.nav {
         width: 600px;
         .center-block();
@@ -165,8 +99,8 @@ body > header {
 }
 
 .panel {
-  border-right: 1px solid @grayLight;
-  border-bottom: 1px solid @grayLight;
+  border-right: 1px solid @gray-light;
+  border-bottom: 1px solid @gray-light;
   padding: @line-height-base;
 }
 
@@ -181,7 +115,6 @@ body > header {
     .center-block();
     text-align:center;
     .size(130px, 100px);
-    //border: 1px solid @grayLight;
     background:url(../img/sprite.png) no-repeat 0 -235px transparent;
     text-indent: -9999px;
     overflow: hidden;
@@ -226,7 +159,6 @@ body > header {
     font-size: @font-size-base * 1.2;
   }
   p {
-    padding: @padding-small;
     &.company-name {
       border-bottom: 1px solid @app-green;
     }
@@ -255,11 +187,10 @@ body > header {
   ul.navTree {
     .nav();
     li {
-      font-size: @font-size-large;
       margin: 0  0 @line-height-base / 2 0;
       display: block;
       a {
-        color: @grayLight;
+        color: @gray-light;
         text-transform: uppercase;
         font-size: @font-size-base * 1.5;
         &.navTreeCurrentItem,
@@ -287,7 +218,7 @@ body > header {
     padding-left: @line-height-base;
   }
   h2 {
-    border-bottom: 1px solid @grayLighter;
+    border-bottom: 1px solid @gray-lighter;
   }
 }
 
@@ -300,36 +231,3 @@ body > header {
   }
 }
 
-
-
-// Site footer
-// ----------------------------
-
-body > footer {
-    margin-top: @line-height-base;
-    padding: @line-height-base 0;
-    border-top: 10px solid @grayLighter;
-    background: @app-color;
-    color: @app-green;
-    .panel {
-      border-color: @app-green;
-      border-width: 0px 1px 0px 0px;
-      min-height: 100px;
-      h5 {
-        margin-top: 0px;
-      }
-    }
-    #subForm {
-      label {
-        display: none;
-      }
-    }
-    #footer-social {
-      li > a {
-        //.square(25px);
-        //border-radius: 50%;
-        //background: @link-color;
-        //color: #fff;
-      }
-    }
-}
