@@ -34,7 +34,7 @@
                 Once you have signed into your Google account, click this link
                 to begin the authorization process:
                 <div style="margin: 1em 0;">
-                    <a style="font-size:1.3em; font-weight: bold;"
+                    <a class="btn btn-primary btn-lg" style="font-size:1.3em; font-weight: bold;"
                         href="https://www.google.com/analytics/feeds/">
                         Authorize with Google
                     </a>
