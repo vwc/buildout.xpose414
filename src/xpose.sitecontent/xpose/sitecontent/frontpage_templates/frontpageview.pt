@@ -16,81 +16,20 @@
           tal:content="context/Title" />
       </header>
 
-      <section id="fp-testimonials">
-        <div class="speech-bubble" tal:condition="view/has_quotes">
-          <tal:item tal:define="item view/quote">
-            <p>Mein Start &ndash; Ziel &ndash; Sieg</p>
-            <h3><em tal:content="item/customer" />,
-              <span tal:replace="item/position" />
-              <span tal:condition="item/logo"
-                class="pull-right thumbnail">
-                <img tal:define="item_obj item/getObject;
-                                 scales item_obj/@@images"
-                    tal:replace="structure python: scales.tag('logo',
-                                 width=36, height=36, direction='down')"
-                    />
-              </span>
-            </h3>
-            <p class="company-name" tal:content="item/company" />
-            <p><i class="icon-quote-left"></i>
-              <span tal:content="item/statement">A quote a day keeps the CEO at bay</span>
-              <i class="icon-quote-right"></i>
-            </p>
-            <p href="" class="pull-right"
-              tal:content="item/website" />
-          </tal:item>
-          <div class="visualClear"><!-- --></div>
-        </div>
-        <div class="alert" tal:condition="not:view/has_quotes">
-          <h4>Testimonials</h4>
-          <p>No testimonials available yet</p>
-        </div>
-      </section>
-
-      <section id="fp-service-row">
-        <tal:block tal:define="items view/sections_first_row">
-          <div class="row">
-            <tal:block tal:repeat="item items">
-              <div class="span4">
-                <div class="panel" tal:define="idx repeat/item/number"
-                  tal:attributes="class python:'panel panel-top-' + str(idx)">
-                  <div class="panel-header"><i class="icon-circle"></i></div>
-                  <h4 tal:content="item/Title" />
-                  <p tal:content="item/Description" />
-                  <a href="" class="btn btn-primary"
-                    tal:attributes="href item/getURL"
-                    tal:content="item/Title" />
-                </div>
-              </div>
-            </tal:block>
-          </div>
-        </tal:block>
-      </section>
-
-      <section id="fp-service-row-2">
-        <tal:block tal:define="items view/sections_second_row">
-          <div class="row">
-            <tal:block tal:repeat="item items">
-              <div class="span4">
-                <div class="panel" tal:define="idx repeat/item/number"
-                  tal:attributes="class python:'panel panel-top-' + str(idx)">
-                  <div class="panel-header"><i class="icon-circle"></i></div>
-                  <h4 tal:content="item/Title" />
-                  <p tal:content="item/Description" />
-                  <a href="" class="btn btn-primary"
-                    tal:attributes="href item/getURL"
-                    tal:content="item/Title" />
-                </div>
-              </div>
-            </tal:block>
-          </div>
-        </tal:block>
-      </section>
-
       <section id="content-core">
         <p class="lead" tal:condition="context/Description"
           tal:content="context/Description" />
 
+
+        <div class="alert alert-warning alert-dismissable" tal:condition="view/can_edit">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>Warning!</strong> 
+            This seems to be your first time around. Please proceed with the
+            initial setup in order to use the Xeodash tool.
+        </div>
+            <a class="btn btn-primary btn-sm" href="#setup">
+                Setup application now
+            </a>
       </section>
     </section>
   </metal:content-core>

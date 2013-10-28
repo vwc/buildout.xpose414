@@ -13,11 +13,14 @@ from xpose.sitecontent.testimonial import ITestimonial
 
 class FrontPageView(grok.View):
     grok.context(INavigationRoot)
-    grok.require('zope2.View')
+    grok.require('cmf.ModifyPortalContent')
     grok.name('frontpage-view')
 
     def update(self):
         self.has_quotes = len(self.testimonials()) > 0
+
+    def can_edit(self):
+        return not api.user.is_anonymous()
 
     def sections_first_row(self):
         sections = self.main_sections()

@@ -18,73 +18,20 @@
 </title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/styles.css" rel="stylesheet">
+<link href="../css/styles.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-  <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
-  <script src="../bower_components/respond/respond.min.js"></script>
+  <script src="../../bower_components/html5shiv/dist/html5shiv.js"></script>
+  <script src="../../bower_components/respond/respond.min.js"></script>
 <![endif]-->
 
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
                                <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
-  <body class="app-theme-default">
+  <body class="app-theme-workspace">
     <a class="sr-only" href="#content">Skip navigation</a>
-    <div class="navbar navbar-inverse navbar-fixed-top app-toolbar" id="app-toolbar">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".app-toolbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Xpose414</a>
-    </div>
-    <div class="navbar-collapse collapse app-toolbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Contents</a></li>
-          <li><a href="#about">View</a></li>
-          <li><a href="#contact">Edit</a></li>
-          <li><a href="#contact">Share</a></li>
-          <li><a href="#contact">Content rules</a></li>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-          <li id="plone-personal-actions" class="dropdown dropdown-userinfo">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="/author/123456789">
-              <span>John Doe</span>
-              <b class="caret">
-            </b></a>
-            <ul class="dropdown-menu"><li id="plone-personal-actions-dashboard">
-                <a href="/dashboard">My workspace</a>
-              </li>
-              <li id="plone-personal-actions-preferences">
-                <a href="/preferences">Settings</a>
-              </li>
-              <li id="plone-personal-actions-plone_setup">
-                <a href="/controlpanel">Configuration</a>
-              </li>
-              <li id="plone-personal-actions-logout">
-                <a href="/logout">Signout</a>
-              </li>
-            </ul></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Folder</a></li>
-                <li><a href="#">Document</a></li>
-                <li><a href="#">Image</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Settings</li>
-                <li><a href="#">Filter options</a></li>
-                <li><a href="#">Add...</a></li>
-              </ul>
-            </li>
-        </ul>
-    </div><!--/.nav-collapse -->
-</div>
     <nav class="navbar navbar-default navbar-fixed-top app-navbar" id="app-navbar" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -104,7 +51,32 @@
   </div><!-- /.navbar-collapse -->
 </nav>
 
-    <main class="app-content" id="app-content" role="main">
+    <div class="ws-sidebar bs-docs-sidebar" id="ws-sidebar">
+    <h3 class="ws-nav-heading ws-sidebar-heading">
+        <a href="/">Xeodash <i class="icon-terminal"></i>
+    </h3>
+    <div class="ws-sidebar-block">
+        <h4>Max Mustermann</h4>
+        <p><a href="/logout"><i class="icon-signout"></i> Abmelden</a></p>
+    </div>
+
+  <ul class="nav ws-nav bs-docs-sidenav">
+    <li><a class="nav-header" href="#welcome">Dashboard</a></li>
+
+    <!-- Status Page -->
+    <li><a class="nav-header" href="#css">Status Page</a></li>
+    <li><a href="#css-overview">Overview</a></li>
+    <li><a href="#grid">Tasks</a></li>
+    <li><a href="#grid">Latest Activity</a></li>
+
+    <!-- Customer Manager -->
+    <li><a class="nav-header" href="#css">SEMTools</a></li>
+    <li><a href="#css-overview">Customers</a></li>
+    <li><a href="#grid">Domains</a></li>
+    <li><a href="#grid">Satistics</a></li>
+  </ul>
+</div>
+    <main class="app-content app-content-workspace" id="app-content" role="main">
         <main class="app-content-body">
   <div class="container app-page" id="content">
     <div class="app-page-header">
@@ -114,18 +86,55 @@
         <p class="lead">
             This is the new default theme
         </p>
-        <div class="page-header">
-            <h2>application listing Demo</h2>
+        <hr>
+        <p>These are infoboxes displaying key values for quick overviews. All
+            the dashboard components should probably be editable.</p>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="statuspanel panel-full">
+                  <div class="top">
+                    <h6>CPI</h6>
+                  </div>
+                  <div class="bottom">
+                    <h2 class="bergamoRegular">236</h2>
+                    <h6>Core values in listing</h6>
+                        <a href="" class="btn btn-default">
+                            Details</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="statuspanel panel-full">
+                  <div class="top danger">
+                    <h6>Time on Site</h6>
+                  </div>
+                  <div class="bottom">
+                    <h2 class="bergamoRegular">01:12min</h2>
+                        <h6>Core values in listing</h6>
+                        <a href="" class="btn btn-default">
+                            Details</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="statuspanel panel-full">
+                  <div class="top warning">
+                    <h6>Site Visits</h6>
+                  </div>
+                  <div class="bottom">
+                    <h2 class="bergamoRegular">12987</h2>
+                    <h6>Site visits in line chart</h6>
+                        <a href="" class="btn btn-default">
+                            Details</a>
+                  </div>
+                </div>
+            </div>
         </div>
-        <p>Next we will define a custom listing to provide a basic scaffolding
-            before we intergrate the example API
-        </p>
     </div>
   </div>
 </main>
-    </main>
-    <hr>
-    <!-- Footer
+
+        <!-- Footer
 ================================================== -->
 <footer class="app-footer" id="app-footer" role="contentinfo">
     <div class="container">
@@ -133,11 +142,12 @@
         <p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
     </div>
 </footer>
+    </main>
 
     <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../dist/js/xposeo.js"></script>
+<script src="../../dist/js/xposeo.js"></script>
     <script type="text/javascript">
   WebFontConfig = {
     google: { families: [ 'Lato:300,400,700:latin' ] }
