@@ -18,9 +18,16 @@ class FrontPageView(grok.View):
 
     def update(self):
         self.has_quotes = len(self.testimonials()) > 0
+        if self.can_edit():
+            next_url = self.home_folder().absolute_url()
+            return self.request.response.redirect(next_url)
 
     def can_edit(self):
         return not api.user.is_anonymous()
+
+    def home_folder(self):
+        current = api.user.get_current()
+        return current.getHomeFolder()
 
     def sections_first_row(self):
         sections = self.main_sections()
