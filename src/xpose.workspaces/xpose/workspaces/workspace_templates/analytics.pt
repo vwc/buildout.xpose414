@@ -35,7 +35,8 @@
                 to begin the authorization process:
                 <div style="margin: 1em 0;">
                     <a class="btn btn-primary btn-lg" style="font-size:1.3em; font-weight: bold;"
-                        href="https://www.google.com/analytics/feeds/">
+                        href="https://www.google.com/analytics/feeds/"
+                        tal:attributes="href view/auth_url">
                         Authorize with Google
                     </a>
                 </div>
