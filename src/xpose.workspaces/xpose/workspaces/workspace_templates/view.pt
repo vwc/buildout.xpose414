@@ -34,7 +34,7 @@
                     <h2 class="bergamoRegular">Analytics Setup</h2>
                     <h6>Configure custom access</h6>
                         <a href="" class="btn btn-default"
-                            tal:attributes="href string:${context/absolute_url}/@@workspace-analytics">
+                            tal:attributes="href string:${context/portal_url}/portal_analytics/@@analytics-controlpanel">
                             configure</a>
                   </div>
                 </div>
