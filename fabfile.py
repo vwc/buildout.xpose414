@@ -48,4 +48,4 @@ def rebuild():
 @task
 def get_data():
     """ Copy live database for local development """
-    project.db.download()
+    project.db.download_data()
