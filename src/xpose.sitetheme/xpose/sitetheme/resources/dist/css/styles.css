@@ -6875,8 +6875,8 @@ td.visible-print {
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
-  src: url('../assets/fonts/fontawesome-webfont.eot?v=4.0.0');
-  src: url('../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.0.0') format('embedded-opentype'), url('../assets/fonts/fontawesome-webfont.woff?v=4.0.0') format('woff'), url('../assets/fonts/fontawesome-webfont.ttf?v=4.0.0') format('truetype'), url('../assets/fonts/fontawesome-webfont.svg?v=4.0.0#fontawesomeregular') format('svg');
+  src: url('../../assets/fonts/fontawesome-webfont.eot?v=4.0.0');
+  src: url('../../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.0.0') format('embedded-opentype'), url('../../assets/fonts/fontawesome-webfont.woff?v=4.0.0') format('woff'), url('../../assets/fonts/fontawesome-webfont.ttf?v=4.0.0') format('truetype'), url('../../assets/fonts/fontawesome-webfont.svg?v=4.0.0#fontawesomeregular') format('svg');
 }
 
 .fa {
@@ -10394,7 +10394,7 @@ dd.image-caption {
   color: #FFF;
   text-transform: uppercase;
   background-color: #555555;
-  border-radius: 30px;
+  border-radius: 0;
 }
 
 .statuspanel .bottom {
@@ -10927,12 +10927,12 @@ textarea#mail_password #userid {
   text-transform: none;
 }
 
-#content h1 {
-  padding-left: 1.428571429;
-  background: url(../img/arrow.png) no-repeat 0 8px transparent;
+.app-page-title h1 {
+  padding-left: 22px;
+  background: url(../assets/img/arrow.png) no-repeat 0 8px transparent;
 }
 
-#content h2 {
+.app-page-title h2 {
   border-bottom: 1px solid #eeeeee;
 }
 

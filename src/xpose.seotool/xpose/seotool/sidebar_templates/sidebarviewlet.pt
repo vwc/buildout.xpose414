@@ -1,6 +1,6 @@
 <div class="app-sidebar" id="app-sidebar">
     <h3 class="app-nav-heading app-sidebar-heading">
-        <a href="/">Xeodash <i class="icon-terminal"></i>
+        <a tal:attributes="href viewlet/portal_url">Dashboard</a>
     </h3>
     <div class="app-sidebar-block">
         <h4 tal:content="viewlet/user_displayname">Max Mustermann</h4>

@@ -14,11 +14,15 @@ class Dashboard(grok.View):
 
     def update(self):
         self.portal_url = api.portal.get().absolute_url()
+
+    def render(self):
         if not api.user.is_anonymous():
             user = api.user.get_current()
             member_folder = user.getHomeFolder()
             home_folder = member_folder.absolute_url()
             return self.request.response.redirect(home_folder)
+        else:
+            return self.request.response.redirect(self.portal_url)
 
     @memoize
     def is_administrator(self):
