@@ -48,11 +48,11 @@
         <copy attributes="id dir" css:content="body" css:theme="body" />
 
         <!-- CMSUI Editbar replacements -->
-        <drop css:theme="#app-toolbar"
+        <drop css:theme="#xapp-navbar-nav"
             css:if-content="#anon-personalbar" />
         <!--<replace css:theme-children="#editbar" css:content="#edit-bar" />-->
-        <replace css:theme="#app-toolbar"
-            css:content="#xxapp-toolbar" />
+        <replace css:theme="#app-navbar-nav"
+            css:content="#app-navbar-nav" />
 
         <!-- Logo (link target) -->
         <copy attributes="href" css:content="#portal-logo" css:theme=".navbar-brand" />
@@ -103,11 +103,9 @@
         <replace css:content-children="#viewlet-below-content"
             css:theme-children="#below-main-content" />
 
-        <!-- Columns -->
-        <replace css:content-children="#portal-column-one > *"
-            css:theme-children="#sidebar" />
-        <replace css:content-children="#portal-column-two > *"
-            css:theme-children="#sidebar-right" />
+        <!-- Sidebar -->
+        <replace css:content-children="#app-sidebar"
+            css:theme-children="#app-sidebar" />
 
     </rules>
 
