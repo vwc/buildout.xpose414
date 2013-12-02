@@ -34,7 +34,7 @@
                     tal:attributes="data-appui-uri python:services[item];
                                     data-appui-target string:#app-statusmsg-${idx}">
                     <h4 class="list-group-item-heading">
-                        <small class="text-success pull-right"
+                        <small class="pull-right"
                             tal:attributes="id string:app-statusmsg-${idx}">
                             Service available
                         </small>

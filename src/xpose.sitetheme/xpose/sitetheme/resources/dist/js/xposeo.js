@@ -12641,7 +12641,19 @@ if (typeof define === "function" && define.amd) {
 (function ($) {
     $(document).ready(function () {
         if ($('body').hasClass('lt-ie7')) {return; }
-        // Application specific javascript code goes here
-    }
-    );
+
+        $('div[data-appui="ajaxcxn"]').each(function () {
+            var sourceUrl = $(this).data('appui-uri');
+            var targetDiv = $(this).data('appui-target');
+            var htmlString = '';
+            $.ajax({
+                url: sourceUrl,
+                timeout: 3000,
+                success: function () {
+                    htmlString += '<span class="text-danger">Not available</span>';
+                    $(targetDiv).html(htmlString);
+                }
+            });
+        });
+    });
 }(jQuery));
