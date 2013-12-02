@@ -31,51 +31,18 @@
                 <div class="list-group-item"
                     data-appui="ajaxcxn"
                     tal:define="idx repeat/item/index"
-                    tal:attributes="data-appui-uri python:services[item];
+                    tal:attributes="data-appui-uri item/uri;
                                     data-appui-target string:#app-statusmsg-${idx}">
                     <h4 class="list-group-item-heading">
-                        <small class="pull-right"
+                        <small class="pull-right text-success"
                             tal:attributes="id string:app-statusmsg-${idx}">
-                            Service available
+                            available
                         </small>
-                        Google API
+                        <span tal:content="item/name">Google API</span>
                     </h4>
-                    <p class="list-group-item-text" tal:content="item"></p>
+                    <p class="list-group-item-text" tal:content="item/uri"></p>
                 </div>
             </tal:block>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    <small class="text-success pull-right">
-                        Service available
-                    </small>
-                    Google API
-                </h4>
-                <p class="list-group-item-text">
-                    Service token and secret for analytics authentication
-                </p>
-            </div>
-             <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    <small class="text-success pull-right">
-                        Service available
-                    </small>
-                    Xovi API
-                </h4>
-                <p class="list-group-item-text">
-                    <span class="text-success">available</span>
-                </p>
-            </div>
-             <div class="list-group-item">
-                <h4 class="list-group-item-heading">
-                    <small class="text-success pull-right">
-                        Service available
-                    </small>
-                    Active Colla
-                </h4>
-                <p class="list-group-item-text">
-                    <span class="text-success">available</span>
-                </p>
-            </div>
         </div>
     </div>
 
