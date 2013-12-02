@@ -22,7 +22,7 @@ from xpose.workspaces import MessageFactory as _
 
 class IXeoFolder(form.Schema, IImageScaleTraversable):
     """
-    Xeodash aplication folder
+    Xeodash application folder
     """
 
 
@@ -32,7 +32,11 @@ class XeoFolder(Container):
 
 class View(grok.View):
     grok.context(IXeoFolder)
-    grok.require('zope2.View')
+    grok.require('cmf.ModifyPortalContent')
     grok.name('view')
 
-    # Add view methods here
+
+class CreateWorkspace(grok.View):
+    grok.context(IXeoFolder)
+    grok.require('cmf.ModifyPortalContent')
+    grok.name('create-workspace')

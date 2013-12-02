@@ -21,22 +21,79 @@
         <h2>Application dashboard</h2>
     </div>
 
-    <ul tal:define="
-        Batch python:modules['Products.CMFPlone'].Batch;
-        b_size python:int(request.get('b_size', 20));
-        b_start python:int(request.get('b_start', 0));
-        results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
-        batch python:Batch(results, b_size, b_start);">
-        <tal:block tal:repeat="item results">
-            <li><span class="h3" tal:content="item/Title" />
-                <small tal:content="item/getId" />
-                <a href="" tal:attributes="href item/getURL">
-                    show workspace
-                </a>
-            </li>
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
-        </tal:block>
-    </ul>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Services</h3>
+        </div>
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">
+                    <small class="text-success pull-right">
+                        Service available
+                    </small>
+                    Google API
+                </h4>
+                <p class="list-group-item-text">
+                    Service token and secret for analytics authentication
+                </p>
+            </div>
+             <div class="list-group-item">
+                <h4 class="list-group-item-heading">
+                    <small class="text-success pull-right">
+                        Service available
+                    </small>
+                    Xovi API
+                </h4>
+                <p class="list-group-item-text">
+                    <span class="text-success">available</span>
+                </p>
+            </div>
+             <div class="list-group-item">
+                <h4 class="list-group-item-heading">
+                    <small class="text-success pull-right">
+                        Service available
+                    </small>
+                    Active Colla
+                </h4>
+                <p class="list-group-item-text">
+                    <span class="text-success">available</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+        <div class="panel-heading">
+            <a class="pull-right" tal:attributes="href string:${context/absolute_url}/@@create-workspace">
+                Add workspace</a>
+            <h3 class="panel-title">Workspaces</h3>
+        </div>
+      <div class="panel-body">
+        <p class="text-muted">Projects are organized in dedicated workspaces which in term function
+            as a user acount providing authentication.
+        </p>
+      </div>
+    
+        <ul class="list-group" tal:define="
+          Batch python:modules['Products.CMFPlone'].Batch;
+          b_size python:int(request.get('b_size', 20));
+          b_start python:int(request.get('b_start', 0));
+          results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+          batch python:Batch(results, b_size, b_start);">
+          <tal:block tal:repeat="item results">
+              <li class="list-group-item"><span class="h5" tal:content="item/Title" />
+                  <small tal:content="item/getId" />
+                  <a href="" tal:attributes="href item/getURL">
+                      show workspace
+                  </a>
+              </li>
+              <div metal:use-macro="context/batch_macros/macros/navigation" />
+          </tal:block>
+        </ul>
+    </div>
+
+    
 
   </metal:content-core>
 </metal:main>
