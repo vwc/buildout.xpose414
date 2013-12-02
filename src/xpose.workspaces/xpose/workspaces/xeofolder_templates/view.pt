@@ -25,7 +25,24 @@
         <div class="panel-heading">
             <h3 class="panel-title">Services</h3>
         </div>
-        <div class="list-group">
+        <div class="list-group"
+            tal:define="services view/available_services">
+            <tal:block tal:repeat="item services">
+                <div class="list-group-item"
+                    data-appui="ajaxcxn"
+                    tal:define="idx repeat/item/index"
+                    tal:attributes="data-appui-uri python:services[item];
+                                    data-appui-target string:#app-statusmsg-${idx}">
+                    <h4 class="list-group-item-heading">
+                        <small class="text-success pull-right"
+                            tal:attributes="id string:app-statusmsg-${idx}">
+                            Service available
+                        </small>
+                        Google API
+                    </h4>
+                    <p class="list-group-item-text" tal:content="item"></p>
+                </div>
+            </tal:block>
             <div class="list-group-item">
                 <h4 class="list-group-item-heading">
                     <small class="text-success pull-right">

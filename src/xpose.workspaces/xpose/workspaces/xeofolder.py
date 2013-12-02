@@ -1,4 +1,5 @@
 from five import grok
+from plone import api
 
 from z3c.form import group, field
 from zope import schema
@@ -19,6 +20,9 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from xpose.workspaces import MessageFactory as _
 
+XOVI_URI = 'https://api.xovi.net/index.php?'
+BRAIN_URI = 'https://api.xovi.net/index.php?'
+
 
 class IXeoFolder(form.Schema, IImageScaleTraversable):
     """
@@ -34,6 +38,15 @@ class View(grok.View):
     grok.context(IXeoFolder)
     grok.require('cmf.ModifyPortalContent')
     grok.name('view')
+
+    def available_services(self):
+        keys = ('google', 'xovi', 'ac')
+        data = {}
+        for k in keys:
+            req_key = 'xeo.cxn.{0}_api_uri'.format(k)
+            api_uri = api.portal.get_registry_record(req_key)
+            data[k] = api_uri
+        return data
 
 
 class CreateWorkspace(grok.View):
