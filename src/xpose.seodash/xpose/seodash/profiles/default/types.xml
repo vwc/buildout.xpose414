@@ -8,7 +8,4 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
-  <object name="xpose.workspaces.dashboard" meta_type="Dexterity FTI" />
-  <object name="xpose.workspaces.xeofolder" meta_type="Dexterity FTI" />
-  <object name="xpose.workspaces.workspace" meta_type="Dexterity FTI" />
 </object>

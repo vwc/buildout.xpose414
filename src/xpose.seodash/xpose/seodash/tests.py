@@ -8,12 +8,12 @@ from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
 from Products.PloneTestCase.layer import onsetup
 
-import xpose.workspaces
+import xpose.seodash
 
 OPTION_FLAGS = doctest.NORMALIZE_WHITESPACE | \
                doctest.ELLIPSIS
 
-ptc.setupPloneSite(products=['xpose.workspaces'])
+ptc.setupPloneSite(products=['xpose.seodash'])
 
 
 class TestCase(ptc.PloneTestCase):
@@ -23,7 +23,7 @@ class TestCase(ptc.PloneTestCase):
         @classmethod
         def setUp(cls):
             zcml.load_config('configure.zcml',
-              xpose.workspaces)
+              xpose.seodash)
 
         @classmethod
         def tearDown(cls):
@@ -35,46 +35,22 @@ def test_suite():
 
         # Unit tests
         #doctestunit.DocFileSuite(
-        #    'README.txt', package='xpose.workspaces',
+        #    'README.txt', package='xpose.seodash',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
         #doctestunit.DocTestSuite(
-        #    module='xpose.workspaces.mymodule',
+        #    module='xpose.seodash.mymodule',
         #    setUp=testing.setUp, tearDown=testing.tearDown),
 
 
         # Integration tests that use PloneTestCase
         ztc.ZopeDocFileSuite(
             'INTEGRATION.txt',
-            package='xpose.workspaces',
+            package='xpose.seodash',
             optionflags = OPTION_FLAGS,
             test_class=TestCase),
 
         # -*- extra stuff goes here -*-
-
-        # Integration tests for Dashboard
-        ztc.ZopeDocFileSuite(
-            'Dashboard.txt',
-            package='xpose.workspaces',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for XeoFolder
-        ztc.ZopeDocFileSuite(
-            'XeoFolder.txt',
-            package='xpose.workspaces',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
-
-        # Integration tests for Workspace
-        ztc.ZopeDocFileSuite(
-            'Workspace.txt',
-            package='xpose.workspaces',
-            optionflags = OPTION_FLAGS,
-            test_class=TestCase),
-
 
         ])
 

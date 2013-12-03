@@ -10577,10 +10577,6 @@ dd.image-caption {
   box-shadow: inset 1px 0 0 #e5e5e5;
 }
 
-body {
-  background-color: #f5f5f5;
-}
-
 .btn {
   background-image: none !important;
   border-radius: 0 !important;

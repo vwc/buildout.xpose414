@@ -1,31 +1,26 @@
 <?xml version="1.0"?>
-<object name="xpose.workspaces.workspace"
+<object name="xpose.workspaces.dashboard"
    meta_type="Dexterity FTI"
    i18n:domain="xpose.workspaces" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Workspace</property>
+  <property name="title" i18n:translate="">Dashboard</property>
   <property name="description"
-    i18n:translate="">A user workspace providing protected access.</property>
+    i18n:translate="">A project and customer dashboard</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">xpose.workspaces.workspace</property>
-  <property name="global_allow">True</property>
+  <property name="factory">xpose.workspaces.dashboard</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">xpose.workspaces.workspace.IWorkspace</property>
-  <property name="klass">xpose.workspaces.workspace.Workspace</property>
+  <property name="schema">xpose.workspaces.dashboard.IDashboard</property>
+  <property name="klass">xpose.workspaces.dashboard.Dashboard</property>
 
   <property name="behaviors">
-     <element value="dexterity.membrane.behavior.membraneuser.INameFromFullName" />
-     <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
-     <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
-     <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
-     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-     <element value="dexterity.membrane.behavior.membraneuser.IMembraneUser" />
-     <element value="dexterity.membrane.behavior.membraneuser.IProvidePasswords" />
+     <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
    </property>
 
   <!-- View information -->
