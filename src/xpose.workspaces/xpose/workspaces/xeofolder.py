@@ -1,3 +1,13 @@
+import contextlib
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+from urllib2 import HTTPError
 from Acquisition import aq_inner
 from AccessControl import Unauthorized
 from five import grok
@@ -48,6 +58,31 @@ class View(grok.View):
             item['uri'] = api_uri
             data.append(item)
         return data
+
+    def service_status(self, service):
+        url = service['uri']
+        name = service['sid']
+        if name == 'ac':
+            url = url + '?check_if_alive=1&format=json"'
+        if name == 'xovi':
+            data = {
+                'key': u'myPersonalKey',
+                'service': u'user',
+                'method':  u'getCreditState',
+                'format':  u'json',
+            }
+            url = url + '?' + urlencode(data)
+        try:
+            st = self._check_service_status(url)
+        except HTTPError:
+            msg = 'Not available'
+        if st:
+            msg = service['name'] + st
+        return msg
+
+    def _check_service_status(self, service_url):
+        with contextlib.closing(urlopen(service_url)) as response:
+            return response.read().decode('utf-8')
 
 
 class CreateWorkspace(grok.View):

@@ -36,7 +36,9 @@
                     <h4 class="list-group-item-heading">
                         <small class="pull-right text-success"
                             tal:attributes="id string:app-statusmsg-${idx}">
-                            available
+                            <span tal:define="status python:view.service_status(item)"
+                                tal:content="status">
+                                available</span>
                         </small>
                         <span tal:content="item/name">Google API</span>
                     </h4>

@@ -28,3 +28,20 @@ class SidebarViewlet(grok.Viewlet):
         fullname = userid
         fullname = member.getProperty('fullname') or fullname
         return fullname
+
+    @memoize
+    def user_homeurl(self):
+        member = api.user.get_current()
+        userid = member.getId()
+        return "%s/workspace/%s" % (api.portal.get().absolute_url(),
+                                    userid)
+
+    def is_administrator(self):
+        context = aq_inner(self.context)
+        is_adm = False
+        if not api.user.is_anonymous():
+            user = api.user.get_current()
+            roles = api.user.get_roles(username=user.getId(), obj=context)
+            if 'Manager' or 'Site Administrator' in roles:
+                is_adm = True
+        return is_adm
