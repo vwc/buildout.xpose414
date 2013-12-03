@@ -9,11 +9,10 @@
     </div>
   <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav">
     <li><a class="nav-header"
-        tal:attributes="href viewlet/user_homeurl">Dashboard</a></li>
+        tal:attributes="href viewlet/user_homeurl">Overview</a></li>
     <tal:admin tal:condition="viewlet/is_administrator">
-        <li class="active"><a class="nav-header" href="#css">Administration</a></li>
         <li><a href="#css-overview">Services</a></li>
-        <li><a href="#css-overview">Acounts</a></li>
+        <li><a href="#css-overview">Dashboards</a></li>
         <li><a href="#grid">Latest Activity</a></li>
         <li><a href="#grid">My Tasks</a></li>
     </tal:admin>
