@@ -10472,6 +10472,16 @@ dd.image-caption {
 
 .app-sidebar-heading {
   margin: 0 0 22px;
+  font-family: 'Lato', "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.app-sidebar-heading small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
 }
 
 .app-sidebar-heading > a {
@@ -10583,8 +10593,10 @@ body {
 
 .app-navbar-brand {
   min-width: 250px;
+  padding-left: 33px;
   font-weight: 700;
   text-transform: uppercase;
+  background: url(../assets/img/arrow.png) no-repeat 11px 11px transparent;
 }
 
 .app-content-workspace {
@@ -10940,8 +10952,12 @@ textarea#mail_password #userid {
   text-transform: none;
 }
 
+.app-page-title {
+  margin-top: 0;
+}
+
 .app-page-title h1 {
-  padding-left: 22px;
+  padding: 0 0 0 22px;
   background: url(../assets/img/arrow.png) no-repeat 0 11px transparent;
 }
 

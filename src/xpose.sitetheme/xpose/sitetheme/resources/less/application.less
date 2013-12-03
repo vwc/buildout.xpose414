@@ -23,6 +23,8 @@ body {
     min-width: (@navbar-height * 5);
     font-weight: 700;
     text-transform: uppercase;
+    background: url(../assets/img/arrow.png) no-repeat (@line-height-computed / 2) (@line-height-computed / 2)  transparent;
+    padding-left: ceil(@line-height-computed * 1.5);
 }
 
 // Worspace content
@@ -232,13 +234,14 @@ body {
 // ----------------------
 
 .app-page-title {
-  h1 {
-    background: url(../assets/img/arrow.png) no-repeat 0 @line-height-computed / 2  transparent;
-    padding-left: @line-height-computed;
-  }
-  h2 {
-    border-bottom: 1px solid @gray-lighter;
-  }
+    margin-top: 0;
+    h1 {
+        background: url(../assets/img/arrow.png) no-repeat 0 @line-height-computed / 2  transparent;
+        padding: 0 0 0 @line-height-computed;
+    }
+    h2 {
+        border-bottom: 1px solid @gray-lighter;
+    }
 }
 
 

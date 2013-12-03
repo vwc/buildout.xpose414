@@ -70,30 +70,23 @@
   </div><!-- /.navbar-collapse -->
 </nav>
 
-    <div class="app-sidebar" id="app-sidebar">
+    <div id="app-sidebar" class="app-sidebar">
     <h3 class="app-nav-heading app-sidebar-heading">
-        <a href="/">Xeodash <i class="icon-terminal"></i>
+        <a href="http://localhost:8499/plonesite">
+        </a>
     </h3>
     <div class="app-sidebar-block">
-        <h4>Max Mustermann</h4>
-        <p><a href="/logout"><i class="icon-signout"></i> Abmelden</a></p>
+        <h4>zope-admin</h4>
+        <p><a href="http://localhost:8499/plonesite/logout"><small>
+            <i class="fa fa-sign-out"></i>abmelden</small></a></p>
     </div>
-
-  <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav">
-    <li><a class="nav-header" href="#welcome">Dashboard</a></li>
-
-    <!-- Status Page -->
-    <li><a class="nav-header" href="#css">SEO</a></li>
-    <li class="active"><a href="#css-overview">Overview</a></li>
-    <li><a href="#grid">Tasks</a></li>
-    <li><a href="#grid">Latest Activity</a></li>
-
-    <!-- Customer Manager -->
-    <li><a class="nav-header" href="#css">SEMTools</a></li>
-    <li><a href="#css-overview">Customers</a></li>
-    <li><a href="#grid">Domains</a></li>
-    <li><a href="#grid">Satistics</a></li>
-  </ul>
+    <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"><li><a href="http://localhost:8499/plonesite/workspace/zope-admin" class="nav-header">Dashboard</a></li>
+        <li class="active"><a href="#css" class="nav-header">Administration</a></li>
+        <li><a href="#css-overview">Services</a></li>
+        <li><a href="#css-overview">Acounts</a></li>
+        <li><a href="#grid">Latest Activity</a></li>
+        <li><a href="#grid">My Tasks</a></li>
+    </ul>
 </div>
     <main class="app-content app-content-workspace" id="app-content" role="main">
         <main class="app-content-body">
@@ -167,7 +160,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="../../dist/js/xposeo.js"></script>
-    <script type="text/javascript">
+    <div class="app-js-slot">
+        <script type="text/javascript">
   WebFontConfig = {
     google: { families: [ 'Lato:300,400,700:latin' ] }
   };
@@ -181,6 +175,7 @@
     s.parentNode.insertBefore(wf, s);
   })();
   </script>
+    </div>
 
   </body>
 </html>

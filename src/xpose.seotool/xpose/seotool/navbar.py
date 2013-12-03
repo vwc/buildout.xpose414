@@ -6,9 +6,12 @@ from zope.interface import Interface
 from plone.memoize.instance import memoize
 from plone.app.layout.viewlets.interfaces import IPortalFooter
 
+from xpose.seotool.interfaces import IXposeoTool
+
 
 class NavbarViewlet(grok.Viewlet):
     grok.context(Interface)
+    grok.layer(IXposeoTool)
     grok.viewletmanager(IPortalFooter)
     grok.require('zope2.View')
     grok.name('xpose.seotool.NavbarViewlet')

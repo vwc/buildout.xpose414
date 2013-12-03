@@ -1,34 +1,32 @@
 from Acquisition import aq_inner
 from five import grok
 from plone import api
-from zope.interface import Interface
+
 from plone.memoize.instance import memoize
-
-from plone.app.layout.viewlets.interfaces import IPortalFooter
-from xpose.seotool.interfaces import IXposeoTool
+from plone.app.layout.navigation.interfaces import INavigationRoot
 
 
-class SidebarViewlet(grok.Viewlet):
-    grok.context(Interface)
-    grok.layer(IXposeoTool)
-    grok.viewletmanager(IPortalFooter)
+class FrontPageView(grok.View):
+    grok.context(INavigationRoot)
     grok.require('zope2.View')
-    grok.name('xpose.seotool.SidebarViewlet')
+    grok.name('frontpage-router')
 
     def update(self):
-        self.portal_url = api.portal.get().absolute_url()
+        self.next_url = self.redirection_target()
 
-    @memoize
-    def user_displayname(self):
-        """Get the username of the currently logged in user
-        """
+    def render(self):
+        return self.request.response.redirect(self.next_url)
+
+    def redirection_target(self):
+        portal_url = api.portal.get().absolute_url()
         if api.user.is_anonymous():
-            return None
-        member = api.user.get_current()
-        userid = member.getId()
-        fullname = userid
-        fullname = member.getProperty('fullname') or fullname
-        return fullname
+            url = portal_url * '/login'
+        else:
+            if self.is_administrator():
+                url = portal_url + '/adm'
+            else:
+                url = self.user_homeurl()
+        return url
 
     @memoize
     def user_homeurl(self):

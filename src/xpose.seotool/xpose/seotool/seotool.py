@@ -1,11 +1,76 @@
+import contextlib
+try:
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+from urllib2 import HTTPError
 from five import grok
-
-from zope.interface import Interface
-
-
-class ISeoTool(Interface):
-    """ Api call processing and session data storage """
+from plone import api
+from plone.dexterity.content import Container
+from plone.directives import form
+from plone.namedfile.interfaces import IImageScaleTraversable
 
 
-class SeoTool(grok.GlobalUtility):
-    grok.provides(ISeoTool)
+from xpose.seotool import MessageFactory as _
+
+
+class ISeoTool(form.Schema, IImageScaleTraversable):
+    """
+    Seo Application utility tool
+    """
+
+
+class SeoTool(Container):
+    grok.implements(ISeoTool)
+
+
+class View(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('view')
+
+    def available_services(self):
+        services = {
+            u'google': _(u"Google Analytics"),
+            u'xovi': _(u"XOVI"),
+            u'ac': _(u"activeCollab"),
+        }
+        data = []
+        for s in services:
+            item = {}
+            req_key = 'xeo.cxn.{0}_api_uri'.format(s)
+            api_uri = api.portal.get_registry_record(req_key)
+            item['name'] = services[s]
+            item['sid'] = s
+            item['uri'] = api_uri
+            data.append(item)
+        return data
+
+    def service_status(self, service):
+        url = service['uri']
+        name = service['sid']
+        if name == 'ac':
+            url = url + '?check_if_alive=1&format=json"'
+        if name == 'xovi':
+            data = {
+                'key': u'myPersonalKey',
+                'service': u'user',
+                'method':  u'getCreditState',
+                'format':  u'json',
+            }
+            url = url + '?' + urlencode(data)
+        try:
+            st = self._check_service_status(url)
+        except HTTPError:
+            msg = 'Not available'
+        if st:
+            msg = service['name'] + st
+        return msg
+
+    def _check_service_status(self, service_url):
+        with contextlib.closing(urlopen(service_url)) as response:
+            return response.read().decode('utf-8')
