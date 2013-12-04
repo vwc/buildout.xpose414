@@ -10,8 +10,11 @@
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
   <property name="factory">xpose.seodash.dashboard</property>
   <property name="global_allow">False</property>
-  <property name="filter_content_types">False</property>
-  <property name="allowed_content_types" />
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+    <element value="xpose.seodash.project" />
+    <element value="File" />
+  </property>
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
@@ -19,8 +22,13 @@
   <property name="klass">xpose.seodash.dashboard.Dashboard</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+     <element value="dexterity.membrane.behavior.membraneuser.INameFromFullName" />
+     <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
+     <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
+     <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+     <element value="dexterity.membrane.behavior.membraneuser.IMembraneUser" />
+     <element value="dexterity.membrane.behavior.membraneuser.IProvidePasswords" />
    </property>
 
   <!-- View information -->
