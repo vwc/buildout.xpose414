@@ -195,7 +195,13 @@ module.exports = function (grunt) {
                 files: '*.html',
                 tasks: ['jekyll:theme']
             }
+        },
+
+        concurrent: {
+            cj: ['recess', 'copy', 'concat', 'uglify'],
+            ha: ['jekyll:theme', 'copy-templates', 'sed']
         }
+
     });
 
 
@@ -213,6 +219,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-recess');
     grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-rev');
+    grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-newer');
 
 
     // -------------------------------------------------
@@ -235,8 +243,11 @@ module.exports = function (grunt) {
     // Docs HTML validation task
     grunt.registerTask('validate-html', ['jekyll', 'validation']);
 
+    // Javascript Unittests
+    grunt.registerTask('unit-test', ['qunit']);
+
     // Test task.
-    var testSubtasks = ['dist-css', 'jshint', 'qunit', 'validate-html'];
+    var testSubtasks = ['dist-css', 'jshint', 'validate-html'];
 
     grunt.registerTask('test', testSubtasks);
 
@@ -255,9 +266,12 @@ module.exports = function (grunt) {
     // Template distribution task.
     grunt.registerTask('dist-html', ['jekyll:theme', 'copy-templates', 'sed']);
 
+    // Concurrent distribution task
+    grunt.registerTask('dist-cc', ['test', 'concurrent:cj', 'concurrent:ha']);
+
     // Full distribution task.
     grunt.registerTask('dist', ['clean', 'dist-css', 'dist-js', 'dist-html', 'dist-assets']);
 
     // Default task.
-    grunt.registerTask('default', ['test', 'dist']);
+    grunt.registerTask('default', ['dist-cc']);
 };

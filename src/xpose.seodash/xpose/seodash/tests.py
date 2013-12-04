@@ -52,6 +52,30 @@ def test_suite():
 
         # -*- extra stuff goes here -*-
 
+        # Integration tests for Project
+        ztc.ZopeDocFileSuite(
+            'Project.txt',
+            package='xpose.seodash',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
+        # Integration tests for Dashboard
+        ztc.ZopeDocFileSuite(
+            'Dashboard.txt',
+            package='xpose.seodash',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
+        # Integration tests for DashboardFolder
+        ztc.ZopeDocFileSuite(
+            'DashboardFolder.txt',
+            package='xpose.seodash',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
         ])
 
 if __name__ == '__main__':

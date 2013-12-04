@@ -81,12 +81,12 @@
         <p><a href="http://localhost:8499/plonesite/logout"><small>
             <i class="fa fa-sign-out"></i>abmelden</small></a></p>
     </div>
-    <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"><li><a href="http://localhost:8499/plonesite/workspace/zope-admin" class="nav-header">Dashboard</a></li>
-        <li class="active"><a href="#css" class="nav-header">Administration</a></li>
-        <li><a href="#css-overview">Services</a></li>
-        <li><a href="#css-overview">Acounts</a></li>
+    <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav">
+        <li><a href="#css" class="nav-header">Administration</a></li>
+        <li class="active"><a href="#css-overview">Services</a></li>
+        <li><a href="#css-overview">Dashboards</a></li>
+        <li><a href="#grid">Settings</a></li>
         <li><a href="#grid">Latest Activity</a></li>
-        <li><a href="#grid">My Tasks</a></li>
     </ul>
 </div>
     <main class="app-content app-content-workspace" id="app-content" role="main">
@@ -102,6 +102,42 @@
         <hr>
         <p>These are infoboxes displaying key values for quick overviews. All
             the dashboard components should probably be editable.</p>
+        <hr>
+        <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Services</h3>
+    </div>
+    <div class="list-group">
+        <div data-appui-uri="http://brain.xpose414.de/api.php" data-appui-target="#app-statusmsg-0" data-appui="ajaxcxn" class="list-group-item">
+            <h4 class="list-group-item-heading">
+                <small id="app-statusmsg-0" class="pull-right text-success">
+                    <span>available</span>
+                </small>
+                <span>activeCollab</span>
+            </h4>
+            <p class="list-group-item-text">http://brain.xpose414.de/api.php</p>
+        </div>
+        <div data-appui-uri="https://www.googleapis.com/auth/analytics.readonly" data-appui-target="#app-statusmsg-1" data-appui="ajaxcxn" class="list-group-item">
+            <h4 class="list-group-item-heading">
+                <small id="app-statusmsg-1" class="pull-right text-success">
+                    <span>available</span>
+                </small>
+                <span>Google Analytics</span>
+            </h4>
+            <p class="list-group-item-text">https://www.googleapis.com/auth/analytics.readonly</p>
+        </div>
+        <div data-appui-uri="https://api.xovi.net/index.php" data-appui-target="#app-statusmsg-2" data-appui="ajaxcxn" class="list-group-item">
+            <h4 class="list-group-item-heading">
+                <small id="app-statusmsg-2" class="pull-right text-success">
+                    <span>available</span>
+                </small>
+                <span>XOVI</span>
+            </h4>
+            <p class="list-group-item-text">https://api.xovi.net/index.php</p>
+        </div>
+    </div>
+</div>
+        <hr>
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <div class="statuspanel panel-full">

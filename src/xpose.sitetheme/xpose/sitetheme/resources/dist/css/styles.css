@@ -10463,7 +10463,7 @@ dd.image-caption {
   bottom: 0;
   left: 0;
   display: block;
-  width: 250px;
+  width: 200px;
   overflow-y: scroll;
   text-shadow: 0 1px 0 #fff;
   background-color: #f5f5f5;
@@ -10597,7 +10597,7 @@ dd.image-caption {
 
 .app-content-workspace {
   padding-top: 50px;
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 #mail_password #userid {
@@ -10650,40 +10650,6 @@ fieldset[disabled] #mail_password #userid {
 
 textarea#mail_password #userid {
   height: auto;
-}
-
-#header {
-  margin-bottom: 1.428571429;
-  border-top: 5px solid #92c83e;
-}
-
-#header #header-content {
-  padding: 1.428571429 0;
-}
-
-#header #header-content #logo a {
-  display: block;
-  width: 240px;
-  height: 75px;
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background: url(../img/logo.png) no-repeat 0 0 transparent;
-  background-color: transparent;
-  border: 0;
-}
-
-#header #header-content #header-content-inner {
-  padding-top: 4.285714287;
-}
-
-#header .navbar > .container {
-  border-bottom: 2px solid #201e06;
-}
-
-#header .navbar-inner {
-  background: #e2e2e2;
-  border: none;
 }
 
 .text-highlight {
@@ -10759,62 +10725,6 @@ textarea#mail_password #userid {
   border-bottom: 1px solid #999999;
 }
 
-#fp-service-row,
-#fp-service-row-2 {
-  padding-bottom: 1.428571429;
-}
-
-#fp-service-row .panel h4,
-#fp-service-row-2 .panel h4 {
-  padding: 0.7142857145 0 0.7142857145 1.428571429;
-  background: url(../img/arrow.png) no-repeat 0 7px transparent;
-}
-
-#fp-service-row .panel-header,
-#fp-service-row-2 .panel-header {
-  display: block;
-  width: 130px;
-  height: 100px;
-  margin-right: auto;
-  margin-left: auto;
-  overflow: hidden;
-  text-align: center;
-  text-indent: -9999px;
-  background: url(../img/sprite.png) no-repeat 0 -235px transparent;
-}
-
-#fp-service-row .panel-top-2 .panel-header,
-#fp-service-row-2 .panel-top-2 .panel-header {
-  width: 80px;
-  height: 100px;
-  background-position: -135px -235px;
-}
-
-#fp-service-row .panel-top-3 .panel-header,
-#fp-service-row-2 .panel-top-3 .panel-header {
-  width: 80px;
-  height: 100px;
-  background-position: -218px -235px;
-}
-
-#fp-service-row-2 .panel-header {
-  width: 80px;
-  height: 100px;
-  background: url(../img/sprite.png) no-repeat -297px -235px transparent;
-}
-
-#fp-service-row-2 .panel-top-2 .panel-header {
-  width: 110px;
-  height: 100px;
-  background-position: -375px -235px;
-}
-
-#fp-service-row-2 .panel-top-3 .panel-header {
-  width: 90px;
-  height: 100px;
-  background-position: -488px -235px;
-}
-
 .speech-bubble {
   position: relative;
   padding: 0.7142857145 0;
@@ -10844,108 +10754,6 @@ textarea#mail_password #userid {
   border-style: solid;
   border-width: 2.1428571435 2.1428571435 0 0;
   content: "";
-}
-
-#sidebar {
-  padding-top: 1.428571429;
-}
-
-#sidebar ul.navTree {
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-}
-
-#sidebar ul.navTree:before,
-#sidebar ul.navTree:after {
-  display: table;
-  content: " ";
-}
-
-#sidebar ul.navTree:after {
-  clear: both;
-}
-
-#sidebar ul.navTree:before,
-#sidebar ul.navTree:after {
-  display: table;
-  content: " ";
-}
-
-#sidebar ul.navTree:after {
-  clear: both;
-}
-
-#sidebar ul.navTree > li {
-  position: relative;
-  display: block;
-}
-
-#sidebar ul.navTree > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-
-#sidebar ul.navTree > li > a:hover,
-#sidebar ul.navTree > li > a:focus {
-  text-decoration: none;
-  background-color: #eeeeee;
-}
-
-#sidebar ul.navTree > li.disabled > a {
-  color: #999999;
-}
-
-#sidebar ul.navTree > li.disabled > a:hover,
-#sidebar ul.navTree > li.disabled > a:focus {
-  color: #999999;
-  text-decoration: none;
-  cursor: not-allowed;
-  background-color: transparent;
-}
-
-#sidebar ul.navTree .open > a,
-#sidebar ul.navTree .open > a:hover,
-#sidebar ul.navTree .open > a:focus {
-  background-color: #eeeeee;
-  border-color: #92c83e;
-}
-
-#sidebar ul.navTree .nav-divider {
-  height: 1px;
-  margin: 10px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-}
-
-#sidebar ul.navTree > li > a > img {
-  max-width: none;
-}
-
-#sidebar ul.navTree li {
-  display: block;
-  margin: 0 0 0.7142857145 0;
-}
-
-#sidebar ul.navTree li a {
-  font-size: 24px;
-  color: #999999;
-  text-transform: uppercase;
-}
-
-#sidebar ul.navTree li a.navTreeCurrentItem,
-#sidebar ul.navTree li a.navTreeCurrentNode {
-  color: #201e06;
-}
-
-#sidebar ul.navTree.navTreeLevel1 {
-  padding: 0.7142857145 0;
-}
-
-#sidebar ul.navTree.navTreeLevel1 li > a {
-  font-size: 20px;
-  text-transform: none;
 }
 
 .app-page-title {
