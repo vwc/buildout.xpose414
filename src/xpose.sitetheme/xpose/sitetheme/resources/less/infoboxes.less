@@ -88,12 +88,52 @@
     .opacity(20);
 }
 
+// Statuspanel numeric row
+
+.datapanel {
+    background-color: #f3f3f3;
+}
+.datapanel-row {
+    margin: 0;
+}
+.datapanel-item {
+    border: 1px solid @gray-lighter;
+    box-shadow: 1px 0 0 0 #FFFFFF;
+    padding: 25px 0 30px;
+    position: relative;
+    text-align: right;
+    &.last {
+        border-right: 0 none;
+    }
+    .item-data {
+        color: @text-color;
+        font-size: 16px;
+        font-weight: 600;
+        padding-right: 50px;
+        text-transform: uppercase;
+        .numberic {
+            color: @brand-primary;
+            font-size: 25px;
+            margin-right: 15px;
+        }
+    }
+    .item-date {
+        color: #B4B8BB;
+        font-family: 'Lato','Open Sans';
+        font-size: 13px;
+        font-style: italic;
+        font-weight: lighter;
+        position: absolute;
+        right: 50px;
+    }
+}
+
 // No data status panel
 
 .statuspanel-no-data {
-    margin: @line-height-computed @navbar-height;
+    margin: @line-height-computed;
     padding: ceil(@line-height-computed * 2);
-    border: 1px solid #d0d0d0;
+    border: 1px solid @gray-lighter;
     color: @gray-light;
     text-align: center;
      > .no-data-sign {
@@ -104,8 +144,11 @@
         border:5px solid @gray-lighter;
         border-radius:200px;
         color:@gray-lighter;
-        font-size:@font-size-base * 5;
+        font-size:floor(@font-size-base * 5.75);
         text-align:center;
         line-height:1
+    }
+    @media (min-width: @screen-sm) {
+        margin: @navbar-height ceil(@navbar-height * 2.5);
     }
 }

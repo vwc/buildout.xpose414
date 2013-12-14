@@ -32,7 +32,7 @@ class Project(Container):
     grok.implements(IProject)
 
 
-class SampleView(grok.View):
+class View(grok.View):
     grok.context(IProject)
     grok.require('zope2.View')
     grok.name('view')
