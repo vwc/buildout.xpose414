@@ -10992,13 +10992,19 @@ dd.image-caption {
   position: fixed;
   top: 50px;
   bottom: 0;
-  left: 0;
+  left: -200px;
   display: block;
   width: 200px;
   overflow-y: scroll;
   text-shadow: 0 1px 0 #fff;
   background-color: #f5f5f5;
   box-shadow: inset -1px 0 0 #e5e5e5;
+}
+
+@media (min-width: 768px) {
+  .app-sidebar {
+    left: 0;
+  }
 }
 
 .app-sidebar-heading {
@@ -11131,7 +11137,13 @@ dd.image-caption {
 
 .app-content-workspace {
   padding-top: 50px;
-  margin-left: 200px;
+}
+
+@media (min-width: 768px) {
+  .app-content-workspace {
+    margin-right: -200px;
+    margin-left: 200px;
+  }
 }
 
 #mail_password #userid {

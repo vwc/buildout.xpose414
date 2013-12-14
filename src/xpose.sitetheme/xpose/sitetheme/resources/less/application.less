@@ -30,8 +30,11 @@ body {
 // Worspace content
 
 .app-content-workspace {
-    margin-left: (@navbar-height * 4);
     padding-top: @navbar-height;
+    @media (min-width: @grid-float-breakpoint) {
+        margin-left: (@navbar-height * 4);
+        margin-right: -(@navbar-height * 4);
+    }
 }
 
 #mail_password #userid {
