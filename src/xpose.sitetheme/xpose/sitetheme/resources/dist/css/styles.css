@@ -6875,8 +6875,8 @@ td.visible-print {
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
-  src: url('../assets/fonts/fontawesome-webfont.eot?v=4.0.0');
-  src: url('../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.0.0') format('embedded-opentype'), url('../assets/fonts/fontawesome-webfont.woff?v=4.0.0') format('woff'), url('../assets/fonts/fontawesome-webfont.ttf?v=4.0.0') format('truetype'), url('../assets/fonts/fontawesome-webfont.svg?v=4.0.0#fontawesomeregular') format('svg');
+  src: url('../../assets/fonts/fontawesome-webfont.eot?v=4.0.0');
+  src: url('../../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.0.0') format('embedded-opentype'), url('../../assets/fonts/fontawesome-webfont.woff?v=4.0.0') format('woff'), url('../../assets/fonts/fontawesome-webfont.ttf?v=4.0.0') format('truetype'), url('../../assets/fonts/fontawesome-webfont.svg?v=4.0.0#fontawesomeregular') format('svg');
 }
 
 .fa {
@@ -10455,6 +10455,28 @@ dd.image-caption {
 .statuspanel .disabled h2 {
   opacity: 20;
   filter: alpha(opacity=2000);
+}
+
+.statuspanel-no-data {
+  padding: 44px;
+  margin: 22px 50px;
+  color: #999999;
+  text-align: center;
+  border: 1px solid #d0d0d0;
+}
+
+.statuspanel-no-data > .no-data-sign {
+  display: block;
+  width: 200px;
+  height: 200px;
+  padding: 50px;
+  margin: 0 auto 22px;
+  font-size: 80px;
+  line-height: 1;
+  color: #eeeeee;
+  text-align: center;
+  border: 5px solid #eeeeee;
+  border-radius: 200px;
 }
 
 .app-sidebar {

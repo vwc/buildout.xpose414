@@ -87,3 +87,25 @@
 .statuspanel .disabled h2 {
     .opacity(20);
 }
+
+// No data status panel
+
+.statuspanel-no-data {
+    margin: @line-height-computed @navbar-height;
+    padding: ceil(@line-height-computed * 2);
+    border: 1px solid #d0d0d0;
+    color: @gray-light;
+    text-align: center;
+     > .no-data-sign {
+        display: block;
+        .size(200px, 200px);
+        margin:0 auto @line-height-computed;
+        padding:@navbar-height;
+        border:5px solid @gray-lighter;
+        border-radius:200px;
+        color:@gray-lighter;
+        font-size:@font-size-base * 5;
+        text-align:center;
+        line-height:1
+    }
+}
