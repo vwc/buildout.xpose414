@@ -33,7 +33,13 @@ body {
     padding-top: @navbar-height;
     @media (min-width: @grid-float-breakpoint) {
         margin-left: (@navbar-height * 4);
-        margin-right: -(@navbar-height * 4);
+        padding-left: -(@navbar-height * 4);
+    }
+    .app-content-body {
+        padding: 0;
+        @media (min-width: @screen-sm) {
+            padding: 0 @line-height-computed;
+        }
     }
 }
 

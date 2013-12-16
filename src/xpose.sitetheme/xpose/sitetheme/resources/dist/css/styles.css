@@ -11141,8 +11141,18 @@ dd.image-caption {
 
 @media (min-width: 768px) {
   .app-content-workspace {
-    margin-right: -200px;
+    padding-left: -200px;
     margin-left: 200px;
+  }
+}
+
+.app-content-workspace .app-content-body {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .app-content-workspace .app-content-body {
+    padding: 0 22px;
   }
 }
 
