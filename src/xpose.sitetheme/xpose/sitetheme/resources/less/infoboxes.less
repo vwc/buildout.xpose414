@@ -131,14 +131,31 @@
 // No data status panel
 
 .statuspanel-no-data {
-    margin: @line-height-computed;
-    padding: ceil(@line-height-computed * 2);
+    margin: @line-height-computed 0;
+    padding: ceil(@line-height-computed / 2);
     border: 1px solid @gray-lighter;
     color: @gray-light;
-    text-align: center;
-     > .no-data-sign {
+     .no-data-sign {
         display: block;
-        .size(200px, 200px);
+        .square(@navbar-height);
+        margin:0 @line-height-computed;
+        padding:ceil(@line-height-computed / 2);
+        border:5px solid @gray-lighter;
+        border-radius:floor(@navbar-height / 2);
+        color:@gray-lighter;
+        text-align:center;
+        line-height:1
+    }
+    .no-data-title {
+        margin-top: ceil(@line-height-computed / 2);
+    }
+}
+
+.statuspanel-no-data-lg {
+    margin: @line-height-computed;
+    text-align: center;
+    .no-data-sign {
+        .square(200px);
         margin:0 auto @line-height-computed;
         padding:@navbar-height;
         border:5px solid @gray-lighter;
