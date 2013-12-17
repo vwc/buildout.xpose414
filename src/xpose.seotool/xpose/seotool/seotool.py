@@ -1,3 +1,4 @@
+import json
 import contextlib
 try:
     from urllib.parse import urlencode
@@ -71,6 +72,45 @@ class View(grok.View):
             msg = service['name'] + st
         return msg
 
+    def get_state_klass(self, statuscode):
+        state = {'statuscode': 'available',
+                 'klass': 'text-success'}
+        if statuscode == 'Not available':
+            state = {'statuscode': 'not available',
+                     'klass': 'text-danger'}
+        return state
+
     def _check_service_status(self, service_url):
         with contextlib.closing(urlopen(service_url)) as response:
             return response.read().decode('utf-8')
+
+
+class SetupAnalytics(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('setup-google')
+
+    def get_metrics(self):
+        url = 'https://www.googleapis.com/analytics/v3/metadata/ga/columns?pp=1'
+        with contextlib.closing(urlopen(url)) as response:
+            resp = response.read().decode('utf-8')
+            data = json.loads(resp)
+            return data
+
+    def get_stateklass(self, code):
+        klass = 'text-success'
+        if code == 'DEPRECATED':
+            klass = 'text-danger'
+        return klass
+
+
+class SetupXovi(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('setup-xovi')
+
+
+class SetupAC(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('setup-ac')

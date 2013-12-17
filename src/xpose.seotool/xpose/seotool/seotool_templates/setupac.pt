@@ -4,28 +4,30 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="xpose.seodash">
+      i18n:domain="xpose.seotool">
 <body>
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
     <div class="app-page-header">
         <div class="app-page-title">
-            <h1 tal:content="context/Title">Project name</h1>
+            <h1>Setup Active Collab</h1>
         </div>
-        <p class="lead" i18n:translate="">
-            This is the dashboard for <strong tal:content="context/Title">Title</strong>
-            and offers an overview of all attachments and associated projects.
+        <p class="lead app-page-lead">
+            Select the desired funcitonality from Active Collab API
         </p>
     </div>
 
     <div class="app-page-content" id="content-core">
 
-        <div class="alert alert-warning">
-            <p>You will find available projects here. If there is only one project configured,
-                we will display the report data immmediately</p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Project Metrics</h3>
         </div>
+        <div class="list-group">
 
+        </div>
+    </div>
     </div>
   </metal:content-core>
 </metal:main>

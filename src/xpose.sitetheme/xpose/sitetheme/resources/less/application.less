@@ -14,6 +14,9 @@ body {
     box-shadow: none !important;
 }
 
+.app-navbar {
+    padding-right: @line-height-computed;
+}
 
 .app-toolbar + .app-navbar {
     margin-top: @navbar-height;
@@ -148,8 +151,9 @@ body {
 .app-page-title {
     margin-top: 0;
     h1 {
-        background: url(../assets/img/arrow.png) no-repeat 0 @line-height-computed / 2  transparent;
+        margin-top: ceil(@line-height-computed / 2);
         padding: 0 0 0 @line-height-computed;
+        background: url(../assets/img/arrow.png) no-repeat 0 @line-height-computed / 2  transparent;
     }
     h2 {
         border-bottom: 1px solid @gray-lighter;

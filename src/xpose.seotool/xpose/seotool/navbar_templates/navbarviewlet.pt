@@ -14,7 +14,6 @@
             <li class="dropdown dropdown-userinfo" id="plone-personal-actions">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" 
                  tal:attributes="href viewlet/user_homeurl">
-                 Logged in as
                 <span tal:content="viewlet/user_displayname">Fullname</span>
                 <b class="caret">
               </a>

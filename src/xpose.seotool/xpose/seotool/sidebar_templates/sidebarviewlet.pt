@@ -7,7 +7,16 @@
         <p><a tal:attributes="href string:${viewlet/portal_url}/logout"><small>
             <i class="fa fa-sign-out"></i>abmelden</small></a></p>
     </div>
-  <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav">
+    <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
+        tal:condition="viewlet/is_dashboard">
+        <li><a class="nav-header"
+            tal:attributes="href viewlet/user_homeurl">Overview</a></li>
+        <li><a href="#content-core">Reports</a></li>
+        <li><a href="#content-core">Tasks</a></li>
+        <li><a href="#content-core">Latest Activity</a></li>
+    </ul>
+  <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
+    tal:condition="viewlet/is_seotool_setup">
     <li><a class="nav-header"
         tal:attributes="href viewlet/user_homeurl">Overview</a></li>
     <tal:admin tal:condition="viewlet/is_administrator">

@@ -23,7 +23,10 @@ class FrontPageView(grok.View):
             url = portal_url * '/login'
         else:
             if self.is_administrator():
-                url = portal_url + '/adm'
+                if not self.first_visit():
+                    url = portal_url + '/@@setup-seotool'
+                else:
+                    url = portal_url + '/adm'
             else:
                 url = self.user_homeurl()
         return url
@@ -32,8 +35,8 @@ class FrontPageView(grok.View):
     def user_homeurl(self):
         member = api.user.get_current()
         userid = member.getId()
-        return "%s/workspace/%s" % (api.portal.get().absolute_url(),
-                                    userid)
+        return "%s/xd/%s" % (api.portal.get().absolute_url(),
+                             userid)
 
     def is_administrator(self):
         context = aq_inner(self.context)
@@ -44,3 +47,38 @@ class FrontPageView(grok.View):
             if 'Manager' or 'Site Administrator' in roles:
                 is_adm = True
         return is_adm
+
+    def first_visit(self):
+        portal = api.portal.get()
+        return portal.hasObject('adm')
+
+
+class SetupSeoTool(grok.View):
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('setup-seotool')
+
+
+class SetupTool(grok.View):
+    grok.context(INavigationRoot)
+    grok.require('cmf.ManagePortal')
+    grok.name('setup-tool')
+
+    def render(self):
+        portal = api.portal.get()
+        success_url = portal.absolute_url() + '/adm'
+        api.content.create(
+            type='xpose.seotool.seotool',
+            id='adm',
+            title=u'Settings',
+            container=portal,
+            safe_id=True
+        )
+        api.content.create(
+            type='xpose.seodash.dashboardfolder',
+            id='xd',
+            title=u'Dashboards',
+            container=portal,
+            safe_id=True
+        )
+        return self.request.response.redirect(success_url)

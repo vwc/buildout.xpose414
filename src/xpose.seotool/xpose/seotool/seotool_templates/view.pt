@@ -33,16 +33,33 @@
                     tal:define="idx repeat/item/index"
                     tal:attributes="data-appui-uri item/uri;
                                     data-appui-target string:#app-statusmsg-${idx}">
-                    <h4 class="list-group-item-heading">
-                        <small class="pull-right text-success"
-                            tal:attributes="id string:app-statusmsg-${idx}">
-                            <span tal:define="status python:view.service_status(item)"
-                                tal:content="status">
-                                available</span>
-                        </small>
-                        <span tal:content="item/name">Google API</span>
-                    </h4>
-                    <p class="list-group-item-text" tal:content="item/uri"></p>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <h4 class="list-group-item-heading">
+                                <span tal:content="item/name">Google API</span>
+                            </h4>
+                            <p class="list-group-item-text" tal:content="item/uri"></p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p
+                                 tal:define="status python:view.service_status(item);
+                                             statusinfo python:view.get_state_klass(status)"
+                                tal:attributes="id string:app-statusmsg-${idx}">
+                                <span tal:content="statusinfo/statuscode"
+                                    tal:attributes="class statusinfo/klass">
+                                    available</span>
+                            </p>
+                            <a href="#" tal:attributes="href string:${context/absolute_url}/@@add-auth-token?service=${item/sid}">
+                                add auth token</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <div class="text-right">
+                                <a href="#" tal:attributes="href string:${context/absolute_url}/@@setup-${item/sid}">
+                                    setup
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </tal:block>
         </div>
@@ -51,22 +68,31 @@
     <div class="panel panel-default">
       <!-- Default panel contents -->
         <div class="panel-heading">
-            <a class="pull-right" tal:attributes="href string:${context/absolute_url}/@@create-workspace">
+            <a class="pull-right" tal:attributes="href string:${context/portal_url}/xd/@@create-dashboard">
                 Add dashboard</a>
             <h3 class="panel-title">Project dashboards</h3>
         </div>
       <div class="panel-body">
-        <p class="text-muted">Projects are organized in dedicated dashboards which in term function
-            as a user acount providing authentication.
-        </p>
+        <div class="statuspanel-no-data statuspanel-no-data-lg">
+            <div class="no-data-sign">
+                <i class="fa fa-th"></i>
+            </div>
+            <h2 i18n:translate="">
+                There are no user or project dashboards available
+            </h2>
+            <p>Why not go ahead and
+                <a tal:attributes="href string:${context/portal_url}/xd">
+                add the first acount now?</a>
+            </p>
+        </div>
       </div>
     
-        <ul class="list-group" tal:define="
-          Batch python:modules['Products.CMFPlone'].Batch;
-          b_size python:int(request.get('b_size', 20));
-          b_start python:int(request.get('b_start', 0));
-          results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
-          batch python:Batch(results, b_size, b_start);">
+        <ul class="list-group"
+            tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                        b_size python:int(request.get('b_size', 20));
+                        b_start python:int(request.get('b_start', 0));
+                        results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+                        batch python:Batch(results, b_size, b_start);">
           <tal:block tal:repeat="item results">
               <li class="list-group-item"><span class="h5" tal:content="item/Title" />
                   <small tal:content="item/getId" />

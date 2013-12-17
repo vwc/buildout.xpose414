@@ -9,6 +9,8 @@ from plone.keyring import django_random
 from plone.dexterity.content import Container
 from Products.CMFPlone.utils import safe_unicode
 
+from xpose.seodash.dashboard import IDashboard
+
 from xpose.seodash import MessageFactory as _
 
 
@@ -27,6 +29,19 @@ class View(grok.View):
     grok.require('zope2.View')
     grok.name('view')
 
+    def update(self):
+        self.has_dashboards = len(self.dashboards()) > 0
+
+    def dashboards(self):
+        context = aq_inner(self.context)
+        catalog = api.portal.get_tool(name='portal_catalog')
+        items = catalog(object_provides=IDashboard.__identifier__,
+                        path=dict(query='/'.join(context.getPhysicalPath()),
+                                  depth=1),
+                        sort_on='modified',
+                        sort_order='reverse')
+        return items
+
 
 class CreateDashboard(grok.View):
     grok.context(IDashboardFolder)
@@ -37,7 +52,7 @@ class CreateDashboard(grok.View):
         context = aq_inner(self.context)
         self.errors = {}
         unwanted = ('_authenticator', 'form.button.Submit')
-        required = ('subject', 'email')
+        required = ('title')
         if 'form.button.Submit' in self.request:
             authenticator = getMultiAdapter((context, self.request),
                                             name=u"authenticator")
@@ -64,14 +79,14 @@ class CreateDashboard(grok.View):
             if errorIdx > 0:
                 self.errors = form_errors
             else:
-                self._create_dashbaord(form)
+                self._create_dashboard(form)
 
     def _create_dashboard(self, data):
         context = aq_inner(self.context)
         new_title = data['title']
         token = django_random.get_random_string(length=12)
         item = api.content.create(
-            type='xpose.workspaces.workspace',
+            type='xpose.seodash.dashboard',
             id=token,
             title=new_title,
             container=context,

@@ -5,6 +5,9 @@ from zope.interface import Interface
 from plone.memoize.instance import memoize
 
 from plone.app.layout.viewlets.interfaces import IPortalFooter
+
+from xpose.seodash.dashboard import IDashboard
+from xpose.seotool.seotool import ISeoTool
 from xpose.seotool.interfaces import IXposeoTool
 
 
@@ -36,6 +39,14 @@ class SidebarViewlet(grok.Viewlet):
         userid = member.getId()
         return "%s/workspace/%s" % (api.portal.get().absolute_url(),
                                     userid)
+
+    def is_seotool_setup(self):
+        context = aq_inner(self.context)
+        return ISeoTool.providedBy(context)
+
+    def is_dashboard(self):
+        context = aq_inner(self.context)
+        return IDashboard.providedBy(context)
 
     def is_administrator(self):
         context = aq_inner(self.context)
