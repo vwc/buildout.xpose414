@@ -20,7 +20,7 @@ class FrontPageView(grok.View):
     def redirection_target(self):
         portal_url = api.portal.get().absolute_url()
         if api.user.is_anonymous():
-            url = portal_url * '/login'
+            url = portal_url + '/login'
         else:
             if self.is_administrator():
                 if not self.first_visit():
