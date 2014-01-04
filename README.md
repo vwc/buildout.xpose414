@@ -39,6 +39,40 @@ Xovi API paramters:
     'format'  => 'json',
 ``
 
+// Dashboard definitions seotool (monthly)
+
+monthly - 1. des Folgemonats
+
+
+- Besucherinformationen
+
+* anzahl user organisch
+* visits
+* aufenthaltsdauer
+* absprungrate
+* seiten pro besuch
+* neue besuche
+
+- XOVI
+
+* Fokus Keywords
+* Group eruiren (daten)
+
+
+- ACtive Collab
+
+* stunden/bearbeiter/datum/task
+* linkliste import csv/excel 
+
+
+-> Add user and dashboard in one shot!!!
+
+08.01. 16:00 Uhr
+15. Januar obacht
+
+wLe9Nky!y0o$w.ea%5$f
+
+
 
 
 

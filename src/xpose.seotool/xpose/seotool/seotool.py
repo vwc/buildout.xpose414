@@ -9,12 +9,16 @@ try:
 except ImportError:
     from urllib2 import urlopen
 from urllib2 import HTTPError
+
+from Acquisition import aq_inner
+from AccessControl import Unauthorized
 from five import grok
 from plone import api
+from zope.component import getMultiAdapter
 from plone.dexterity.content import Container
 from plone.directives import form
 from plone.namedfile.interfaces import IImageScaleTraversable
-
+from Products.CMFPlone.utils import safe_unicode
 
 from xpose.seotool import MessageFactory as _
 
@@ -85,6 +89,63 @@ class View(grok.View):
             return response.read().decode('utf-8')
 
 
+class AddAuthToken(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('add-auth-token')
+
+    def update(self):
+        context = aq_inner(self.context)
+        self.errors = {}
+        unwanted = ('_authenticator', 'form.button.Submit')
+        required = ('service')
+        if 'form.button.Submit' in self.request:
+            authenticator = getMultiAdapter((context, self.request),
+                                            name=u"authenticator")
+            if not authenticator.verify():
+                raise Unauthorized
+            form = self.request.form
+            form_data = {}
+            form_errors = {}
+            errorIdx = 0
+            for value in form:
+                if value not in unwanted:
+                    form_data[value] = safe_unicode(form[value])
+                    if not form[value] and value in required:
+                        error = {}
+                        error['active'] = True
+                        error['msg'] = _(u"This field is required")
+                        form_errors[value] = error
+                        errorIdx += 1
+                    else:
+                        error = {}
+                        error['active'] = False
+                        error['msg'] = form[value]
+                        form_errors[value] = error
+            if errorIdx > 0:
+                self.errors = form_errors
+            else:
+                self._set_auth_token(form)
+
+    def _set_auth_token(self, data):
+        service = data['service']
+        if service == 'google':
+            client_id = data['client_id']
+            client_secret = data['client_secret']
+            record_id = 'xeo.cxn.{0}_client_id'.format(service)
+            record_secret = 'xeo.cxn.{0}_client_secret'.format(service)
+            api.portal.set_registry_record(record_id, client_id)
+            api.portal.set_registry_record(record_secret, client_secret)
+        else:
+            token = data['token']
+            record = 'xeo.cxn.{0}_client_key'.format(service)
+            api.portal.set_registry_record(record, token)
+        portal_url = api.portal.get().absolute_url()
+        param = '/adm/@@setup-{0}'.format(service)
+        url = portal_url + param
+        return self.request.response.redirect(url)
+
+
 class SetupAnalytics(grok.View):
     grok.context(ISeoTool)
     grok.require('zope2.View')
@@ -114,3 +175,12 @@ class SetupAC(grok.View):
     grok.context(ISeoTool)
     grok.require('zope2.View')
     grok.name('setup-ac')
+
+    def update(self):
+        self.errors = {}
+
+    def default_value(self, error):
+        value = ''
+        if error['active'] is False:
+            value = error['msg']
+        return value
