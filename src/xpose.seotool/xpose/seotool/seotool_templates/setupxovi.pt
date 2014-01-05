@@ -18,6 +18,49 @@
         </p>
     </div>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Service Status</h3>
+        </div>
+        <div class="app-service-details"
+            tal:define="status_info view/service_status;
+                        status status_info/status">
+            <tal:block tal:condition="python:status == '0k.'">
+                <div class="datapanel" id="main-stats"
+                    tal:define="details status_info/response">
+                    <div class="row datapanel-row">
+                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                            <div class="item-data">
+                                <span class="numberic"
+                                    tal:content="python:details['creditamount']">50 000</span>
+                                Credits
+                            </div>
+                            <span class="item-date"
+                                tal:content="python:details['lastrefill']">Today</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                            <div class="item-data">
+                                <span class="numberic"
+                                    tal:content="python:details['creditsused']">50 000</span>
+                                Credits Used
+                            </div>
+                            <span class="item-date">Today</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                            <div class="item-data">
+                                <span class="numberic"
+                                    tal:content="python:details['creditsleft']">50 000</span>
+                                Credits Left
+                            </div>
+                            <span class="item-date">Today</span>
+                        </div>
+                    </div>
+                </div>
+            </tal:block>
+        </div>
+    </div>
+    
+
     <div class="app-page-content" id="content-core">
 
     <div class="panel panel-primary">

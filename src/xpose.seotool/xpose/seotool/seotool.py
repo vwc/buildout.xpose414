@@ -96,6 +96,50 @@ class View(grok.View):
             return response.read().decode('utf-8')
 
 
+class SetupServices(grok.View):
+    grok.context(ISeoTool)
+    grok.require('zope2.View')
+    grok.name('setup-services')
+
+    def available_services(self):
+        services = {
+            u'google': _(u"Google Analytics"),
+            u'xovi': _(u"XOVI"),
+            u'ac': _(u"activeCollab"),
+        }
+        data = []
+        for s in services:
+            item = {}
+            req_key = 'xeo.cxn.{0}_api_uri'.format(s)
+            api_uri = api.portal.get_registry_record(req_key)
+            item['name'] = services[s]
+            item['sid'] = s
+            item['uri'] = api_uri
+            data.append(item)
+        return data
+
+    def service_status(self, service):
+        name = service['sid']
+        status = 'OK'
+        info = {}
+        if name == 'xovi':
+            xovi_tool = getUtility(IXoviTool)
+            info = xovi_tool.status()
+        if name == 'ac':
+            ac_tool = getUtility(IACTool)
+            info = ac_tool.status()
+        status = info
+        return status
+
+    def get_state_klass(self, statuscode):
+        state = {'statuscode': 'active',
+                 'klass': 'text-success'}
+        if statuscode == 'Not available':
+            state = {'statuscode': 'not available',
+                     'klass': 'text-danger'}
+        return state
+
+
 class AddAuthToken(grok.View):
     grok.context(ISeoTool)
     grok.require('zope2.View')
@@ -176,6 +220,11 @@ class SetupXovi(grok.View):
     grok.context(ISeoTool)
     grok.require('zope2.View')
     grok.name('setup-xovi')
+
+    def service_status(self):
+        xovi_tool = getUtility(IXoviTool)
+        info = xovi_tool.status()
+        return info
 
 
 class SetupAC(grok.View):
