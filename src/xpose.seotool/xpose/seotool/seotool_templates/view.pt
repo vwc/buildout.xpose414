@@ -36,21 +36,19 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6">
                             <h4 class="list-group-item-heading">
-                                <span tal:content="item/name">Google API</span>
+                                <span tal:content="item/name">API Name</span>
                             </h4>
-                            <p class="list-group-item-text" tal:content="item/uri"></p>
+                            <p class="list-group-item-text" tal:content="item/uri">API Service URI</p>
                         </div>
                         <div class="col-xs-12 col-sm-4">
-                            <p
-                                 tal:define="status python:view.service_status(item);
-                                             statusinfo python:view.get_state_klass(status)"
+                            <p tal:define="status python:view.service_status(item);
+                                           statusinfo python:view.get_state_klass(status)"
                                 tal:attributes="id string:app-statusmsg-${idx}">
                                 <span tal:content="statusinfo/statuscode"
                                     tal:attributes="class statusinfo/klass">
                                     available</span>
+                                <pre tal:content="status" />
                             </p>
-                            <a href="#" tal:attributes="href string:${context/absolute_url}/@@add-auth-token?service=${item/sid}">
-                                add auth token</a>
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             <div class="text-right">
