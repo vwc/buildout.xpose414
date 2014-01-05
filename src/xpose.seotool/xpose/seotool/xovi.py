@@ -1,3 +1,4 @@
+import json
 import socket
 import contextlib
 try:
@@ -8,11 +9,9 @@ try:
     from urllib.request import urlopen
 except ImportError:
     from urllib2 import urlopen
-from urllib2 import HTTPError
 from five import grok
 from plone import api
 from zope.interface import Interface
-from zope.component import getMultiAdapter
 
 
 DEFAULT_SERVICE_URI = 'https://api.xovi.net/index.php?'
@@ -20,7 +19,7 @@ DEFAULT_SERVICE_TIMEOUT = socket.getdefaulttimeout()
 
 
 class IXoviTool(Interface):
-    """ Api call processing and session data storage """
+    """ API call processing and session data storage """
 
     def status(context):
         """ Check availability of Xovi api
@@ -47,7 +46,17 @@ class XoviTool(grok.GlobalUtility):
         url = service_url + '?' + urlencode(params)
         with contextlib.closing(urlopen(url)) as response:
             response = response.read().decode('utf-8')
-        return response
+        res = json.loads(response)
+        res_code = res['apiErrorCode']
+        info = {}
+        info['name'] = 'XOVI'
+        info['code'] = res_code
+        info['status'] = res['apiErrorMessage']
+        if res_code == 0:
+            info['response'] = res['apiResult']
+        else:
+            info['response'] = res['paramname']
+        return info
 
     def get_config(self, record=None):
         record_key = 'xeo.cxn.xovi_{0}'.format(record)

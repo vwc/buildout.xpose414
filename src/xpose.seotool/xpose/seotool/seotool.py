@@ -21,6 +21,7 @@ from plone.directives import form
 from plone.namedfile.interfaces import IImageScaleTraversable
 from Products.CMFPlone.utils import safe_unicode
 
+from xpose.seotool.ac import IACTool
 from xpose.seotool.xovi import IXoviTool
 
 from xpose.seotool import MessageFactory as _
@@ -63,26 +64,22 @@ class View(grok.View):
         name = service['sid']
         status = 'OK'
         info = {}
-        if name == 'ac':
-            info['name'] = name
-            api_token = '24-jDsvH7s8fv3BGt3sx0bESliMXYjRhsjzORv8NA89'
-            token = '&auth_api_token={0}'.format(api_token)
-            # url = url + '?check_if_alive=1&format=json' + token
-            url = url + '?path_info=info&format=json' + token
-            try:
-                status = self._check_service_status(url)
-            except HTTPError:
-                status = 'Not available'
-            import pdb; pdb.set_trace( )
-            info['status'] = status
-            info['response'] = status
         if name == 'xovi':
-            info['name'] = name
             xovi_tool = getUtility(IXoviTool)
-            xovi_status = xovi_tool.status()
-            state_info = json.loads(xovi_status)
-            info['status'] = state_info['apiErrorMessage']
-            info['response'] = state_info['apiResult']
+            info = xovi_tool.status()
+        if name == 'ac':
+            # info['name'] = name
+            # api_token = '24-jDsvH7s8fv3BGt3sx0bESliMXYjRhsjzORv8NA89'
+            # token = '&auth_api_token={0}'.format(api_token)
+            # url = url + '?path_info=info&format=json' + token
+            # try:
+            #     status = self._check_service_status(url)
+            # except HTTPError:
+            #     status = 'Not available'
+            # info['status'] = status
+            # info['response'] = status
+            ac_tool = getUtility(IACTool)
+            info = ac_tool.status()
         status = info
         return status
 
