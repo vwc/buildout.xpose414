@@ -37,6 +37,21 @@ class IXoviTool(Interface):
 class XoviTool(grok.GlobalUtility):
     grok.provides(IXoviTool)
 
+    def get(self, service=u'user',
+            method=u'getCreditState',
+            timeout=DEFAULT_SERVICE_TIMEOUT):
+        service_url = self.get_config('api_uri')
+        service_key = self.get_config('client_key')
+        params = xovi_request_base()
+        params['service'] = service
+        params['method'] = method
+        params['key'] = service_key
+        url = service_url + '?' + urlencode(params)
+        with contextlib.closing(urlopen(url)) as response:
+            response = response.read().decode('utf-8')
+        data = json.loads(response)
+        return data
+
     def status(self, timeout=DEFAULT_SERVICE_TIMEOUT):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')

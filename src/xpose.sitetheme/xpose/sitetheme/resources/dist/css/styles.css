@@ -11043,6 +11043,10 @@ dd.image-caption {
   background-color: #f3f3f3;
 }
 
+.datapanel.datapanel-embedded {
+  margin-right: 1px;
+}
+
 .datapanel-row {
   margin: 0;
 }
@@ -11264,6 +11268,10 @@ dd.image-caption {
   background-image: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+.panel-heading > .btn {
+  margin-top: 0;
 }
 
 .app-navbar {

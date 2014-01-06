@@ -20,16 +20,25 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
+            <form class="app-form pull-right"
+                method="post" role="form"
+                tal:attributes="action request/URL">
+                <span tal:replace="structure context/@@authenticator/authenticator"/>
+                <button class="btn btn-primary btn-xs"
+                    name="form.button.Submit"
+                    id="form.button.Submit"
+                    i18n:translate="">Refresh</button>          
+            </form>
             <h3 class="panel-title">Service Status</h3>
         </div>
         <div class="app-service-details"
             tal:define="status_info view/service_status;
                         status status_info/status">
             <tal:block tal:condition="python:status == '0k.'">
-                <div class="datapanel" id="main-stats"
+                <div class="datapanel datapanel-embedded" id="main-stats"
                     tal:define="details status_info/response">
                     <div class="row datapanel-row">
-                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                        <div class="col-xs-12 col-sm-3 datapanel-item">
                             <div class="item-data">
                                 <span class="numberic"
                                     tal:content="python:details['creditamount']">50 000</span>
@@ -38,7 +47,7 @@
                             <span class="item-date"
                                 tal:content="python:details['lastrefill']">Today</span>
                         </div>
-                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                        <div class="col-xs-12 col-sm-3 datapanel-item">
                             <div class="item-data">
                                 <span class="numberic"
                                     tal:content="python:details['creditsused']">50 000</span>
@@ -46,7 +55,7 @@
                             </div>
                             <span class="item-date">Today</span>
                         </div>
-                        <div class="col-xs-12 col-sm-4 datapanel-item">
+                        <div class="col-xs-12 col-sm-3 datapanel-item">
                             <div class="item-data">
                                 <span class="numberic"
                                     tal:content="python:details['creditsleft']">50 000</span>
@@ -54,7 +63,33 @@
                             </div>
                             <span class="item-date">Today</span>
                         </div>
+                        <div class="col-xs-12 col-sm-3 datapanel-item">
+                            <div class="item-data">
+                                <span class="numberic" tal:condition="not:context/projects_xovi">0</span>
+                                <span class="numberic" tal:condition="context/projects_xovi"
+                                    tal:content="python:len(view.available_projects())">0</span>
+                                Projects
+                            </div>
+                            <span class="item-date">Today</span>
+                        </div>
                     </div>
+                </div>
+            </tal:block>
+        </div>
+    </div>
+
+    <div class="panel panel-primary" tal:condition="context/projects_xovi">
+         <div class="panel-heading">
+            <h3 class="panel-title" i18n:translate="">Available Projects</h3>
+        </div>
+        <div class="list-group app-list-group">
+            <tal:block tal:repeat="item view/available_projects">
+                <div class="list-group-item">
+                    <div class="pull-right">
+                        <p class="text-muted"
+                            tal:content="item/id">Today</p>
+                    </div>
+                    <h4 tal:content="item/project" />
                 </div>
             </tal:block>
         </div>
@@ -76,7 +111,7 @@
                 </h4>
                 <div class="pull-right">
                     <label class="switch">
-                      <input type="checkbox" class="switch-input">
+                      <input type="checkbox" class="switch-input" />
                       <span data-off="Off" data-on="On" class="switch-label"></span>
                       <span class="switch-handle"></span>
                     </label>
@@ -100,7 +135,7 @@
                     Die Funktion gibt die Rankingverteilung der Domain zurück, also mit wie vielen Suchbegriffen die URL auf den Seiten 1 - 10 bei Google rankt.
                 </p>
             </div>
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-responsive">
                 <tbody>
                           <tr>
                             <td><a rel="category tag" title="Alle Beiträge in Seo ansehen" href="http://developers.xovi.net/service/api/seo/">Seo</a></td>

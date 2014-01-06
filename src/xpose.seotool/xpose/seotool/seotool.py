@@ -14,12 +14,16 @@ from Acquisition import aq_inner
 from AccessControl import Unauthorized
 from five import grok
 from plone import api
+from zope import schema
 from zope.component import getUtility
 from zope.component import getMultiAdapter
-from plone.dexterity.content import Container
+from zope.lifecycleevent import modified
 from plone.directives import form
-from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.dexterity.content import Container
 from Products.CMFPlone.utils import safe_unicode
+
+from plone.namedfile.interfaces import IImageScaleTraversable
+from Products.statusmessages.interfaces import IStatusMessage
 
 from xpose.seotool.ac import IACTool
 from xpose.seotool.xovi import IXoviTool
@@ -31,6 +35,12 @@ class ISeoTool(form.Schema, IImageScaleTraversable):
     """
     Seo Application utility tool
     """
+    projects_xovi = schema.TextLine(
+        title=_(u"Xovi Projects"),
+        description=_(u"A list of available projects from the configured xovi "
+                      u"account in json format. Do not change this manually"),
+        required=False,
+    )
 
 
 class SeoTool(Container):
@@ -60,7 +70,6 @@ class View(grok.View):
         return data
 
     def service_status(self, service):
-        url = service['uri']
         name = service['sid']
         status = 'OK'
         info = {}
@@ -68,16 +77,6 @@ class View(grok.View):
             xovi_tool = getUtility(IXoviTool)
             info = xovi_tool.status()
         if name == 'ac':
-            # info['name'] = name
-            # api_token = '24-jDsvH7s8fv3BGt3sx0bESliMXYjRhsjzORv8NA89'
-            # token = '&auth_api_token={0}'.format(api_token)
-            # url = url + '?path_info=info&format=json' + token
-            # try:
-            #     status = self._check_service_status(url)
-            # except HTTPError:
-            #     status = 'Not available'
-            # info['status'] = status
-            # info['response'] = status
             ac_tool = getUtility(IACTool)
             info = ac_tool.status()
         status = info
@@ -221,10 +220,71 @@ class SetupXovi(grok.View):
     grok.require('zope2.View')
     grok.name('setup-xovi')
 
+    def update(self):
+        context = aq_inner(self.context)
+        self.errors = {}
+        unwanted = ('_authenticator', 'form.button.Submit')
+        required = ('service')
+        if 'form.button.Submit' in self.request:
+            authenticator = getMultiAdapter((context, self.request),
+                                            name=u"authenticator")
+            if not authenticator.verify():
+                raise Unauthorized
+            form = self.request.form
+            form_data = {}
+            form_errors = {}
+            errorIdx = 0
+            for value in form:
+                if value not in unwanted:
+                    form_data[value] = safe_unicode(form[value])
+                    if not form[value] and value in required:
+                        error = {}
+                        error['active'] = True
+                        error['msg'] = _(u"This field is required")
+                        form_errors[value] = error
+                        errorIdx += 1
+                    else:
+                        error = {}
+                        error['active'] = False
+                        error['msg'] = form[value]
+                        form_errors[value] = error
+            if errorIdx > 0:
+                self.errors = form_errors
+            else:
+                self._refresh_configuration(form)
+
     def service_status(self):
         xovi_tool = getUtility(IXoviTool)
         info = xovi_tool.status()
         return info
+
+    def _refresh_configuration(self, data):
+        context = aq_inner(self.context)
+        xovi_tool = getUtility(IXoviTool)
+        project_list = xovi_tool.get(service=u'project', method=u'getProjects')
+        projects = json.dumps(project_list)
+        setattr(context, 'projects_xovi', projects)
+        modified(context)
+        context.reindexObject(idxs='modified')
+        IStatusMessage(self.request).addStatusMessage(
+            _(u"The Xovi configuration has sucessfully been refreshed"),
+            type='info')
+        portal_url = api.portal.get().absolute_url()
+        param = '/adm/@@setup-xovi'
+        url = portal_url + param
+        return self.request.response.redirect(url)
+
+    def available_projects(self):
+        context = aq_inner(self.context)
+        project_info = getattr(context, 'projects_xovi', '')
+        data = json.loads(project_info)
+        items = []
+        for x in data['apiResult']:
+            info = {}
+            info['id'] = x['id']
+            info['project'] = x['name']
+            items.append(info)
+        return items
 
 
 class SetupAC(grok.View):

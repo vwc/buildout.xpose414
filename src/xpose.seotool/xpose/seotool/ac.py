@@ -56,7 +56,7 @@ class ACTool(grok.GlobalUtility):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
         params = ac_request_base()
-        params['path_info'] = '1'
+        params['path_info'] = 'info'
         params['auth_api_token'] = service_key
         url = service_url + '?' + urlencode(params)
         with contextlib.closing(urlopen(url)) as response:
