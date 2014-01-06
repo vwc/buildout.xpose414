@@ -29,15 +29,16 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group field"
-                        tal:define="error errors/subject | nothing;
+                        tal:define="error errors/title | nothing;
                                     err_msg python:error and error['active'] == True;
-                                    value request/subject | nothing"
+                                    value request/title | nothing"
                         tal:attributes="class python:err_msg and 'form-group has-error' or 'form-group'">
                         <label class="sr-only" for="title" i18n:translate="">Title</label>
                             <input class="form-control"
-                                id="subject"
+                                id="title"
                                 type="text"
-                                name="subject"
+                                name="title"
+                                placeholder="Please enter dashboard title"
                                 tal:attributes="value python:error and view.default_value(error) or value" />
                             <div class="help-block error"
                                 tal:condition="err_msg">
@@ -45,10 +46,6 @@
                               <span tal:replace="python:error['msg']" />
                             </div>
                     </div><!-- /title field -->
-                    <div class="form-group">
-                        <label class="sr-only" for="title" i18n:translate="">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Please enter dashboard title">
-                    </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group">

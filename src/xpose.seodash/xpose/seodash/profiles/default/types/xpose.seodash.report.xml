@@ -1,25 +1,22 @@
 <?xml version="1.0"?>
-<object name="xpose.seodash.project"
+<object name="xpose.seodash.report"
    meta_type="Dexterity FTI"
    i18n:domain="xpose.seodash" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Project</property>
+  <property name="title" i18n:translate="">Report</property>
   <property name="description"
-    i18n:translate="">A single project usually a single site</property>
+    i18n:translate="">A collection of metrics and dimensions</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">xpose.seodash.project</property>
+  <property name="factory">xpose.seodash.report</property>
   <property name="global_allow">False</property>
-  <property name="filter_content_types">True</property>
-  <property name="allowed_content_types">
-    <element value="File" />
-    <element value="Report" />
-  </property>
-  <property name="allow_discussion">False</property>
+  <property name="filter_content_types">False</property>
+  <property name="allowed_content_types" />
+  <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">xpose.seodash.project.IProject</property>
-  <property name="klass">xpose.seodash.project.Project</property>
+  <property name="schema">xpose.seodash.report.IReport</property>
+  <property name="klass">xpose.seodash.report.Report</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />

@@ -9,23 +9,26 @@
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
-    <div class="app-page-header">
+
+   <div class="app-page-header">
         <div class="app-page-title">
-            <h1 tal:content="context/Title">Project Dashboard
-                <small>http://example.tld</small>
+            <h1>Report
+                <small>Timeslot e.g. Nov 2013</small>
             </h1>
         </div>
         <p class="lead" i18n:translate="">
-            This is the dashboard for <strong>http://example.tld</strong> site
-            providing statistics and task overviews.
+            This is a single report available for projects. The latest report will
+            always show in the project dashboard. Further details are available
+            on subsequent requests.
         </p>
     </div>
 
     <div class="app-page-content" id="content-core">
-
     </div>
+
   </metal:content-core>
 </metal:main>
 
 </body>
 </html>
+

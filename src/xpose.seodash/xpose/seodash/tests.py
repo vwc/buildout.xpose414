@@ -52,6 +52,14 @@ def test_suite():
 
         # -*- extra stuff goes here -*-
 
+        # Integration tests for Report
+        ztc.ZopeDocFileSuite(
+            'Report.txt',
+            package='xpose.seodash',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
         # Integration tests for Project
         ztc.ZopeDocFileSuite(
             'Project.txt',

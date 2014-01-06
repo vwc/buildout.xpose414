@@ -42,12 +42,11 @@
                         <div class="h5"
                             tal:define="timestamp data/record_date;
                                                 actor data/user">
-                            <time tal:content="timestamp/formatted_date" />
+                            <span tal:content="timestamp/formatted_date" />
                             <small tal:content="actor/display_name" />
                         </div>
-                        <p class="text-muted" tal:content="data/summary" />
-                            <pre tal:content="data" />
-                        </div>
+                        <p tal:content="data/summary" />
+                        <!-- <pre tal:content="data" /> -->
                     </div>
                 </div>
             </tal:item>

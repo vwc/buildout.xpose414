@@ -21,6 +21,16 @@ DEFAULT_SERVICE_TIMEOUT = socket.getdefaulttimeout()
 class IXoviTool(Interface):
     """ API call processing and session data storage """
 
+    def get(context):
+        """ Get specific metrics
+
+        @param timeout: Set status request timeout
+        @param service: Service category e.g user or seo
+        @param method:  The specific method to retrieve
+        @param domain:  Qualified domain name
+        @param se:      Search engine to crawl
+        """
+
     def status(context):
         """ Check availability of Xovi api
 
@@ -37,8 +47,11 @@ class IXoviTool(Interface):
 class XoviTool(grok.GlobalUtility):
     grok.provides(IXoviTool)
 
-    def get(self, service=u'user',
+    def get(self,
+            service=u'user',
             method=u'getCreditState',
+            domain=None,
+            sengine=None,
             timeout=DEFAULT_SERVICE_TIMEOUT):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
@@ -46,6 +59,10 @@ class XoviTool(grok.GlobalUtility):
         params['service'] = service
         params['method'] = method
         params['key'] = service_key
+        if domain is not None:
+            params['domain'] = domain
+        if sengine is not None:
+            params['sengine'] = sengine
         url = service_url + '?' + urlencode(params)
         with contextlib.closing(urlopen(url)) as response:
             response = response.read().decode('utf-8')
