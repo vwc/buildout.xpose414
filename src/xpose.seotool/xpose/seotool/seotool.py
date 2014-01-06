@@ -47,6 +47,10 @@ class ISeoTool(form.Schema, IImageScaleTraversable):
                       u"account in json format. Do not change this manually"),
         required=False,
     )
+    domains_xovi = schema.TextLine(
+        title=_(u"Xovi Domains"),
+        required=False,
+    )
 
 
 class SeoTool(Container):
@@ -267,9 +271,20 @@ class SetupXovi(grok.View):
     def _refresh_configuration(self, data):
         context = aq_inner(self.context)
         xovi_tool = getUtility(IXoviTool)
-        project_list = xovi_tool.get(service=u'project', method=u'getProjects')
+        project_list = xovi_tool.get(
+            service=u'project',
+            method=u'getProjects',
+            limit=50
+        )
         projects = json.dumps(project_list)
         setattr(context, 'projects_xovi', projects)
+        daily_domains = xovi_tool.get(
+            service=u'seo',
+            method=u'getDailyDomains',
+            limit=50
+        )
+        domains = json.dumps(daily_domains)
+        setattr(context, 'domains_xovi', domains)
         modified(context)
         context.reindexObject(idxs='modified')
         IStatusMessage(self.request).addStatusMessage(
@@ -289,6 +304,17 @@ class SetupXovi(grok.View):
             info = {}
             info['id'] = x['id']
             info['project'] = x['name']
+            items.append(info)
+        return items
+
+    def available_domains(self):
+        context = aq_inner(self.context)
+        project_info = getattr(context, 'domains_xovi', '')
+        data = json.loads(project_info)
+        items = []
+        for x in data['apiResult']:
+            info = {}
+            info['domain'] = x['domain']
             items.append(info)
         return items
 

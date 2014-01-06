@@ -94,6 +94,19 @@
             </tal:block>
         </div>
     </div>
+
+    <div class="panel panel-primary" tal:condition="context/domains_xovi">
+         <div class="panel-heading">
+            <h3 class="panel-title" i18n:translate="">Available Domains</h3>
+        </div>
+        <div class="list-group app-list-group">
+            <tal:block tal:repeat="item view/available_domains">
+                <div class="list-group-item">
+                    <h4 tal:content="item/domain" />
+                </div>
+            </tal:block>
+        </div>
+    </div>
     
 
     <div class="app-page-content" id="content-core">

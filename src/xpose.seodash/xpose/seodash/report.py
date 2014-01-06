@@ -62,12 +62,21 @@ class RequestReport(grok.View):
     grok.require('cmf.ManagePortal')
     grok.name('build-report')
 
+    def render(self):
+        context = aq_inner(self.context)
+        next_url = context.absolute_url()
+        self._build_report()
+        return self.request.response.redirect(next_url)
+
     def _build_report(self):
         report = {}
         tool = getUtility(IXoviTool)
         status = tool.status()
-        if status == '0k.':
-            for method in report_methods:
-                data = tool.get(method=method)
-                report['method'] = data
+        if status['status'] == '0k.':
+            data = tool.get(
+                service=u'seo',
+                method=u'getDailyKeywords',
+                domain=u'exali.de',
+            )
+            report['getKeywords'] = data
         return report

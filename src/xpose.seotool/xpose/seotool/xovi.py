@@ -52,6 +52,7 @@ class XoviTool(grok.GlobalUtility):
             method=u'getCreditState',
             domain=None,
             sengine=None,
+            limit=None,
             timeout=DEFAULT_SERVICE_TIMEOUT):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
@@ -63,6 +64,8 @@ class XoviTool(grok.GlobalUtility):
             params['domain'] = domain
         if sengine is not None:
             params['sengine'] = sengine
+        if limit is not None:
+            params['limit'] = limit
         url = service_url + '?' + urlencode(params)
         with contextlib.closing(urlopen(url)) as response:
             response = response.read().decode('utf-8')
