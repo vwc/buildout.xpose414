@@ -22,61 +22,58 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Available Metrics</h3>
+            <h3 class="panel-title">Available Projects</h3>
         </div>
-        <div class="list-group">
-            <div class="list-group-item active">
-                <div class="statuspanel-no-data statuspanel-no-data-lg">
-                    <div class="no-data-sign">
-                        <i class="fa fa-exclamation-triangle"></i>
-                    </div>
-                    <h2 i18n:translate="">
-                        API Access has not been configured yet
-                    </h2>
-                    <p i18n:translate="">Please provide the necessary access token for ActiveCollab
-                    </p>
-                    <form class="app-form app-create-form"
-                        method="post" role="form"
-                        tal:define="errors view/errors"
-                        tal:attributes="action request/URL">
-                        <input class="form-control"
-                                id="service"
-                                name="service"
-                                type="hidden" 
-                                value="ac" />
-                        <div class="row">
-                            <div class="col-xs-12 col-md-10">
-                                <div class="form-group field"
-                                    tal:define="error errors/title | nothing;
-                                                err_msg python:error and error['active'] == True;
-                                                value request/title | nothing"
-                                    tal:attributes="class python:err_msg and 'form-group has-error' or 'form-group'">
-                                    <label class="sr-only" for="title" i18n:translate="">Token</label>
-                                        <input class="form-control"
-                                            id="token"
-                                            name="token"
-                                            type="text" 
-                                            placeholder="Please enter API token here"
-                                            tal:attributes="value python:error and view.default_value(error) or value" />
-                                        <div class="help-block error"
-                                            tal:condition="err_msg">
-                                          <i class="fa fa-exclamation-triangle"></i>
-                                          <span tal:replace="python:error['msg']" />
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group">
-                                    <span tal:replace="structure context/@@authenticator/authenticator"/>
-                                    <button class="btn btn-primary btn-block"
-                                        name="form.button.Submit"
-                                        id="form.button.Submit"
-                                        i18n:translate="">Save token</button>
-                                </div>
-                            </div>
-                        </div>            
-                    </form>
+        <tal:block tal:condition="context/projects_ac">
+            <tal:item tal:repeat="item view/available_projects">
+                <div class="panel-body">
+                    <h4 class="list-group-item-heading">
+                        <small tal:content="item/company_id" />
+                        <span tal:content="item/name" />
+                    </h4>
+                     <!-- <pre tal:content="item" /> -->
                 </div>
+                <div class="list-group"
+                    tal:define="item_idx repeat/item/index;
+                                pid item/id">
+                    <div class="list-group-item"
+                        tal:repeat="data python:view.recent_activity(pid)">
+                        <span class="badge" tal:content="data/value">0</span>
+                        <div class="h5"
+                            tal:define="timestamp data/record_date;
+                                                actor data/user">
+                            <time tal:content="timestamp/formatted_date" />
+                            <small tal:content="actor/display_name" />
+                        </div>
+                        <p class="text-muted" tal:content="data/summary" />
+                            <pre tal:content="data" />
+                        </div>
+                    </div>
+                </div>
+            </tal:item>
+        </tal:block>
+        <div tal:condition="not:context/projects_ac">
+            <div class="statuspanel-no-data statuspanel-no-data-lg">
+                <div class="no-data-sign">
+                    <i class="fa fa-exclamation-triangle"></i>
+                </div>
+                <h2 i18n:translate="">
+                    API access has not been configured yet
+                </h2>
+                <p i18n:translate="">Please initialize activeCollab
+                </p>
+                <form class="app-form app-create-form"
+                    method="post" role="form"
+                    tal:define="errors view/errors"
+                    tal:attributes="action request/URL">
+                    <div class="form-group">
+                        <span tal:replace="structure context/@@authenticator/authenticator"/>
+                        <button class="btn btn-primary"
+                            name="form.button.Submit"
+                            id="form.button.Submit"
+                            i18n:translate="">Refresh configuration</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

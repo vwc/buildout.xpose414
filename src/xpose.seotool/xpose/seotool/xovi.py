@@ -85,3 +85,12 @@ def xovi_request_base():
         'format':  u'json',
     }
     return parameters
+
+
+def report_methods():
+    methods = (
+        u'getDailyKeywords',
+        u'getLostKeywords',
+        u'getKeywords'
+    )
+    return methods

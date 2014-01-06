@@ -35,6 +35,12 @@ class ISeoTool(form.Schema, IImageScaleTraversable):
     """
     Seo Application utility tool
     """
+    projects_ac = schema.TextLine(
+        title=_(u"activeCollab Projects"),
+        description=_(u"A list of available projects from the configured "
+                      u"activeCollab account. Do not change this manually"),
+        required=False,
+    )
     projects_xovi = schema.TextLine(
         title=_(u"Xovi Projects"),
         description=_(u"A list of available projects from the configured xovi "
@@ -293,10 +299,72 @@ class SetupAC(grok.View):
     grok.name('setup-ac')
 
     def update(self):
+        context = aq_inner(self.context)
         self.errors = {}
+        unwanted = ('_authenticator', 'form.button.Submit')
+        required = ('service')
+        if 'form.button.Submit' in self.request:
+            authenticator = getMultiAdapter((context, self.request),
+                                            name=u"authenticator")
+            if not authenticator.verify():
+                raise Unauthorized
+            form = self.request.form
+            form_data = {}
+            form_errors = {}
+            errorIdx = 0
+            for value in form:
+                if value not in unwanted:
+                    form_data[value] = safe_unicode(form[value])
+                    if not form[value] and value in required:
+                        error = {}
+                        error['active'] = True
+                        error['msg'] = _(u"This field is required")
+                        form_errors[value] = error
+                        errorIdx += 1
+                    else:
+                        error = {}
+                        error['active'] = False
+                        error['msg'] = form[value]
+                        form_errors[value] = error
+            if errorIdx > 0:
+                self.errors = form_errors
+            else:
+                self._refresh_configuration(form)
 
-    def default_value(self, error):
-        value = ''
-        if error['active'] is False:
-            value = error['msg']
-        return value
+    def service_status(self):
+        xovi_tool = getUtility(IACTool)
+        info = xovi_tool.status()
+        return info
+
+    def _refresh_configuration(self, data):
+        context = aq_inner(self.context)
+        xovi_tool = getUtility(IACTool)
+        project_list = xovi_tool.make_request(path_info=u'projects')
+        projects = json.dumps(project_list)
+        setattr(context, 'projects_ac', projects)
+        modified(context)
+        context.reindexObject(idxs='modified')
+        IStatusMessage(self.request).addStatusMessage(
+            _(u"The activeCollab configuration has sucessfully been refreshed"),
+            type='info')
+        portal_url = api.portal.get().absolute_url()
+        param = '/adm/@@setup-ac'
+        url = portal_url + param
+        return self.request.response.redirect(url)
+
+    def available_projects(self):
+        context = aq_inner(self.context)
+        project_info = getattr(context, 'projects_ac', '')
+        data = json.loads(project_info)
+        items = data
+        return items
+
+    def recent_activity(self, project_id):
+        pinfo = u'projects/{0}/tracking'.format(project_id)
+        xovi_tool = getUtility(IACTool)
+        data = xovi_tool.make_request(path_info=pinfo)
+        info = []
+        if data:
+            for entry in data[:10]:
+                info.append(entry)
+        return info

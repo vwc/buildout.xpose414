@@ -52,26 +52,18 @@ class ACTool(grok.GlobalUtility):
             info['response'] = 'API is not available'
         return info
 
-    def make_request(self, metric=None, timeout=DEFAULT_SERVICE_TIMEOUT):
+    def make_request(self, path_info=u'info',
+                     timeout=DEFAULT_SERVICE_TIMEOUT):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
         params = ac_request_base()
-        params['path_info'] = 'info'
+        params['path_info'] = path_info
         params['auth_api_token'] = service_key
         url = service_url + '?' + urlencode(params)
         with contextlib.closing(urlopen(url)) as response:
             response = response.read().decode('utf-8')
         res = json.loads(response)
-        res_code = res['apiErrorCode']
-        info = {}
-        info['name'] = 'activeCollab'
-        info['code'] = res_code
-        info['status'] = res['apiErrorMessage']
-        if res_code == 0:
-            info['response'] = res['apiResult']
-        else:
-            info['response'] = res['paramname']
-        return info
+        return res
 
     def get_config(self, record=None):
         record_key = 'xeo.cxn.ac_{0}'.format(record)
