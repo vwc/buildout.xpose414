@@ -10,10 +10,11 @@
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
 
-   <div class="app-page-header">
-        <div class="app-page-title">
+   <div class="app-page-header"
+        tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+        <div class="app-page-title" tal:define="timestamp context/modified">
             <h1>Report
-                <small>Timeslot e.g. Nov 2013</small>
+                <small>last updated: <time tal:content="python:toLocalizedTime(timestamp, long_format=True)" /></small>
             </h1>
         </div>
         <p class="lead" i18n:translate="">
@@ -24,6 +25,11 @@
     </div>
 
     <div class="app-page-content" id="content-core">
+        <div class="page-header">
+            <h2>report_xovi</h2>
+        </div>
+        <pre tal:condition="context/report_xovi"
+            tal:content="context/report_xovi" />
     </div>
 
   </metal:content-core>

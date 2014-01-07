@@ -1,3 +1,4 @@
+import json
 from Acquisition import aq_inner
 from five import grok
 from plone import api
@@ -5,6 +6,7 @@ from zope.component import getUtility
 
 from z3c.form import group, field
 from zope import schema
+from zope.lifecycleevent import modified
 from zope.interface import invariant, Invalid
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
@@ -69,14 +71,33 @@ class RequestReport(grok.View):
         return self.request.response.redirect(next_url)
 
     def _build_report(self):
+        context = aq_inner(self.context)
         report = {}
+        stored_report = getattr(context, 'report_xovi', None)
+        if stored_report:
+            report = json.loads(stored_report)
         tool = getUtility(IXoviTool)
         status = tool.status()
         if status['status'] == '0k.':
-            data = tool.get(
+            ses = tool.get(
+                service=u'seo',
+                method=u'getSearchEngines',
+            )
+            report['getSearchengines'] = ses
+            daily_kws = tool.get(
                 service=u'seo',
                 method=u'getDailyKeywords',
+            )
+            report['getDailyKeywords'] = daily_kws
+            lost_kws = tool.get(
+                service=u'seo',
+                method=u'getLostKeywords',
+                sengineid=u'1',
                 domain=u'exali.de',
             )
-            report['getKeywords'] = data
+            report['getLostKeywords'] = lost_kws
+        data = json.dumps(report)
+        setattr(context, 'report_xovi', data)
+        modified(context)
+        context.reindexObject(idxs='modified')
         return report

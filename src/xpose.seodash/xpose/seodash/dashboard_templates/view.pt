@@ -23,8 +23,24 @@
 
         <div class="alert alert-warning">
             <p>You will find available projects here. If there is only one project configured,
-                we will display the report data immmediately</p>
+                we will display the report data through a proxy object</p>
         </div>
+
+        <div class="page-header">
+            <h2>Projects</h2>
+        </div>
+        <ul tal:define="
+            Batch python:modules['Products.CMFPlone'].Batch;
+            b_size python:int(request.get('b_size', 20));
+            b_start python:int(request.get('b_start', 0));
+            results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+            batch python:Batch(results, b_size, b_start);">
+            <li tal:repeat="item results">
+              <a tal:attributes="href item/getURL"
+                    tal:content="item/Title" />
+            </li>
+          <div metal:use-macro="context/batch_macros/macros/navigation" />
+        </ul>
 
     </div>
   </metal:content-core>
