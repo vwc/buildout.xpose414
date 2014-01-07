@@ -7,11 +7,11 @@
         <p><a tal:attributes="href string:${viewlet/portal_url}/logout"><small>
             <i class="fa fa-sign-out"></i>abmelden</small></a></p>
     </div>
-    <div tal:content="viewlet/is_dashboard" />
     <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
         tal:condition="viewlet/is_dashboard">
         <li><a class="nav-header"
-            tal:attributes="href viewlet/user_homeurl">Overview</a></li>
+            tal:attributes="href viewlet/user_homeurl"
+            i18n:translate="">Overview</a></li>
         <li><a href="#content-core">Reports</a></li>
         <li><a href="#content-core">Tasks</a></li>
         <li><a href="#content-core">Latest Activity</a></li>
