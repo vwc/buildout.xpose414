@@ -14,7 +14,11 @@
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
         <div class="app-page-title" tal:define="timestamp context/modified">
             <h1>Report
-                <small>last updated: <time tal:content="python:toLocalizedTime(timestamp, long_format=True)" /></small>
+                <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
+          <span i18n:translate="">Last changed:</span>
+          <span tal:attributes="data-livestamp timestamp"
+            tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
+        </small>
             </h1>
         </div>
         <p class="lead" i18n:translate="">
