@@ -7,6 +7,8 @@ from plone.memoize.instance import memoize
 from plone.app.layout.viewlets.interfaces import IPortalFooter
 
 from xpose.seodash.dashboard import IDashboard
+from xpose.seodash.project import IProject
+from xpose.seodash.report import IReport
 from xpose.seotool.seotool import ISeoTool
 from xpose.seotool.interfaces import IXposeoTool
 
@@ -46,7 +48,12 @@ class SidebarViewlet(grok.Viewlet):
 
     def is_dashboard(self):
         context = aq_inner(self.context)
-        return IDashboard.providedBy(context)
+        display = False
+        ifaces = (IDashboard, IProject, IReport)
+        for iface in ifaces:
+            if iface.providedBy(context):
+                display = True
+        return display
 
     def is_administrator(self):
         context = aq_inner(self.context)

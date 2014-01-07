@@ -14,7 +14,7 @@ from plone import api
 from zope.interface import Interface
 
 
-DEFAULT_SERVICE_URI = 'https://api.xovi.net/index.php?'
+DEFAULT_SERVICE_URI = 'https://api.xovi.net/index.php'
 DEFAULT_SERVICE_TIMEOUT = socket.getdefaulttimeout()
 
 
@@ -24,8 +24,8 @@ class IXoviTool(Interface):
     def get(context):
         """ Get specific metrics
 
-        @param timeout: Set status request timeout
-        @param service: Service category e.g user or seo
+        @param timeout: Override api request timeout
+        @param service: Service name or category e.g project
         @param method:  The specific method to retrieve
         @param domain:  Qualified domain name
         @param se:      Search engine to crawl

@@ -7,6 +7,7 @@
         <p><a tal:attributes="href string:${viewlet/portal_url}/logout"><small>
             <i class="fa fa-sign-out"></i>abmelden</small></a></p>
     </div>
+    <div tal:content="viewlet/is_dashboard" />
     <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
         tal:condition="viewlet/is_dashboard">
         <li><a class="nav-header"
