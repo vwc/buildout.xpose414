@@ -23,7 +23,7 @@
         <tal:block tal:condition="view/has_dashboards">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Metrics</h3>
+                    <h3 class="panel-title">User Dashboards</h3>
                 </div>
                 <div class="list-group">
                     <div class="list-group-item" tal:repeat="item view/dashboards">

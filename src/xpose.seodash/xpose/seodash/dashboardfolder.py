@@ -53,11 +53,8 @@ class ManageDashboards(grok.View):
         self.has_dashboards = len(self.dashboards()) > 0
 
     def dashboards(self):
-        context = aq_inner(self.context)
         catalog = api.portal.get_tool(name='portal_catalog')
         items = catalog(object_provides=IDashboard.__identifier__,
-                        path=dict(query='/'.join(context.getPhysicalPath()),
-                                  depth=1),
                         sort_on='modified',
                         sort_order='reverse')
         return items
