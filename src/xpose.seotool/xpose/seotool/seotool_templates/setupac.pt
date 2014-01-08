@@ -18,6 +18,8 @@
         </p>
     </div>
 
+    <pre tal:content="context/projects_ac" />
+
     <div class="app-page-content" id="content-core">
 
     <div class="panel panel-primary">
@@ -31,7 +33,7 @@
                         <small tal:content="item/company_id" />
                         <span tal:content="item/name" />
                     </h4>
-                     <!-- <pre tal:content="item" /> -->
+                     <pre tal:content="item" />
                 </div>
                 <div class="list-group"
                     tal:define="item_idx repeat/item/index;
@@ -46,7 +48,7 @@
                             <small tal:content="actor/display_name" />
                         </div>
                         <p tal:content="data/summary" />
-                        <!-- <pre tal:content="data" /> -->
+                        <pre tal:content="data" />
                     </div>
                 </div>
             </tal:item>

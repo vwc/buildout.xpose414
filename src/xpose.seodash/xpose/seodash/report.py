@@ -84,6 +84,13 @@ class RequestReport(grok.View):
                 method=u'getSearchEngines',
             )
             report['getSearchengines'] = ses
+            kws = tool.get(
+                service=u'seo',
+                method=u'getKeywords',
+                sengine=u'google.de',
+                domain=u'xpose414.de',
+            )
+            report['getKeywords'] = kws
             daily_kws = tool.get(
                 service=u'seo',
                 method=u'getDailyKeywords',
@@ -93,7 +100,7 @@ class RequestReport(grok.View):
                 service=u'seo',
                 method=u'getLostKeywords',
                 sengineid=u'1',
-                domain=u'exali.de',
+                domain=u'xpose414.de',
             )
             report['getLostKeywords'] = lost_kws
         data = json.dumps(report)
