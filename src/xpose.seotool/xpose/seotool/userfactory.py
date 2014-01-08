@@ -1,18 +1,16 @@
 from Acquisition import aq_inner
-from Acquisition import aq_parent
 from five import grok
+from plone import api
 from zope import schema
-from zope.schema import getFieldsInOrder
 from zope.component import getUtility
 
-from zope.lifecycleevent import modified
 
 from plone.directives import form
+from plone.keyring import django_random
 from z3c.form import button
 
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
-from plone.dexterity.interfaces import IDexterityFTI
 from Products.statusmessages.interfaces import IStatusMessage
 
 from xpose.seotool.seotool import ISeoTool
@@ -28,7 +26,7 @@ usergroups = SimpleVocabulary([
 class IUserCreation(form.Schema):
 
     fullname = schema.TextLine(
-        title=_(u"Banner Headline"),
+        title=_(u"Fullname"),
         required=False,
     )
     email = schema.TextLine(
@@ -37,8 +35,10 @@ class IUserCreation(form.Schema):
                       u"act as the login name"),
         required=True,
     )
-    organizer = schema.Choice(
-        title=_(u"Organiser"),
+    usergroup = schema.Choice(
+        title=_(u"User Group"),
+        description=_(u"Please select the user group this user should be "
+                      u"added to as a member"),
         source=usergroups,
         required=True,
         default=u'customers',
@@ -48,18 +48,18 @@ class IUserCreation(form.Schema):
 class UserCreationForm(form.SchemaEditForm):
     grok.context(ISeoTool)
     grok.require('cmf.AddPortalContent')
-    grok.name('edit-banner')
+    grok.name('create-user')
 
     schema = IUserCreation
-    ignoreContext = False
-    css_class = 'app-form'
+    ignoreContext = True
+    css_class = 'app-form app-form-create'
 
-    label = _(u"Edit content panel")
+    label = _(u"Add new user account")
 
     def updateActions(self):
         super(UserCreationForm, self).updateActions()
         self.actions['save'].addClass("btn btn-primary btn-editpanel")
-        self.actions['cancel'].addClass("btn btn-default")
+        self.actions['cancel'].addClass("btn btn-link")
 
     @button.buttonAndHandler(_(u"Save"), name="save")
     def handleApply(self, action):
@@ -73,39 +73,27 @@ class UserCreationForm(form.SchemaEditForm):
     def handleCancel(self, action):
         context = aq_inner(self.context)
         IStatusMessage(self.request).addStatusMessage(
-            _(u"Content block factory has been cancelled."),
+            _(u"User creation has been cancelled."),
             type='info')
         return self.request.response.redirect(context.absolute_url())
 
-    def getContent(self):
-        context = aq_inner(self.context)
-        fti = getUtility(IDexterityFTI,
-                         name='atix.sitecontent.contentbanner')
-        schema = fti.lookupSchema()
-        fields = getFieldsInOrder(schema)
-        data = {}
-        for key, value in fields:
-            data[key] = getattr(context, key, value)
-        return data
-
     def applyChanges(self, data):
         context = aq_inner(self.context)
-        fti = getUtility(IDexterityFTI,
-                         name='atix.sitecontent.contentbanner')
-        schema = fti.lookupSchema()
-        fields = getFieldsInOrder(schema)
-        for key, value in fields:
-            try:
-                new_value = data[key]
-                setattr(context, key, new_value)
-            except KeyError:
-                continue
-        modified(context)
-        context.reindexObject(idxs='modified')
+        user_id = django_random.get_random_string(length=12)
+        properties = dict(
+            fullname=data['fullname'],
+        )
+        user = api.user.create(
+            username=data['email'],
+            email=data['email'],
+            properties=properties,
+        )
+        api.group.add_user(
+            groupname=data['usergroup'],
+            username=user.getId()
+        )
         IStatusMessage(self.request).addStatusMessage(
-            _(u"The banner has successfully been updated"),
+            _(u"New user account has been created succesfully"),
             type='info')
-        next_url = context.absolute_url()
-        parent = aq_parent(context)
-        next_url = parent.absolute_url()
+        next_url = context.absolute_url() + '/@@manage-users'
         return self.request.response.redirect(next_url)

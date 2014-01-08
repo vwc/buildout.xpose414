@@ -22,6 +22,7 @@ class SidebarViewlet(grok.Viewlet):
 
     def update(self):
         self.portal_url = api.portal.get().absolute_url()
+        self.adm_url = self.portal_url + '/adm/'
 
     @memoize
     def user_displayname(self):

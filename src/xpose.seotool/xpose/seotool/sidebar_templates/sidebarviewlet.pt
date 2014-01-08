@@ -21,10 +21,9 @@
     <li><a class="nav-header"
         tal:attributes="href viewlet/user_homeurl">Overview</a></li>
     <tal:admin tal:condition="viewlet/is_administrator">
-        <li><a href="#css-overview">Services</a></li>
-        <li><a href="#css-overview">Dashboards</a></li>
-        <li><a href="#grid">Latest Activity</a></li>
-        <li><a href="#grid">My Tasks</a></li>
+        <li><a tal:attributes="href string:${viewlet/adm_url}/@@setup-services">Services</a></li>
+        <li><a tal:attributes="href string:${viewlet/adm_url}/@@manage-users">Users</a></li>
+        <li><a tal:attributes="href string:${viewlet/adm_url}/@@manage-dashboards">Dashboards</a></li>
     </tal:admin>
     <tal:admin tal:condition="not:viewlet/is_administrator">
         <li><a class="nav-header" href="#css">SEO</a></li>
