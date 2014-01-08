@@ -118,6 +118,11 @@ module.exports = function (grunt) {
                 flatten: true,
                 src: ['assets/img/*'],
                 dest: 'dist/assets/img/'
+            },
+            animations: {
+                expand: true,
+                src: ['bower_components/animate.css/animate.css'],
+                dest: 'dist/css/animate.css'
             }
         },
         rev: {
@@ -176,10 +181,14 @@ module.exports = function (grunt) {
 
         validation: {
             options: {
-                reset: true
+                reset: true,
+                relaxerror: [
+                    'Bad value X-UA-Compatible for attribute http-equiv on element meta.',
+                    'Element img is missing required attribute src.'
+                ]
             },
             files: {
-                src: ['_gh_pages/**/*.html']
+                src: ['_site/**/*.html']
             }
         },
 
