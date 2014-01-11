@@ -24,7 +24,7 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from xpose.seotool.ac import IACTool
-from xpose.seotool.xovi import report_methods
+from xpose.seotool.ga import IGATool
 from xpose.seotool.xovi import IXoviTool
 
 from xpose.seodash import MessageFactory as _
@@ -113,8 +113,14 @@ class RequestReport(grok.View):
     def render(self):
         context = aq_inner(self.context)
         next_url = context.absolute_url()
-        self._build_report_ac()
+        self._build_report_ga()
         return self.request.response.redirect(next_url)
+
+    def _build_report_ga(self):
+        context = aq_inner(self.context)
+        tool = getUtility(IGATool)
+        data = tool.get()
+        return data
 
     def _build_report_ac(self):
         context = aq_inner(self.context)

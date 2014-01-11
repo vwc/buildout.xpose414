@@ -19,7 +19,7 @@ class IGATool(Interface):
 class GATool(grok.GlobalUtility):
     grok.provides(IGATool)
 
-    def get(self, timeout=DEFAULT_SERVICE_TIMEOUT, **kwargs):
+    def get(self, **kwargs):
         service_url = self.get_config('api_uri')
         client_email = self.get_config('client_email')
         keyfile = self.get_keyfile()

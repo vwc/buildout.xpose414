@@ -27,6 +27,16 @@ class IXeoSettings(Interface):
         title=_(u"Google Token URI"),
         default=u"https://accounts.google.com/o/oauth2/token"
     )
+    google_auth_provider_x509_cert_url = schema.TextLine(
+        title=_(u"Google Auth Provider Cert URI"),
+        default=u"https://www.googleapis.com/oauth2/v1/certs"
+    )
+    google_client_x509_cert_url = schema.TextLine(
+        title=_(u"Google Client Cert URI"),
+    )
+    google_client_email = schema.TextLine(
+        title=_(u"Google Client E-Mail")
+    )
     google_client_id = schema.TextLine(
         title=_(u"Google Client ID")
     )

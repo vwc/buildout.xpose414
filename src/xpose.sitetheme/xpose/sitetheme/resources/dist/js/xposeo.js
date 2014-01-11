@@ -14237,18 +14237,5 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
                 });
             });
         }
-        $('div[data-appui="ajaxcxn"]').each(function () {
-            var sourceUrl = $(this).data('appui-uri');
-            var targetDiv = $(this).data('appui-target');
-            var htmlString = '';
-            $.ajax({
-                url: sourceUrl,
-                timeout: 3000,
-                success: function () {
-                    htmlString += '<span class="text-danger">Not available</span>';
-                    $(targetDiv).html(htmlString);
-                }
-            });
-        });
     });
 }(jQuery));
