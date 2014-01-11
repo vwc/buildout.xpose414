@@ -26,6 +26,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from Products.statusmessages.interfaces import IStatusMessage
 
 from xpose.seotool.ac import IACTool
+from xpose.seotool.ga import IGATool
 from xpose.seotool.xovi import IXoviTool
 
 from xpose.seotool import MessageFactory as _
@@ -80,17 +81,11 @@ class View(grok.View):
         return data
 
     def service_status(self, service):
-        name = service['sid']
-        status = 'OK'
-        info = {}
-        if name == 'xovi':
-            xovi_tool = getUtility(IXoviTool)
-            info = xovi_tool.status()
-        if name == 'ac':
-            ac_tool = getUtility(IACTool)
-            info = ac_tool.status()
-        status = info
-        return status
+        sid = service['sid']
+        services = self.service_details()
+        api = services[sid]
+        tool = getUtility(api['iface'])
+        return tool.status()
 
     def get_state_klass(self, statuscode):
         state = {'statuscode': 'available',
@@ -103,6 +98,26 @@ class View(grok.View):
     def _check_service_status(self, service_url):
         with contextlib.closing(urlopen(service_url)) as response:
             return response.read().decode('utf-8')
+
+    def service_details(self):
+        data = {
+            'ac': {
+                u'id': u"ac",
+                u'name': _(u"activeCollab"),
+                u'iface': IACTool,
+            },
+            'google': {
+                u'id': u"ga",
+                u'name': _(u"Google Analytics"),
+                u'iface': IGATool,
+            },
+            'xovi': {
+                u'id': u"xovi",
+                u'name': _(u"XOVI"),
+                u'iface': IXoviTool,
+            },
+        }
+        return data
 
 
 class SetupServices(grok.View):

@@ -1,6 +1,7 @@
 import json
 import socket
 import contextlib
+import requests
 try:
     from urllib.parse import urlencode
 except ImportError:
@@ -47,52 +48,33 @@ class IXoviTool(Interface):
 class XoviTool(grok.GlobalUtility):
     grok.provides(IXoviTool)
 
-    def get(self,
-            service=u'user',
-            method=u'getCreditState',
-            domain=None,
-            sengine=None,
-            sengineid=None,
-            limit=None,
-            timeout=DEFAULT_SERVICE_TIMEOUT, **kwargs):
+    def get(self, service=None, **kwargs):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
         params = xovi_request_base()
         params['service'] = service
-        params['method'] = method
         params['key'] = service_key
-        if domain is not None:
-            params['domain'] = domain
-        if sengine is not None:
-            params['sengine'] = sengine
-        if limit is not None:
-            params['limit'] = limit
-        additional_params = urlencode(sorted(kwargs.iteritems()))
-        url = service_url + '?' + urlencode(params) + additional_params
-        with contextlib.closing(urlopen(url)) as response:
-            response = response.read().decode('utf-8')
-        data = json.loads(response)
-        return data
+        payload = params + urlencode(sorted(kwargs.iteritems()))
+        url = service_url + '?' + payload
+        with contextlib.closing(requests.get(url, verify=False)) as response:
+            r = response
+        return r.json()
 
-    def status(self, timeout=DEFAULT_SERVICE_TIMEOUT):
+    def status(self):
         service_url = self.get_config('api_uri')
         service_key = self.get_config('client_key')
         params = xovi_request_base()
+        info = {}
+        info['name'] = 'XOVI'
         params['method'] = u'getCreditState'
         params['key'] = service_key
         url = service_url + '?' + urlencode(params)
-        with contextlib.closing(urlopen(url)) as response:
-            response = response.read().decode('utf-8')
-        res = json.loads(response)
-        res_code = res['apiErrorCode']
-        info = {}
-        info['name'] = 'XOVI'
-        info['code'] = res_code
-        info['status'] = res['apiErrorMessage']
-        if res_code == 0:
-            info['response'] = res['apiResult']
+        with contextlib.closing(requests.get(url, verify=False)) as response:
+            r = response
+        if r.status_code == requests.codes.ok:
+            info['code'] = 'active'
         else:
-            info['response'] = res['paramname']
+            info['code'] = 'unreachable endpoint'
         return info
 
     def get_config(self, record=None):
@@ -105,6 +87,7 @@ def xovi_request_base():
     parameters = {
         'service': u'user',
         'format':  u'json',
+        'timeout': DEFAULT_SERVICE_TIMEOUT,
     }
     return parameters
 

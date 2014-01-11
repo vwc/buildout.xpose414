@@ -26,6 +26,7 @@ setup(name='xpose.seotool',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'PyOpenSSL',
           'google-api-python-client',
           'plone.app.dexterity [grok, relations]',
           'plone.app.relationfield',
