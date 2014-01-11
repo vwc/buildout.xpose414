@@ -1,5 +1,6 @@
 import json
 import socket
+import requests
 import contextlib
 from urllib import urlencode
 from urllib2 import urlopen
@@ -32,24 +33,20 @@ class IACTool(Interface):
 class ACTool(grok.GlobalUtility):
     grok.provides(IACTool)
 
-    def status(self, timeout=DEFAULT_SERVICE_TIMEOUT):
+    def status(self):
         info = {}
         info['name'] = 'activeCollab'
         service_url = self.get_config('api_uri')
-        params = {
+        url = service_url
+        payload = {
             'check_if_alive':  '1',
         }
-        url = service_url + '?' + urlencode(params)
-        try:
-            with contextlib.closing(urlopen(url)) as response:
-                response = response.read().decode('utf-8')
-            info['code'] = '0'
-            info['status'] = u'Ok'
-            info['response'] = 'API is alive'
-        except HTTPError:
-            info['code'] = '1'
-            info['status'] = u'Not available'
-            info['response'] = 'API is not available'
+        with contextlib.closing(requests.get(url, params=payload)) as response:
+            r = response
+        if r.status_code == requests.codes.ok:
+            info['code'] = 'active'
+        else:
+            info['code'] = 'unreachable endpoint'
         return info
 
     def make_request(self, path_info=u'info',
@@ -59,11 +56,12 @@ class ACTool(grok.GlobalUtility):
         params = ac_request_base()
         params['path_info'] = path_info
         params['auth_api_token'] = service_key
-        url = service_url + '?' + urlencode(params)
-        with contextlib.closing(urlopen(url)) as response:
-            response = response.read().decode('utf-8')
-        res = json.loads(response)
-        return res
+        payload = params
+        url = service_url
+        with contextlib.closing(requests.get(url, params=payload)) as response:
+            r = response
+            if r.status_code == requests.codes.ok:
+                return r.json()
 
     def get_config(self, record=None):
         record_key = 'xeo.cxn.ac_{0}'.format(record)

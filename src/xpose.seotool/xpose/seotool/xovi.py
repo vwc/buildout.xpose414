@@ -54,11 +54,12 @@ class XoviTool(grok.GlobalUtility):
         params = xovi_request_base()
         params['service'] = service
         params['key'] = service_key
-        payload = params + urlencode(sorted(kwargs.iteritems()))
-        url = service_url + '?' + payload
+        additional_params = urlencode(sorted(kwargs.iteritems()))
+        url = service_url + '?' + urlencode(params) + '&' + additional_params
         with contextlib.closing(requests.get(url, verify=False)) as response:
             r = response
-        return r.json()
+            if r.status_code == requests.codes.ok:
+                return r.json()
 
     def status(self):
         service_url = self.get_config('api_uri')

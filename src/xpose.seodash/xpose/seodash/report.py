@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from Acquisition import aq_inner
 from five import grok
 from plone import api
@@ -22,6 +23,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
+from xpose.seotool.ac import IACTool
 from xpose.seotool.xovi import report_methods
 from xpose.seotool.xovi import IXoviTool
 
@@ -38,7 +40,29 @@ class IReport(form.Schema, IImageScaleTraversable):
         title=_(u"Site URI"),
         required=True,
     )
+    domain = schema.TextLine(
+        title=_(u"Site URI / Domainname"),
+        required=True,
+    )
+    report = schema.TextLine(
+        title=_(u"Xovi Report"),
+        description=_(u"Automatically updated report consisting of predefined "
+                      u"methods and values"),
+        required=False,
+    )
     report_xovi = schema.TextLine(
+        title=_(u"Xovi Report"),
+        description=_(u"Automatically updated report consisting of predefined "
+                      u"methods and values"),
+        required=False,
+    )
+    report_ac = schema.TextLine(
+        title=_(u"Xovi Report"),
+        description=_(u"Automatically updated report consisting of predefined "
+                      u"methods and values"),
+        required=False,
+    )
+    report_ga = schema.TextLine(
         title=_(u"Xovi Report"),
         description=_(u"Automatically updated report consisting of predefined "
                       u"methods and values"),
@@ -58,6 +82,28 @@ class View(grok.View):
     grok.require('zope2.View')
     grok.name('view')
 
+    def tracking_report(self):
+        context = aq_inner(self.context)
+        return context.restrictedTraverse('@@report-tracking')()
+
+    def filter_tracking(self):
+        context = aq_inner(self.context)
+        metrics = getattr(context, 'report_ac')
+        timeframe = datetime.datetime.utcnow().replace(day=1) - datetime.timedelta(days=1)
+        data = {}
+        return data
+
+
+class Tracking(grok.View):
+    grok.context(IReport)
+    grok.require('zope2.View')
+    grok.name('report-tracking')
+
+    def metrics(self):
+        context = aq_inner(self.context)
+        data = getattr(context, 'report_ac')
+        return data
+
 
 class RequestReport(grok.View):
     grok.context(IReport)
@@ -67,10 +113,21 @@ class RequestReport(grok.View):
     def render(self):
         context = aq_inner(self.context)
         next_url = context.absolute_url()
-        self._build_report()
+        self._build_report_ac()
         return self.request.response.redirect(next_url)
 
-    def _build_report(self):
+    def _build_report_ac(self):
+        context = aq_inner(self.context)
+        project_id = '2'
+        pinfo = u'projects/{0}/tracking'.format(project_id)
+        tool = getUtility(IACTool)
+        data = tool.make_request(path_info=pinfo)
+        setattr(context, 'report_ac', data)
+        modified(context)
+        context.reindexObject(idxs='modified')
+        return data
+
+    def _build_report_xovi(self):
         context = aq_inner(self.context)
         report = {}
         stored_report = getattr(context, 'report_xovi', None)
@@ -78,7 +135,7 @@ class RequestReport(grok.View):
             report = json.loads(stored_report)
         tool = getUtility(IXoviTool)
         status = tool.status()
-        if status['status'] == '0k.':
+        if status['code'] == 'active':
             ses = tool.get(
                 service=u'seo',
                 method=u'getSearchEngines',

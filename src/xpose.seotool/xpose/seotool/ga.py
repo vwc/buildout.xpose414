@@ -44,6 +44,7 @@ class GATool(grok.GlobalUtility):
 
     def status(self):
         info = {}
+        info['name'] = 'GA'
         service_url = self.get_config('api_uri')
         url = service_url
         with contextlib.closing(requests.get(url, verify=False)) as response:
