@@ -92,16 +92,17 @@
     </div>
 </div>
     <main class="app-content app-content-workspace dim-in dim-in-2" id="app-content" role="main">
-        <main class="app-content-body">
+        <div class="app-content-body">
   <div class="app-page" id="content">
     <div class="app-page-header">
         <div class="app-page-title">
             <h1>Xposeo Dashboard</h1>
         </div>
+    </div>
+    <div class="app-page-body">
         <p class="lead app-page-lead">
             This is the new default theme
         </p>
-        <hr>
         <p>These are infoboxes displaying key values for quick overviews. All
             the dashboard components should probably be editable.</p>
         <hr>
@@ -241,7 +242,7 @@
 </div>
     </div>
   </div>
-</main>
+</div>
     </main>
 
     <!-- Bootstrap core JavaScript
@@ -250,7 +251,7 @@
 <script type="text/javascript">
 function downloadJSAtOnload() {
 var element = document.createElement("script");
-element.src = "../../dist/js/main.js";
+element.src = "../../dist/js/xposeo.js";
 document.body.appendChild(element);
 }
 if (window.addEventListener)

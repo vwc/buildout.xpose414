@@ -3,6 +3,13 @@
 
 module.exports = function (grunt) {
 
+    // Force use of Unix newlines
+    grunt.util.linefeed = '\n';
+
+    RegExp.quote = function (string) {
+        return string.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+
     // load all grunt tasks
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -96,6 +103,42 @@ module.exports = function (grunt) {
             }
         },
 
+        less: {
+            compileTheme: {
+                options: {
+                    strictMath: true,
+                    sourceMap: true,
+                    outputSourceFiles: true,
+                    sourceMapURL: '<%= pkg.name %>.css.map',
+                    sourceMapFilename: 'dist/css/<%= pkg.name %>.css.map'
+                },
+                files: {
+                    'dist/css/<%= pkg.name %>.css': 'less/styles.less'
+                }
+            },
+            minify: {
+                options: {
+                    cleancss: true,
+                    report: 'min'
+                },
+                files: {
+                    'dist/css/<%= pkg.name %>.min.css': 'dist/css/<%= pkg.name %>.css'
+                }
+            }
+        },
+
+        csscomb: {
+            sort: {
+                options: {
+                    config: 'less/.csscomb.json'
+                },
+                files: {
+                    'dist/css/<%= pkg.name %>.css': ['dist/css/<%= pkg.name %>.css']
+                }
+            }
+        },
+
+
         copy: {
             fonts: {
                 expand: true,
@@ -181,10 +224,13 @@ module.exports = function (grunt) {
 
         validation: {
             options: {
+                charset: 'utf-8',
+                doctype: 'HTML5',
+                failHard: true,
                 reset: true,
                 relaxerror: [
-                    'Bad value X-UA-Compatible for attribute http-equiv on element meta.',
-                    'Element img is missing required attribute src.'
+                  'Bad value X-UA-Compatible for attribute http-equiv on element meta.',
+                  'Element img is missing required attribute src.'
                 ]
             },
             files: {
@@ -269,7 +315,7 @@ module.exports = function (grunt) {
     grunt.registerTask('dist-js', ['concat', 'uglify']);
 
     // CSS distribution task.
-    grunt.registerTask('dist-css', ['recess']);
+    grunt.registerTask('dist-css', ['recess', 'csscomb']);
 
     // Assets distribution task.
     grunt.registerTask('dist-assets', ['copy']);

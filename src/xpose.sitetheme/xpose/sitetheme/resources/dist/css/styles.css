@@ -11541,6 +11541,10 @@ textarea#mail_password #userid {
   content: "";
 }
 
+.app-page-header {
+  border-bottom: 1px solid #f5f5f5;
+}
+
 .app-page-title {
   margin-top: 0;
 }
