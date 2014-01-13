@@ -23,8 +23,11 @@
 
     <div class="app-page-content" id="content-core">
         <div class="page-header">
-            <h2>Available Reports</h2>
+            <h2>Available Reports
+            </h2>
         </div>
+
+        <!-- <div>User detals: <span tal:content="view/user_details" /></div>-->
         <ul tal:define="
             Batch python:modules['Products.CMFPlone'].Batch;
             b_size python:int(request.get('b_size', 20));

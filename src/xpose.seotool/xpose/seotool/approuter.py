@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from five import grok
 from plone import api
 
+from plone.app.uuid.utils import uuidToObject
 from plone.memoize.instance import memoize
 from plone.app.layout.navigation.interfaces import INavigationRoot
 
@@ -22,7 +23,7 @@ class FrontPageView(grok.View):
         if api.user.is_anonymous():
             url = portal_url + '/login'
         else:
-            if self.is_administrator():
+            if self.is_administrator() is True:
                 if not self.first_visit():
                     url = portal_url + '/@@setup-seotool'
                 else:
@@ -34,9 +35,10 @@ class FrontPageView(grok.View):
     @memoize
     def user_homeurl(self):
         member = api.user.get_current()
-        userid = member.getId()
-        return "%s/xd/%s" % (api.portal.get().absolute_url(),
-                             userid)
+        uuid = member.getProperty('dashboard')
+        if uuid:
+            item = uuidToObject(uuid)
+            return item.absolute_url()
 
     def is_administrator(self):
         context = aq_inner(self.context)
@@ -44,7 +46,9 @@ class FrontPageView(grok.View):
         if not api.user.is_anonymous():
             user = api.user.get_current()
             roles = api.user.get_roles(username=user.getId(), obj=context)
-            if 'Manager' or 'Site Administrator' in roles:
+            if 'Site Administrator' in roles:
+                is_adm = True
+            if 'Manager' in roles:
                 is_adm = True
         return is_adm
 

@@ -1,4 +1,5 @@
 from five import grok
+from plone import api
 
 from z3c.form import group, field
 from zope import schema
@@ -36,3 +37,8 @@ class View(grok.View):
     grok.context(IProject)
     grok.require('zope2.View')
     grok.name('view')
+
+    def user_details(self):
+        user = api.user.get_current()
+        import pdb; pdb.set_trace( )
+        return user

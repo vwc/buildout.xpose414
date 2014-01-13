@@ -30,6 +30,7 @@
             This is the dashboard for <strong tal:content="context/Title">Title</strong>
             and offers an overview of all attachments and associated projects.
         </p>
+        <small tal:content="context/UID" />
     </div>
 
     <div class="container app-page-content" id="content-core">

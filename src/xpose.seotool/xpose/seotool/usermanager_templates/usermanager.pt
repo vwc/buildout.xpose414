@@ -29,7 +29,33 @@
             </div>
             <div class="list-group">
                 <div class="list-group-item" tal:repeat="user view/customers">
-                    <h4 tal:content="user" />
+                    <tal:item tal:define="info python:view.get_userdetails(user)">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="h4"><span tal:content="info/name" />
+                                    <small tal:content="info/email" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div tal:condition="info/dashboard">
+                                    <p tal:define="code info/dashboard;
+                                                   dashboard python:view.compute_dashboard(code)">
+                                        Dashboard:
+                                        <span tal:content="dashboard/Title" />
+                                        <a tal:attributes="href dashboard/absolute_url">
+                                            show
+                                        </a>
+                                    </p>
+                                </div>
+                                <p tal:condition="not:info/dashboard" class="text-warning">
+                                    No access granted 
+                                    <a tal:attributes="href string:${context/absolute_url}/@@manage-user-permissions?user=${info/user_id}">
+                                        change
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </tal:item>
                 </div>
             </div>
         </tal:block>
