@@ -9,9 +9,22 @@
 
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
-    <div class="app-page-header">
-        <div class="app-page-title">
+
+    <div class="container app-page-header">
+        <div class="app-page-title"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+            <div class="pull-right"
+                tal:condition="context/logo">
+            <img tal:define="scales context/@@images"
+                tal:replace="structure python: scales.tag('logo', scale='mini')"
+                />
+            </div>
             <h1 tal:content="context/Title">Project name</h1>
+            <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
+              <span i18n:translate="">Last changed:</span>
+              <span tal:attributes="data-livestamp timestamp"
+                tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
+            </small>
         </div>
         <p class="lead" i18n:translate="">
             This is the dashboard for <strong tal:content="context/Title">Title</strong>
@@ -19,28 +32,56 @@
         </p>
     </div>
 
-    <div class="app-page-content" id="content-core">
+    <div class="container app-page-content" id="content-core">
 
-        <div class="alert alert-warning">
-            <p>You will find available projects here. If there is only one project configured,
-                we will display the report data through a proxy object</p>
-        </div>
+    <tal:projects tal:condition="view/has_projects">
+        <tal:block tal:condition="not:view/show_projectlist">
+            <div class="page-header">
+                <h2>Report</h2>
+            </div>
+            <div class="alert alert-warning">
+                <p>You will find available projects here. If there is only one project configured,
+                    we will display the report data through a proxy object directly</p>
+            </div>
+            <h4 tal:define="item view/active_project">
+                Active Project to be implemented:
+                <span tal:content="item/Title" />
+            </h4>
+        </tal:block>
 
-        <div class="page-header">
-            <h2>Projects</h2>
+        <tal:block tal:condition="view/show_projectlist">
+            <div class="page-header">
+                <h2>Projects</h2>
+            </div>
+            <ul tal:define="
+                Batch python:modules['Products.CMFPlone'].Batch;
+                b_size python:int(request.get('b_size', 20));
+                b_start python:int(request.get('b_start', 0));
+                results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
+                batch python:Batch(results, b_size, b_start);">
+                <li tal:repeat="item results">
+                  <a tal:attributes="href item/getURL"
+                        tal:content="item/Title" />
+                </li>
+              <div metal:use-macro="context/batch_macros/macros/navigation" />
+            </ul>
+        </tal:block>
+    </tal:projects>
+
+    <tal:nodata tal:condition="not:view/has_projects">
+        <div class="statuspanel-no-data statuspanel-no-data-lg"
+            tal:define="portal_url context/portal_url">
+            <div class="no-data-sign">
+                <i class="fa fa-ellipsis-h"></i>
+            </div>
+            <h2>No project has been added yet</h2>
+            <p>Why not
+                <a tal:attributes="href string:${portal_url}/xd/@@create-project">
+                    generate one now</a>
+                to finalize the dashboard setup
+            </p>
         </div>
-        <ul tal:define="
-            Batch python:modules['Products.CMFPlone'].Batch;
-            b_size python:int(request.get('b_size', 20));
-            b_start python:int(request.get('b_start', 0));
-            results python:context.restrictedTraverse('@@folderListing')(batch=True, b_size=b_size, b_start=b_start);
-            batch python:Batch(results, b_size, b_start);">
-            <li tal:repeat="item results">
-              <a tal:attributes="href item/getURL"
-                    tal:content="item/Title" />
-            </li>
-          <div metal:use-macro="context/batch_macros/macros/navigation" />
-        </ul>
+    </tal:nodata>
 
     </div>
   </metal:content-core>

@@ -1,8 +1,11 @@
-import re
+from Acquisition import aq_inner
+from AccessControl import Unauthorized
 from five import grok
+from plone import api
 
 from z3c.form import group, field
 from zope import schema
+from zope.component import getMultiAdapter
 from zope.interface import invariant, Invalid
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
@@ -19,75 +22,23 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from dexterity.membrane.membrane_helpers import validate_unique_email
 
+from plone.keyring import django_random
+from Products.CMFPlone.utils import safe_unicode
+
+from xpose.seodash.project import IProject
+
 from xpose.seodash import MessageFactory as _
-
-
-def is_email(value):
-    """ Is this an email address? """
-    if not isinstance(value, str) or not '@' in value:
-        raise Invalid(_(u"Not an email address"))
-    return True
-
-
-def is_url(value):
-    """ Is this a URL? """
-    if isinstance(value, str):
-        pattern = re.compile(r"^https?://[^\s\r\n]+")
-        if pattern.search(value.strip()):
-            return True
-    raise Invalid(_(u"Not a valid link"))
 
 
 class IDashboard(form.Schema, IImageScaleTraversable):
     """
     A project dashboard
     """
-    email = schema.TextLine(
-        title=_(u"E-mail Address"),
-        required=True,
-        constraint=is_email,
-    )
-    first_name = schema.TextLine(
-        title=_(u"First Name"),
-        required=True,
-    )
-    last_name = schema.TextLine(
-        title=_(u"Last Name"),
-        required=True,
-    )
-    # Move unneeded parts to extra fieldset
-    form.fieldset(
-        'details',
-        label=_(u"Details"),
-        fields=['homepage', 'bio']
-    )
-    homepage = schema.TextLine(
-        # url format
-        title=_(u"External Homepage"),
-        required=False,
-        constraint=is_url,
-    )
-    form.widget(bio="plone.app.z3cform.wysiwyg.WysiwygFieldWidget")
-    bio = schema.Text(
-        title=_(u"Biography"),
+    logo = NamedBlobImage(
+        title=_(u"Logo Image"),
+        description=_(u"Upload optional customer logo"),
         required=False,
     )
-
-    @invariant
-    def validateEmailUnique(data):
-        """The email must be unique, as it is the login name (user name).
-
-        The tricky thing is to make sure editing a user and keeping
-        his email the same actually works.
-        """
-        user = data.__context__
-        if user is not None:
-            if hasattr(user, 'email') and user.email == data.email:
-                # No change, fine.
-                return
-        error = validate_unique_email(data.email)
-        if error:
-            raise Invalid(error)
 
 
 class Dashboard(Container):
@@ -98,3 +49,88 @@ class View(grok.View):
     grok.context(IDashboard)
     grok.require('zope2.View')
     grok.name('view')
+
+    def update(self):
+        self.has_projects = len(self.projects()) > 0
+        self.show_projectlist = len(self.projects()) > 1
+
+    def active_project(self):
+        return self.projects()[0]
+
+    def projects(self):
+        context = aq_inner(self.context)
+        catalog = api.portal.get_tool(name='portal_catalog')
+        items = catalog(object_provides=IProject.__identifier__,
+                        path=dict(query='/'.join(context.getPhysicalPath()),
+                                  depth=1),
+                        sort_on='getObjPositionInParent')
+        return items
+
+    def can_edit(self):
+        context = aq_inner(self.context)
+        is_adm = False
+        if not api.user.is_anonymous():
+            user = api.user.get_current()
+            roles = api.user.get_roles(username=user.getId(), obj=context)
+            if 'Manager' or 'Site Administrator' in roles:
+                is_adm = True
+        return is_adm
+
+
+class CreateProject(grok.View):
+    grok.context(IDashboard)
+    grok.require('cmf.ModifyPortalContent')
+    grok.name('create-project')
+
+    def update(self):
+        context = aq_inner(self.context)
+        self.errors = {}
+        unwanted = ('_authenticator', 'form.button.Submit')
+        required = ('title')
+        if 'form.button.Submit' in self.request:
+            authenticator = getMultiAdapter((context, self.request),
+                                            name=u"authenticator")
+            if not authenticator.verify():
+                raise Unauthorized
+            form = self.request.form
+            form_data = {}
+            form_errors = {}
+            errorIdx = 0
+            for value in form:
+                if value not in unwanted:
+                    form_data[value] = safe_unicode(form[value])
+                    if not form[value] and value in required:
+                        error = {}
+                        error['active'] = True
+                        error['msg'] = _(u"This field is required")
+                        form_errors[value] = error
+                        errorIdx += 1
+                    else:
+                        error = {}
+                        error['active'] = False
+                        error['msg'] = form[value]
+                        form_errors[value] = error
+            if errorIdx > 0:
+                self.errors = form_errors
+            else:
+                self._create_dashboard(form)
+
+    def _create_dashboard(self, data):
+        context = aq_inner(self.context)
+        new_title = data['title']
+        token = django_random.get_random_string(length=12)
+        item = api.content.create(
+            type='xpose.seodash.dashboard',
+            id=token,
+            title=new_title,
+            container=context,
+            safe_id=True
+        )
+        uuid = api.content.get_uuid(obj=item)
+        #item_id = item.getId()
+        #api.content.rename(obj=context[item_id],
+        #                   new_id=uuid)
+        url = context.absolute_url()
+        base_url = url + '/@@setup-workspace?uuid=' + uuid
+        next_url = base_url + '&token=' + token
+        return self.request.response.redirect(next_url)

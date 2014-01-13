@@ -60,6 +60,7 @@ module.exports = function (grunt) {
                     'bower_components/momentjs/moment.js',
                     'bower_components/momentjs/lang/de.js',
                     'bower_components/livestampjs/livestamp.js',
+                    'assets/js/classie.js',
                     'js/application.js'
                 ],
                 dest: 'dist/js/<%= pkg.name %>.js'
@@ -70,6 +71,7 @@ module.exports = function (grunt) {
                     'bower_components/momentjs/moment.js',
                     'bower_components/momentjs/lang/de.js',
                     'bower_components/livestampjs/livestamp.js',
+                    'assets/js/classie.js',
                     'js/application.js'
                 ],
                 dest: 'dist/js/main.js'
@@ -106,7 +108,7 @@ module.exports = function (grunt) {
         less: {
             compileTheme: {
                 options: {
-                    strictMath: true,
+                    strictMath: false,
                     sourceMap: true,
                     outputSourceFiles: true,
                     sourceMapURL: '<%= pkg.name %>.css.map',
@@ -164,8 +166,9 @@ module.exports = function (grunt) {
             },
             animations: {
                 expand: true,
-                src: ['bower_components/animate.css/animate.css'],
-                dest: 'dist/css/animate.css'
+                flatten: true,
+                src: ['bower_components/animate.css/*.css'],
+                dest: 'dist/css/'
             }
         },
         rev: {
@@ -277,6 +280,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html-validation');
     grunt.loadNpmTasks('grunt-jekyll');
     grunt.loadNpmTasks('grunt-recess');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-rev');
     grunt.loadNpmTasks('grunt-concurrent');
@@ -298,6 +302,7 @@ module.exports = function (grunt) {
         grunt.file.copy('_site/index.html', 'dist/index.html');
         grunt.file.copy('_site/signin/index.html', 'dist/signin.html');
         grunt.file.copy('_site/theme/index.html', 'dist/theme.html');
+        grunt.file.copy('_site/dashboard/index.html', 'dist/dashboard.html');
     });
 
     // Docs HTML validation task
@@ -315,7 +320,7 @@ module.exports = function (grunt) {
     grunt.registerTask('dist-js', ['concat', 'uglify']);
 
     // CSS distribution task.
-    grunt.registerTask('dist-css', ['recess', 'csscomb']);
+    grunt.registerTask('dist-css', ['less', 'csscomb']);
 
     // Assets distribution task.
     grunt.registerTask('dist-assets', ['copy']);

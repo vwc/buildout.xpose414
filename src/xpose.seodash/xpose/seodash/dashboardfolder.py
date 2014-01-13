@@ -59,6 +59,16 @@ class ManageDashboards(grok.View):
                         sort_order='reverse')
         return items
 
+    def can_edit(self):
+        context = aq_inner(self.context)
+        is_adm = False
+        if not api.user.is_anonymous():
+            user = api.user.get_current()
+            roles = api.user.get_roles(username=user.getId(), obj=context)
+            if 'Manager' or 'Site Administrator' in roles:
+                is_adm = True
+        return is_adm
+
 
 class CreateDashboard(grok.View):
     grok.context(IDashboardFolder)
@@ -104,7 +114,6 @@ class CreateDashboard(grok.View):
         token = django_random.get_random_string(length=12)
         item = api.content.create(
             type='xpose.seodash.dashboard',
-            id=token,
             title=new_title,
             container=context,
             safe_id=True

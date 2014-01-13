@@ -30,8 +30,8 @@ class GATool(grok.GlobalUtility):
         http = httplib2.Http()
         http = credentials.authorize(http)
         service = build('analytics', 'v3', http=http)
-        params = urlencode(sorted(kwargs.iteritems()))
-        accounts = service.management().accounts().list()
+        # params = urlencode(sorted(kwargs.iteritems()))
+        accounts = service.management().accounts().list().execute()
         import pdb; pdb.set_trace( )
         data_query = service.data().ga().get(**{
             'ids': 'ga:YOUR_PROFILE_ID_NOT_UA',

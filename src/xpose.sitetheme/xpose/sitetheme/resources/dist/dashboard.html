@@ -30,7 +30,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
                                <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
-  <body class="app-theme-workspace">
+  <body class="app-theme-default">
     <a class="sr-only" href="#content">Skip navigation</a>
     <nav class="navbar navbar-inverse navbar-fixed-top app-navbar" id="app-navbar" role="navigation">
   <div class="navbar-header">
@@ -70,6 +70,12 @@
   </div><!-- /.navbar-collapse -->
 </nav>
 
+    <div class="app-container" id="app-container">
+    <div class="app-aside app-effect-1">
+        <div class="app-aside-close">
+            <a class="closeMenu" id="closeMenu" href="#app-container"><i class="fa fa-times-circle-o"></i> 
+            <small>Close</small></a>
+        </div>
     <div id="app-sidebar" class="app-sidebar">
     <h3 class="app-nav-heading app-sidebar-heading">
         <a href="http://localhost:8499/plonesite">
@@ -91,18 +97,57 @@
         </ul>
     </div>
 </div>
-    <main class="app-content app-content-workspace dim-in dim-in-2" id="app-content" role="main">
+    </div>
+    <div class="app-pusher">
+    <main class="app-content app-content-dashboard" id="app-content" role="main">
         <div class="app-content-body">
-  <div class="app-page" id="content">
-    <div class="app-page-header">
+  <div class="app-page app-page-dashboard" id="content">
+    <div class="datapanel" id="main-stats">
+    <div class="row datapanel-row">
+        <div class="col-md-3 col-sm-3 datapanel-item">
+            <div class="item-data">
+                <span class="numberic">2457</span>
+                visits
+            </div>
+            <span class="item-date">Today</span>
+        </div>
+        <div class="col-md-3 col-sm-3 datapanel-item">
+            <div class="item-data">
+                <span class="numberic">3240</span>
+                users
+            </div>
+            <span class="item-date">February 2013</span>
+        </div>
+        <div class="col-md-3 col-sm-3 datapanel-item">
+            <div class="item-data">
+                <span class="numberic">322</span>
+                orders
+            </div>
+            <span class="item-date">This week</span>
+        </div>
+        <div class="col-md-3 col-sm-3 datapanel-item last">
+            <div class="item-data">
+                <span class="numberic">$2,340</span>
+                sales
+            </div>
+            <span class="item-date">last 30 days</span>
+        </div>
+    </div>
+</div>
+    <div class="container app-page-header">
         <div class="app-page-title">
             <h1>Xposeo Dashboard</h1>
         </div>
     </div>
-    <div class="app-page-body">
+    <div class="container app-page-body">
         <p class="lead app-page-lead">
             This is the new default theme
         </p>
+        <div class="well well-primary pull-right" id="app-menu-trigger">
+            <button data-effect="app-effect-1">
+                Show</button>
+        </div>
+        <hr>
         <p>These are infoboxes displaying key values for quick overviews. All
             the dashboard components should probably be editable.</p>
         <hr>
@@ -141,6 +186,7 @@
     </div>
 </div>
         <hr>
+      </div>
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <div class="statuspanel panel-full">
@@ -241,10 +287,10 @@
     </div>
 </div>
     </div>
-  </div>
 </div>
     </main>
-
+    </div>
+    </div>
     <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

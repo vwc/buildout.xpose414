@@ -10,15 +10,20 @@
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
 
-   <div class="app-page-header"
+   <div class="container app-page-header"
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
         <div class="app-page-title" tal:define="timestamp context/modified">
+            <div class="well well-primary pull-right" id="app-menu-trigger">
+                <button class="btn btn-default" data-effect="app-effect-1">
+                    Show
+                </button>
+            </div>
             <h1>Report
                 <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
-          <span i18n:translate="">Last changed:</span>
-          <span tal:attributes="data-livestamp timestamp"
-            tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
-        </small>
+                  <span i18n:translate="">Last changed:</span>
+                  <span tal:attributes="data-livestamp timestamp"
+                    tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
+                </small>
             </h1>
         </div>
         <p class="lead" i18n:translate="">
@@ -28,7 +33,7 @@
         </p>
     </div>
 
-    <div class="app-page-content" id="content-core">
+    <div class="container app-page-content" id="content-core">
         <div class="page-header">
             <a class="btn btn-danger pull-right"
                 tal:attributes="href string:${context/absolute_url}/@@build-report">

@@ -9,16 +9,25 @@
   </head>
   <body class="app-theme-default">
     <a class="sr-only" href="#content">Skip navigation</a>
-    {% include toolbar.html %}
     {% include navbar.html %}
-    <main class="app-content" id="app-content" role="main">
+    <div class="app-container" id="app-container">
+    <div class="app-aside app-effect-1">
+        <div class="app-aside-close">
+            <a class="closeMenu" id="closeMenu" href="#app-container"><i class="fa fa-times-circle-o"></i> 
+            <small>Close</small></a>
+        </div>
+    {% include sidebar.html %}
+    </div>
+    <div class="app-pusher">
+    <main class="app-content app-content-dashboard" id="app-content" role="main">
         {{ content }}
     </main>
-    <hr>
-    {% include footer.html %}
-
+    </div>
+    </div>
     {% include javascript.html %}
-    {% include gfont.html %}
+    <div class="app-js-slot">
+        {% include gfont.html %}
+    </div>
 
   </body>
 </html>

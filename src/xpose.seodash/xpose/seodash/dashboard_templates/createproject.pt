@@ -12,10 +12,12 @@
     <div class="container">
     <div class="app-page-header">
         <div class="app-page-title">
-            <h1 i18n:translate="">Add new dashboard</h1>
+            <h1 i18n:translate="">Add new project</h1>
         </div>
-        <p class="lead app-page-lead" tal:condition="context/Description"
-            tal:content="context/Description" />
+        <p class="lead app-page-lead">
+            Each dashboard can hold one or more projects. Most of the time one
+            project should be enough to make the reposting tool usable.
+        </p>
     </div>
 
     <div class="app-page-content" id="content-core">
@@ -25,8 +27,8 @@
                 Please provide a human readable title for this dashboard
             </h4>
             <p class="text-muted" i18n:translate="">
-                        Normally this would be either a project or clientname
-                    </p>
+                Normally this would be either a single domain names
+            </p>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group field"
@@ -54,7 +56,7 @@
                         <button class="btn btn-primary"
                             name="form.button.Submit"
                             id="form.button.Submit"
-                            i18n:translate="">Create dashboard</button>
+                            i18n:translate="">Create project</button>
                     </div>
                 </div>
             </div>            
