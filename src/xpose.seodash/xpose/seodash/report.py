@@ -94,6 +94,23 @@ class View(grok.View):
         return data
 
 
+class ContentView(grok.View):
+    grok.context(IReport)
+    grok.require('zope2.View')
+    grok.name('content-view')
+
+    def tracking_report(self):
+        context = aq_inner(self.context)
+        return context.restrictedTraverse('@@report-tracking')()
+
+    def filter_tracking(self):
+        context = aq_inner(self.context)
+        metrics = getattr(context, 'report_ac')
+        timeframe = datetime.datetime.utcnow().replace(day=1) - datetime.timedelta(days=1)
+        data = {}
+        return data
+
+
 class Tracking(grok.View):
     grok.context(IReport)
     grok.require('zope2.View')

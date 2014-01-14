@@ -26,28 +26,31 @@
                 tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
             </small>
         </div>
-        <p class="lead" i18n:translate="">
-            This is the dashboard for <strong tal:content="context/Title">Title</strong>
-            and offers an overview of all attachments and associated projects.
-        </p>
-        <small tal:content="context/UID" />
     </div>
 
     <div class="container app-page-content" id="content-core">
 
     <tal:projects tal:condition="view/has_projects">
         <tal:block tal:condition="not:view/show_projectlist">
-            <div class="page-header">
-                <h2>Report</h2>
+            <div tal:define="item view/active_project">
+                <div class="page-header">
+                    <h2>Report
+                        <small tal:content="item/Title" />
+                    </h2>
+                </div>
+                <div class="alert alert-warning">
+                    <p>You will find available projects here. If there is only one project configured,
+                        we will display the report data through a proxy object directly</p>
+                </div>
+
+                <div tal:define="obj item/getObject;
+                                 uuid obj/UID;
+                                 latest_report python:view.get_latest_report(uuid)">
+                <div tal:define="report latest_report/getObject;
+                                 report_uuid report/UID"
+                    tal:replace="structure python:view.render_report(report_uuid)" />
+                </div>
             </div>
-            <div class="alert alert-warning">
-                <p>You will find available projects here. If there is only one project configured,
-                    we will display the report data through a proxy object directly</p>
-            </div>
-            <h4 tal:define="item view/active_project">
-                Active Project to be implemented:
-                <span tal:content="item/Title" />
-            </h4>
         </tal:block>
 
         <tal:block tal:condition="view/show_projectlist">

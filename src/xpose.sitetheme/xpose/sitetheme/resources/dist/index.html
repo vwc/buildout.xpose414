@@ -71,12 +71,13 @@
 </nav>
 
     <div class="app-container" id="app-container">
-    <div class="app-aside app-effect-1">
-        <div class="app-aside-close">
-            <a class="closeMenu" id="closeMenu" href="#app-container"><i class="fa fa-times-circle-o"></i> 
-            <small>Close</small></a>
-        </div>
-    <div id="app-sidebar" class="app-sidebar">
+        <div class="app-aside app-effect-4">
+            <div class="app-aside-close">
+                <a class="closeMenu" id="closeMenu" href="#app-container">
+                    <i class="fa fa-times-circle-o"></i>
+                </a>
+            </div>
+            <div id="app-sidebar" class="app-sidebar">
     <h3 class="app-nav-heading app-sidebar-heading">
         <a href="http://localhost:8499/plonesite">
             Seodash
@@ -97,10 +98,21 @@
         </ul>
     </div>
 </div>
-    </div>
-    <div class="app-pusher">
-    <main class="app-content app-content-dashboard" id="app-content" role="main">
-        <div class="app-content-body">
+        </div>
+        <div class="app-pusher">
+            <div class="app-aside-actionbar">
+                <div class="app-aside-toggle-wrapper" id="app-menu-trigger">
+                    <button class="btn btn-link app-aside-toggle" data-effect="app-effect-4">
+                        <i class="fa fa-list"></i>
+                    </button>
+                </div>
+                <!-- <a class="app-aside-toggle closeMenu" id="closeMenu" href="#app-container">
+                    <i class="fa fa-list"></i>
+                    <i class="fa fa-chevron-right"></i>
+                </a>-->
+            </div>
+            <main class="app-content app-content-dashboard" id="app-content" role="main">
+                <div class="app-content-body">
   <div class="container app-page" id="content">
     <div class="app-page-header">
         <div class="page-header">
@@ -118,8 +130,8 @@
     </div>
   </div>
 </div>
-    </main>
-    </div>
+            </main>
+        </div>
     </div>
     <!-- Bootstrap core JavaScript
 ================================================== -->

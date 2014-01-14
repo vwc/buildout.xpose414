@@ -24,6 +24,7 @@ from dexterity.membrane.membrane_helpers import validate_unique_email
 
 from plone.keyring import django_random
 from Products.CMFPlone.utils import safe_unicode
+from plone.app.uuid.utils import uuidToObject
 
 from xpose.seodash.project import IProject
 
@@ -53,6 +54,18 @@ class View(grok.View):
     def update(self):
         self.has_projects = len(self.projects()) > 0
         self.show_projectlist = len(self.projects()) > 1
+
+    def get_latest_report(self, uuid):
+        item = uuidToObject(uuid)
+        results = item.restrictedTraverse('@@folderListing')(
+            portal_type='xpose.seodash.report',
+            sort_on='modified',
+            sort_order='reverse')
+        return results[0]
+
+    def render_report(self, uuid):
+        item = uuidToObject(uuid)
+        return item.restrictedTraverse('@@content-view')()
 
     def active_project(self):
         return self.projects()[0]
