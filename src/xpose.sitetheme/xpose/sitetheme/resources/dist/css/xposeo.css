@@ -9419,8 +9419,8 @@ dd.image-caption {
 }
 /* Effect 3: Push*/
 .app-effect-3.app-aside-open .app-pusher {
-    -webkit-transform: translate3d(300px, 0, 0);
-            transform: translate3d(300px, 0, 0);
+    -webkit-transform: translate3d(250px, 0, 0);
+            transform: translate3d(250px, 0, 0);
 }
 .app-effect-3.app-aside {
     -webkit-transform: translate3d(-100%, 0, 0);
@@ -9436,8 +9436,8 @@ dd.image-caption {
 }
 /* Effect 4: Slide along */
 .app-effect-4.app-aside-open .app-pusher {
-    -webkit-transform: translate3d(300px, 0, 0);
-            transform: translate3d(300px, 0, 0);
+    -webkit-transform: translate3d(250px, 0, 0);
+            transform: translate3d(250px, 0, 0);
 }
 .app-effect-4.app-aside {
     z-index: 1;
@@ -9470,7 +9470,7 @@ dd.image-caption {
 /* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
 .no-csstransforms3d .app-pusher,
 .no-js .app-pusher {
-    padding-left: 300px;
+    padding-left: 250px;
 }
 .app-aside-actionbar {
     position: fixed;

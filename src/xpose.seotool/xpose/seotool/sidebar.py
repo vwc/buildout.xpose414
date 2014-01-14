@@ -4,6 +4,8 @@ from plone import api
 from zope.interface import Interface
 from plone.memoize.instance import memoize
 
+from plone.app.uuid.utils import uuidToObject
+
 from plone.app.layout.viewlets.interfaces import IPortalFooter
 
 from xpose.seodash.dashboard import IDashboard
@@ -39,9 +41,10 @@ class SidebarViewlet(grok.Viewlet):
     @memoize
     def user_homeurl(self):
         member = api.user.get_current()
-        userid = member.getId()
-        return "%s/workspace/%s" % (api.portal.get().absolute_url(),
-                                    userid)
+        uuid = member.getProperty('dashboard')
+        if uuid:
+            item = uuidToObject(uuid)
+            return item.absolute_url()
 
     def is_seotool_setup(self):
         context = aq_inner(self.context)

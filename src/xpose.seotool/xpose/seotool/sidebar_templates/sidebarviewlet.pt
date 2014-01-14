@@ -12,7 +12,7 @@
         <li><a class="nav-header"
             tal:attributes="href viewlet/user_homeurl"
             i18n:translate="">Overview</a></li>
-        <li><a href="#content-core">Reports</a></li>
+        <li><a tal:attributes="href string:${context/absolute_url}/@@dashboard-reports">Reports</a></li>
         <li><a href="#content-core">Tasks</a></li>
         <li><a href="#content-core">Latest Activity</a></li>
     </ul>
