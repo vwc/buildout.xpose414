@@ -10,6 +10,39 @@
 <metal:main fill-slot="main">
   <metal:content-core define-macro="main">
 
+    <div class="datapanel" id="main-stats">
+        <div class="row datapanel-row">
+            <div class="col-md-3 col-sm-3 datapanel-item">
+                <div class="item-data">
+                    <span class="numberic">2457</span>
+                    visits
+                </div>
+                <span class="item-date">December 2013</span>
+            </div>
+            <div class="col-md-3 col-sm-3 datapanel-item">
+                <div class="item-data">
+                    <span class="numberic">3240</span>
+                    users
+                </div>
+                <span class="item-date">December 2013</span>
+            </div>
+            <div class="col-md-3 col-sm-3 datapanel-item">
+                <div class="item-data">
+                    <span class="numberic">60,19%</span>
+                    new visits
+                </div>
+                <span class="item-date">last 30 days</span>
+            </div>
+            <div class="col-md-3 col-sm-3 datapanel-item last">
+                <div class="item-data">
+                    <span class="numberic">3,00</span>
+                    pages per visit
+                </div>
+                <span class="item-date">last 30 days</span>
+            </div>
+        </div>
+    </div>
+
     <div class="container app-page-header">
         <div class="app-page-title"
             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">

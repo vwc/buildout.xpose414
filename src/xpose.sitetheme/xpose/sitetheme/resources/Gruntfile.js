@@ -60,6 +60,8 @@ module.exports = function (grunt) {
                     'bower_components/momentjs/moment.js',
                     'bower_components/momentjs/lang/de.js',
                     'bower_components/livestampjs/livestamp.js',
+                    'bower_components/raphael/raphael.js',
+                    'bower_components/morris.js/morris.js',
                     'assets/js/classie.js',
                     'js/application.js'
                 ],
@@ -71,6 +73,8 @@ module.exports = function (grunt) {
                     'bower_components/momentjs/moment.js',
                     'bower_components/momentjs/lang/de.js',
                     'bower_components/livestampjs/livestamp.js',
+                    'bower_components/raphael/raphael.js',
+                    'bower_components/morris.js/morris.js',
                     'assets/js/classie.js',
                     'js/application.js'
                 ],

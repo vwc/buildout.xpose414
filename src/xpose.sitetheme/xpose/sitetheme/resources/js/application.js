@@ -7,6 +7,30 @@
     $(document).ready(function () {
         if ($('body').hasClass('lt-ie7')) {return; }
 
+        Morris.Area({
+            element: 'app-graph-1',
+            behaveLikeLine: true,
+            data: [
+                {x: '2011 Q1', y: 3, z: 3},
+                {x: '2011 Q2', y: 2, z: 1},
+                {x: '2011 Q3', y: 2, z: 4},
+                {x: '2011 Q4', y: 3, z: 3}
+            ],
+            xkey: 'x',
+            ykeys: ['y', 'z'],
+            labels: ['Y', 'Z']
+        });
+        Morris.Donut({
+          element: 'app-graph-2',
+          data: [
+            {value: 70, label: 'Returning Visitors'},
+            {value: 30, label: 'New Visitors'}
+          ],
+          formatter: function (x) { return x + "%"}
+        }).on('click', function(i, row){
+          console.log(i, row);
+        });
+
         var SidebarMenuEffects = (function () {
 
             function hasParentClass(e, classname) {
