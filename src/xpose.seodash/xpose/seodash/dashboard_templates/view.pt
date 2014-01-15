@@ -38,7 +38,7 @@
                     <span class="numberic">3,00</span>
                     pages per visit
                 </div>
-                <span class="item-date">last 30 days</span>
+                <span class="item-date"><i class="fa fa-long-arrow-up"></i> increasing</span>
             </div>
         </div>
     </div>
@@ -51,6 +51,15 @@
             <img tal:define="scales context/@@images"
                 tal:replace="structure python: scales.tag('logo', scale='mini')"
                 />
+            </div>
+            <div class="pull-right" tal:condition="not:context/logo">
+                <div class="statuspanel-no-data statuspanel-no-data-lg"
+                    tal:define="portal_url context/portal_url">
+                    <div class="no-data-sign">
+                        <i class="fa fa-picture-o"></i>
+                    </div>
+                    <p>No logo available</p>
+                </div>
             </div>
             <h1 tal:content="context/Title">Project name</h1>
             <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">

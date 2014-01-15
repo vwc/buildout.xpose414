@@ -24188,10 +24188,10 @@ if ( typeof define === 'function' && define.amd ) {
             element: 'app-graph-1',
             behaveLikeLine: true,
             data: [
-                {x: '2011 Q1', y: 3, z: 3},
-                {x: '2011 Q2', y: 2, z: 1},
-                {x: '2011 Q3', y: 2, z: 4},
-                {x: '2011 Q4', y: 3, z: 3}
+                {x: '2013 Q1', y: 3000, z: 3000},
+                {x: '2013 Q2', y: 2340, z: 1000},
+                {x: '2013 Q3', y: 2112, z: 4005},
+                {x: '2013 Q4', y: 3356, z: 3112}
             ],
             xkey: 'x',
             ykeys: ['y', 'z'],
