@@ -110,7 +110,84 @@
             </div>
         </tal:block>
 
-        <div class="app-page-panel">
+        <div class="app-panel">
+            <div class="page-header">
+                <h2>Aufgebaute Links</h2>
+            </div>
+
+            <p class="lead">
+                Die folgende Tabelle enthält die von uns selbst aufgebauten Links, mit Linkherkunft und entsprechendem Linkziel auf die neu erstellten Landingpages.
+            </p>
+
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Linkherkunft
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            Linkziel
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Linktext
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Datum
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="app-page-panel">
 
             <div class="page-header">
                 <h2>Fokus Keywords</h2>
@@ -240,82 +317,6 @@
                 *hierbei handelt es sich um das um das Google Maps Ranking, welches aber in der Regel auch bei organischen Suchanfragen auf den SERPs angezeigt wird. Die Zahl vor dem Komma gibt an, dass sich die Maps Ergebnisse hinter dem dritten organischen Ergebnis befinden. Die Zahl nach dem Komma gibt dann wiederum die Position innerhalb der Google Maps Ergebnisse an.
             </p>
         </div>
-        <div class="app-panel">
-            <div class="page-header">
-                <h2>Aufgebaute Links</h2>
-            </div>
-
-            <p class="lead">
-                Die folgende Tabelle enthält die von uns selbst aufgebauten Links, mit Linkherkunft und entsprechendem Linkziel auf die neu erstellten Landingpages.
-            </p>
-
-            <div class="list-group app-list">
-                <div class="list-group-item app-list-item-title">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3">
-                            Linkherkunft
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            Linkziel
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            Linktext
-                        </div>
-                        <div class="col-xs-12 col-sm-2">
-                            Datum
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group-item app-list-item">
-                    <div class="row">
-                         <div class="col-xs-12 col-sm-3">
-                            http://amazon.de/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            http://mustershop.tld/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            Super Musterprodukte zu unglaublichen Preisen nur hier
-                        </div>
-                        <div class="col-xs-12 col-sm-2">
-                            04.12.2013
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group-item app-list-item">
-                    <div class="row">
-                         <div class="col-xs-12 col-sm-3">
-                            http://amazon.de/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            http://mustershop.tld/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            Super Musterprodukte zu unglaublichen Preisen nur hier
-                        </div>
-                        <div class="col-xs-12 col-sm-2">
-                            04.12.2013
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group-item app-list-item">
-                    <div class="row">
-                         <div class="col-xs-12 col-sm-3">
-                            http://amazon.de/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            http://mustershop.tld/superprodukte
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            Super Musterprodukte zu unglaublichen Preisen nur hier
-                        </div>
-                        <div class="col-xs-12 col-sm-2">
-                            04.12.2013
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="app-page-panel">
             <div class="page-header">
@@ -324,6 +325,7 @@
             <p class="lead">
                 Unter den Gewinner und Verlierer Keywords sind jeweils die 10 besten beziehungsweise schlechtesten Positionsänderungen des Monats Oktober. Neben den Positionsänderungen sind auch entsprechende globale und lokale Suchvolumina sowie die Kosten pro Klick (CPC) in der Tabelle enthalten. Je höher die CPC sind, desto höher ist der Wettbewerb bei diesem Keyword und desto schwerer können dort i.d.R. Rankingverbesserungen erzielt werden.
             </p>
+            <h4>Gewinner Keywords</h4>
             <div class="list-group app-list">
                 <div class="list-group-item app-list-item-title">
                     <div class="row">
@@ -380,6 +382,401 @@
                                     0.00 EUR
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    34
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    74
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    +39
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    16
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.00 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    34
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    74
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    +39
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    16
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.00 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    34
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    74
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    +39
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    16
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.00 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    34
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    74
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    +39
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    16
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.00 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4>Verlierer Keywords</h4>
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Keyword
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    Position
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Vorwoche
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Veränderung
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Suchvolumen global
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Suchvolumen lokal
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    CPC
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt nicht reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    80
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    27
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    55
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    320
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    260
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.53 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt nicht reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    80
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    27
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    55
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    320
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    260
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.53 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt nicht reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    80
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    27
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    55
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    320
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    260
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.53 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt nicht reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    80
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    27
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    55
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    320
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    260
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.53 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt nicht reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    80
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    27
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    55
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    320
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    260
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.53 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-panel">
+            <div class="page-header">
+                <h2>Seo Traffic</h2>
+            </div>
+
+            <p class="lead">
+                Der SEO-Traffic umfasst alle organischen Suchergebnisse in Google, sie beinhaltet also keine bezahlten Suchzugriffe, direkte Eingaben der Hotel-URL sowie Verweise von anderen Websites.
+            </p>
+
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2">
+                            Keyword
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Besuche
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Seiten/Besuch
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Besuchsdauer
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            % neue Besuche
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Absprungrate
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-2">
+                           Gesamt/Durchschnitt
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            10594
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            4,59
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            160,37
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            74,95%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            32,87%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-2">
+                           Veränderung zum Vormonat
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <div class="app-list-billable">+20,76%</div>
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            +2,75%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            +3,89%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            +0,94%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            +10,01%
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-2">
+                           Gesamt/Durchschnitt
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            10594
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            4,59
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            160,37
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            74,95%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            32,87%
                         </div>
                     </div>
                 </div>
