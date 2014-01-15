@@ -3,20 +3,14 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title" i18n:translate="">
-                Tracking Information
+                Dezember 2013
             </h3>
-        </div>
-        <div class="panel-body">
-            <p class="text-muted" i18n:translate="">
-                Overview of billable and non-billable hours and
-                the corresponding tasks
-            </p>
         </div>
         <tal:block tal:condition="context/report_ac">
             <div class="list-group">
                 <tal:item tal:repeat="item view/metrics">
                     <div class="list-group-item">
-                        <span class="badge"><span tal:replace="item/value" />h</span>
+                        <span class="pull-right app-list-billable"><span tal:replace="item/value" />h</span>
                         <div class="h5"
                             tal:define="timestamp item/record_date;
                                         actor item/user">

@@ -7,31 +7,22 @@
     $(document).ready(function () {
         if ($('body').hasClass('lt-ie7')) {return; }
 
-        Morris.Area({
-            element: 'app-graph-1',
-            behaveLikeLine: true,
-            data: [
-                {x: '2013 Q1', y: 3000, z: 3000},
-                {x: '2013 Q2', y: 2340, z: 1000},
-                {x: '2013 Q3', y: 2112, z: 4005},
-                {x: '2013 Q4', y: 3356, z: 3112}
-            ],
-            xkey: 'x',
-            ykeys: ['y', 'z'],
-            labels: ['Y', 'Z']
-        });
-        Morris.Donut({
-          element: 'app-graph-2',
-          data: [
-            {value: 70, label: 'Returning Visitors'},
-            {value: 30, label: 'New Visitors'}
-          ],
-          formatter: function (x) { return x + "%"}
-        }).on('click', function(i, row){
-          console.log(i, row);
+        var $targetContainer = $('#app-container');
+        $('.app-aside-toggle-close').on('click', function () {
+            $targetContainer.removeClass('app-aside-open');
+            $('.app-aside-toggle-open').fadeIn();
         });
 
-        var SidebarMenuEffects = (function () {
+        $('.app-aside-toggle-open').on('click', function () {
+            if ($targetContainer.hasClass('app-aside-open')) {
+                $targetContainer.removeClass('app-effect-4 app-aside-open');
+            } else {
+                $targetContainer.addClass('app-effect-4 app-aside-open');
+                $(this).fadeOut('slow');
+            }
+        });
+
+        var XposeSidebarMenuEffects = (function () {
 
             function hasParentClass(e, classname) {
                     if (e === document) return false;
@@ -85,6 +76,35 @@
             }
             init();
         })();
+
+        if ($('body').hasClass('portaltype-xpose-seodash-dashboard')) {
+            Morris.Area({
+                element: 'app-graph-1',
+                behaveLikeLine: true,
+                data: [
+                    {x: '2013 Q1', y: 3000, z: 3000},
+                    {x: '2013 Q2', y: 2340, z: 1000},
+                    {x: '2013 Q3', y: 2112, z: 4005},
+                    {x: '2013 Q4', y: 3356, z: 3112}
+                ],
+                xkey: 'x',
+                ykeys: ['y', 'z'],
+                labels: ['Y', 'Z']
+            });
+            Morris.Donut({
+                element: 'app-graph-2',
+                data: [
+                    {value: 70, label: 'Returning Visitors'},
+                    {value: 30, label: 'New Visitors'}
+                ],
+                formatter: function (x) {
+                    return x + "%";
+                }
+            }).on('click', function (i, row) {
+                console.log(i, row);
+            });
+        }
+
 
         $('div[data-appui="bummer"]').on({
             mouseenter: function () {

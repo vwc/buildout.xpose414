@@ -13,11 +13,6 @@
    <div class="container app-page-header"
         tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
         <div class="app-page-title" tal:define="timestamp context/modified">
-            <div class="well well-primary pull-right" id="app-menu-trigger">
-                <button class="btn btn-default" data-effect="app-effect-1">
-                    Show
-                </button>
-            </div>
             <h1>Report
                 <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
                   <span i18n:translate="">Last changed:</span>

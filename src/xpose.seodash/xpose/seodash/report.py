@@ -120,7 +120,7 @@ class Tracking(grok.View):
         context = aq_inner(self.context)
         data = getattr(context, 'report_ac')
         report = json.loads(data)
-        return report
+        return report[:10]
 
 
 class RequestReport(grok.View):

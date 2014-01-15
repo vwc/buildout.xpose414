@@ -3,18 +3,17 @@
         <a tal:attributes="href viewlet/portal_url">Dashboard</a>
     </h3>
     <div class="app-sidebar-block">
-        <h4 tal:content="viewlet/user_displayname">Max Mustermann</h4>
-        <p><a tal:attributes="href string:${viewlet/portal_url}/logout"><small>
-            <i class="fa fa-sign-out"></i>abmelden</small></a></p>
+        <h4>Januar 2014</h4>
     </div>
     <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
         tal:condition="viewlet/is_dashboard">
         <li><a class="nav-header"
             tal:attributes="href viewlet/user_homeurl"
-            i18n:translate="">Overview</a></li>
-        <li><a tal:attributes="href string:${context/absolute_url}/@@dashboard-reports">Reports</a></li>
-        <li><a href="#content-core">Tasks</a></li>
-        <li><a href="#content-core">Latest Activity</a></li>
+            i18n:translate="">Reports</a></li>
+        <li class="active"><a tal:attributes="href string:${context/absolute_url}/">Dezember 2013</a></li>
+        <li><a data-toggle="modal" data-target="#myModal" href="#myModal">November 2013</a></li>
+        <li><a tal:attributes="href string:${context/absolute_url}/">Oktober 2013</a></li>
+        <li><a tal:attributes="href string:${context/absolute_url}/@@dashboard-reports">more</a></li>
     </ul>
   <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
     tal:condition="viewlet/is_seotool_setup">

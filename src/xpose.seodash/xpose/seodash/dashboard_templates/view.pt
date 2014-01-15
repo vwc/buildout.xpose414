@@ -44,31 +44,29 @@
     </div>
 
     <div class="container app-page-header">
-        <div class="app-page-title"
-            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
-            <div class="pull-right"
-                tal:condition="context/logo">
-            <img tal:define="scales context/@@images"
-                tal:replace="structure python: scales.tag('logo', scale='mini')"
-                />
-            </div>
-            <div class="pull-right" tal:condition="not:context/logo">
-                <div class="statuspanel-no-data statuspanel-no-data-lg"
-                    tal:define="portal_url context/portal_url">
-                    <div class="no-data-sign">
-                        <i class="fa fa-picture-o"></i>
-                    </div>
-                    <p>No logo available</p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="app-page-title"
+                    tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+                    <h1 tal:content="context/Title">Project name</h1>
+                    <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
+                      <span i18n:translate="">Last changed:</span>
+                      <span tal:attributes="data-livestamp timestamp"
+                        tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
+                    </small>
                 </div>
             </div>
-            <h1 tal:content="context/Title">Project name</h1>
-            <small tal:define="timestamp python:context.modified().ISO()" class="text-discreet">
-              <span i18n:translate="">Last changed:</span>
-              <span tal:attributes="data-livestamp timestamp"
-                tal:content="python:toLocalizedTime(timestamp, long_format=True)" />
-            </small>
+            <div class="col-xs-12 col-sm-4">
+                <img tal:condition="context/logo"
+                    tal:define="scales context/@@images"
+                    tal:replace="structure python: scales.tag('logo', scale='mini')"
+                    />
+                </div>
+                <div class="img-thumbnail" tal:condition="not:context/logo">
+                    <i class="fa fa-picture-o fa-4x"></i>
+                </div>
+            </div>
         </div>
-    </div>
 
     <div class="container app-page-content" id="content-core">
 
@@ -108,6 +106,61 @@
                 </div>
             </div>
         </tal:block>
+
+        <div class="app-page-panel">
+
+            <div class="page-header">
+                <h2>Fokus Keywords</h2>
+            </div>
+
+            <p class="lead">
+                Die Fokus Keywords umfassen die wichtigsten und von uns mittels Keyword-Analyse festgesetzte Keywords hinsichtlich Suchvolumina und Wettbewerb. Die Tabelle enthält das aktuelle Ranking mit der entsprechenden URL die auf dieses Keyword rankt, sowie das globale beziehungsweise lokale Suchvolumen.
+            </p>
+
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Keyword
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Position G.
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Suchvolumen L.
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Suchvolumen
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            URL
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            münchen hotel zentrum
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            3,04*
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            590
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            480
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://www.platzl.de/
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-muted">
+                *hierbei handelt es sich um das um das Google Maps Ranking, welches aber in der Regel auch bei organischen Suchanfragen auf den SERPs angezeigt wird. Die Zahl vor dem Komma gibt an, dass sich die Maps Ergebnisse hinter dem dritten organischen Ergebnis befinden. Die Zahl nach dem Komma gibt dann wiederum die Position innerhalb der Google Maps Ergebnisse an.
+            </p>
+        </div>
 
         <tal:block tal:condition="view/show_projectlist">
             <div class="page-header">

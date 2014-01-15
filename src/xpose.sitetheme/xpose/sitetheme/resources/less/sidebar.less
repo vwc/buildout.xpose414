@@ -139,17 +139,6 @@
     display: none;
 }
 
-.app-aside-close {
-    position: absolute;
-    top: @navbar-height;
-    right: 0;
-    padding: @line-height-computed;
-    > a {
-        color: #fff;
-        font-size: (@font-size-base * 1.5);
-    }
-}
-
 .app-aside-toggle {
     display: block;
 }
@@ -179,12 +168,28 @@
     @media (min-width: @grid-float-breakpoint) {
         left: 0;
     }
-    .app-aside-toggle {
+    .app-aside-toggle,
+    .app-aside-toggle-open {
         .center-block();
         padding: 0;
-        font-size: (@font-size-base * 1.25);
+        font-size: ceil((@font-size-base * 1.5));
         color: @app-gray;
+        z-index: @zindex-modal;
     }
+}
+
+.app-aside-close {
+    position: absolute;
+    top: @navbar-height;
+    right: 0;
+    padding: floor(@line-height-computed * 0.75) (@line-height-computed / 2) 0;
+}
+
+.app-aside-toggle-close {
+    .center-block();
+    padding: 0;
+    font-size: ceil((@font-size-base * 1.75));
+    color: @app-gray;
 }
 
 .app-sidebar {

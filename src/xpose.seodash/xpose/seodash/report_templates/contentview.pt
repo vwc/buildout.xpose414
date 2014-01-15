@@ -1,9 +1,11 @@
 <div class="container app-page-content"
     i18n:translate="xpose.seodash">
     <div class="page-header">
-        <h2>Report Data</h2>
+        <h2>Tätigkeitsübersicht</h2>
     </div>
-    <h3>activeCollab</h3>
+    <p class="lead" i18n:translate="">
+        Diese Tabelle gibt eine Übersicht über die erledigten Aufgaben des Monats Dezember mit jeweiliger Bearbeitungszeit.
+    </p>
     <div tal:replace="structure view/tracking_report" />
 </div>
 

@@ -3,6 +3,7 @@ import socket
 import requests
 import contextlib
 import httplib2
+import datetime
 from five import grok
 from plone import api
 from zope.interface import Interface
@@ -84,3 +85,12 @@ class GATool(grok.GlobalUtility):
         p12_file = os.path.join(os.path.dirname(__file__),
                                 'ga-privatekey.p12')
         return open(p12_file).read()
+
+    def get_month_timerange(self):
+        today = datetime.datetime.today()
+        info = {}
+        first_current = datetime.datetime(today.year, today.month, 1)
+        last = first_current - datetime.datime.timedelta(days=1)
+        info['first'] = datetime.datetime(last.year, last.month, 1)
+        info['last'] = last
+        return info

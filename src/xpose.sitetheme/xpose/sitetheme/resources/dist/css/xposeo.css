@@ -9360,6 +9360,15 @@ dd.image-caption {
         margin: 50px 125px;
     }
 }
+.app-list-item-title {
+    color: #fff;
+    background: #8ec05e;
+}
+.app-list-billable {
+    font-size: 24px;
+    font-weight: 600;
+    color: #8ec05e;
+}
 .app-container,
 .app-pusher {
     height: 100%;
@@ -9476,16 +9485,6 @@ dd.image-caption {
 .app-effect-4.app-aside::after {
     display: none;
 }
-.app-aside-close {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    padding: 22px;
-}
-.app-aside-close > a {
-    font-size: 24px;
-    color: #fff;
-}
 .app-aside-toggle {
     display: block;
 }
@@ -9512,12 +9511,28 @@ dd.image-caption {
         left: 0;
     }
 }
-.app-aside-actionbar .app-aside-toggle {
+.app-aside-actionbar .app-aside-toggle,
+.app-aside-actionbar .app-aside-toggle-open {
+    z-index: 1050;
     display: block;
     padding: 0;
     margin-right: auto;
     margin-left: auto;
-    font-size: 20px;
+    font-size: 24px;
+    color: #5a5f64;
+}
+.app-aside-close {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 16px 11px 0;
+}
+.app-aside-toggle-close {
+    display: block;
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 28px;
     color: #5a5f64;
 }
 .app-sidebar {
