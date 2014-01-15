@@ -71,9 +71,23 @@
                         <small tal:content="item/Title" />
                     </h2>
                 </div>
-                <div class="alert alert-warning">
-                    <p>You will find available projects here. If there is only one project configured,
-                        we will display the report data through a proxy object directly</p>
+                
+                <div class="page-header">
+                    <h3>Visitor Trends <small>December 2013</small></h3>
+                </div>
+                <div id="app-graph-1"></div>
+
+                <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="page-header">
+                        <h3>Visitor Distribution <small>December 2013</small></h3>
+                    </div>
+                    <p>The distribution between new and returning visitors is
+                        significant for the perfomance of the new app</p>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div id="app-graph-2"></div>
+                </div>
                 </div>
 
                 <div tal:define="obj item/getObject;
