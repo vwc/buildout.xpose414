@@ -713,7 +713,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item app-list-item">
+                <div class="list-group-item app-list-item-subtitle">
                     <div class="row">
                          <div class="col-xs-12 col-sm-2">
                            Gesamt/Durchschnitt
@@ -736,7 +736,7 @@
                     </div>
                 </div>
 
-                <div class="list-group-item app-list-item">
+                <div class="list-group-item app-list-item-subtitle">
                     <div class="row">
                          <div class="col-xs-12 col-sm-2">
                            Veränderung zum Vormonat
@@ -761,7 +761,29 @@
                 <div class="list-group-item app-list-item">
                     <div class="row">
                          <div class="col-xs-12 col-sm-2">
-                           Gesamt/Durchschnitt
+                           (not provided)
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            10594
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            4,59
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            160,37
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            74,95%
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            32,87%
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-2">
+                           Super Keyword
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             10594

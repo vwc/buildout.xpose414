@@ -9364,6 +9364,10 @@ dd.image-caption {
     color: #fff;
     background: #8ec05e;
 }
+.app-list-item-subtitle {
+    color: #fff;
+    background: #e3e4e5;
+}
 .app-list-billable {
     font-size: 24px;
     font-weight: 600;
