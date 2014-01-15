@@ -27,6 +27,7 @@ from Products.CMFPlone.utils import safe_unicode
 from plone.app.uuid.utils import uuidToObject
 
 from xpose.seodash.project import IProject
+from xpose.seodash.report import IReport
 
 from xpose.seodash import MessageFactory as _
 
@@ -77,6 +78,35 @@ class View(grok.View):
                         path=dict(query='/'.join(context.getPhysicalPath()),
                                   depth=1),
                         sort_on='getObjPositionInParent')
+        return items
+
+    def can_edit(self):
+        context = aq_inner(self.context)
+        is_adm = False
+        if not api.user.is_anonymous():
+            user = api.user.get_current()
+            roles = api.user.get_roles(username=user.getId(), obj=context)
+            if 'Manager' or 'Site Administrator' in roles:
+                is_adm = True
+        return is_adm
+
+
+class Reports(grok.View):
+    grok.context(IDashboard)
+    grok.require('zope2.View')
+    grok.name('reports')
+
+    def update(self):
+        self.has_reports = len(self.reports()) > 0
+
+    def reports(self):
+        context = aq_inner(self.context)
+        catalog = api.portal.get_tool(name='portal_catalog')
+        items = catalog(object_provides=IReport.__identifier__,
+                        path=dict(query='/'.join(context.getPhysicalPath()),
+                                  depth=2),
+                        sort_on='modified',
+                        sort_order='reverse')
         return items
 
     def can_edit(self):

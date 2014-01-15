@@ -62,9 +62,6 @@
                     tal:replace="structure python: scales.tag('logo', scale='mini')"
                     />
                 </div>
-                <div class="img-thumbnail" tal:condition="not:context/logo">
-                    <i class="fa fa-picture-o fa-4x"></i>
-                </div>
             </div>
         </div>
 
@@ -74,26 +71,32 @@
         <tal:block tal:condition="not:view/show_projectlist">
             <div tal:define="item view/active_project">
                 <div class="page-header">
-                    <h2>Report
+                    <h2>Report Dezember 2013
                         <small tal:content="item/Title" />
                     </h2>
-                </div>
-                
-                <div class="page-header">
-                    <h3>Visitor Trends <small>December 2013</small></h3>
                 </div>
                 <div id="app-graph-1"></div>
 
                 <div class="row">
-                <div class="col-xs-12 col-sm-8">
+                <div class="col-xs-12 col-sm-4">
                     <div class="page-header">
-                        <h3>Visitor Distribution <small>December 2013</small></h3>
+                        <h3>3548 <small>Besuche</small></h3>
                     </div>
-                    <p>The distribution between new and returning visitors is
-                        significant for the perfomance of the new app</p>
+                    <div class="page-header">
+                        <h3>2988 <small>eindeutige Besuche</small></h3>
+                    </div>
+                    <div class="page-header">
+                        <h3>4,8 <small>Siten/Besuch</small></h3>
+                    </div>
+                    <div class="page-header">
+                        <h3>00:04:14<small>Durchschnittl. Besuchsdauer</small></h3>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                     <div id="app-graph-2"></div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div id="app-graph-3"></div>
                 </div>
                 </div>
 
@@ -140,7 +143,7 @@
                 <div class="list-group-item app-list-item">
                     <div class="row">
                         <div class="col-xs-12 col-sm-3">
-                            münchen hotel zentrum
+                            münchen musterprodukt zentrum
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             3,04*
@@ -152,7 +155,83 @@
                             480
                         </div>
                         <div class="col-xs-12 col-sm-3">
-                            http://www.platzl.de/
+                            http://www.mustershop.tld/
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            münchen musterprodukt zentrum
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            3,04*
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            590
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            480
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://www.mustershop.tld/
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            münchen musterprodukt zentrum
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            3,04*
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            590
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            480
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://www.mustershop.tld/
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            münchen musterprodukt zentrum
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            3,04*
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            590
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            480
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://www.mustershop.tld/
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            münchen musterprodukt zentrum
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            3,04*
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            590
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            480
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://www.mustershop.tld/
                         </div>
                     </div>
                 </div>
@@ -160,6 +239,151 @@
             <p class="text-muted">
                 *hierbei handelt es sich um das um das Google Maps Ranking, welches aber in der Regel auch bei organischen Suchanfragen auf den SERPs angezeigt wird. Die Zahl vor dem Komma gibt an, dass sich die Maps Ergebnisse hinter dem dritten organischen Ergebnis befinden. Die Zahl nach dem Komma gibt dann wiederum die Position innerhalb der Google Maps Ergebnisse an.
             </p>
+        </div>
+        <div class="app-panel">
+            <div class="page-header">
+                <h2>Aufgebaute Links</h2>
+            </div>
+
+            <p class="lead">
+                Die folgende Tabelle enthält die von uns selbst aufgebauten Links, mit Linkherkunft und entsprechendem Linkziel auf die neu erstellten Landingpages.
+            </p>
+
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Linkherkunft
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            Linkziel
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Linktext
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            Datum
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                         <div class="col-xs-12 col-sm-3">
+                            http://amazon.de/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            http://mustershop.tld/superprodukte
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            Super Musterprodukte zu unglaublichen Preisen nur hier
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            04.12.2013
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-page-panel">
+            <div class="page-header">
+                <h3>Gewinner &amp; Verlierer Keywords</h3>
+            </div>
+            <p class="lead">
+                Unter den Gewinner und Verlierer Keywords sind jeweils die 10 besten beziehungsweise schlechtesten Positionsänderungen des Monats Oktober. Neben den Positionsänderungen sind auch entsprechende globale und lokale Suchvolumina sowie die Kosten pro Klick (CPC) in der Tabelle enthalten. Je höher die CPC sind, desto höher ist der Wettbewerb bei diesem Keyword und desto schwerer können dort i.d.R. Rankingverbesserungen erzielt werden.
+            </p>
+            <div class="list-group app-list">
+                <div class="list-group-item app-list-item-title">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Keyword
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    Position
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Vorwoche
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Veränderung
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Suchvolumen global
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    Suchvolumen lokal
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    CPC
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item app-list-item">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            Superprodukt reduziert
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-2">
+                                    34
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    74
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    +39
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    16
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0
+                                </div>
+                                <div class="col-xs-12 col-sm-2">
+                                    0.00 EUR
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <tal:block tal:condition="view/show_projectlist">

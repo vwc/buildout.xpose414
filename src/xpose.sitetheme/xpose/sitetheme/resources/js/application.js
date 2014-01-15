@@ -82,20 +82,37 @@
                 element: 'app-graph-1',
                 behaveLikeLine: true,
                 data: [
-                    {x: '2013 Q1', y: 3000, z: 3000},
-                    {x: '2013 Q2', y: 2340, z: 1000},
-                    {x: '2013 Q3', y: 2112, z: 4005},
-                    {x: '2013 Q4', y: 3356, z: 3112}
+                    {x: '2013 W48', y: 3620},
+                    {x: '2013 W49', y: 3000},
+                    {x: '2013 W50', y: 2340},
+                    {x: '2013 W51', y: 2112},
+                    {x: '2013 W52', y: 3356}
                 ],
                 xkey: 'x',
-                ykeys: ['y', 'z'],
-                labels: ['Y', 'Z']
+                ykeys: ['y'],
+                labels: ['Dezember', 'November']
             });
             Morris.Donut({
                 element: 'app-graph-2',
                 data: [
                     {value: 70, label: 'Returning Visitors'},
                     {value: 30, label: 'New Visitors'}
+                ],
+                formatter: function (x) {
+                    return x + "%";
+                }
+            }).on('click', function (i, row) {
+                console.log(i, row);
+            });
+            Morris.Donut({
+                element: 'app-graph-3',
+                data: [
+                    {value: 42, label: 'Absprungrate'},
+                    {value: 58, label: 'Engagment'}
+                ],
+                colors: [
+                    '#5a5f64',
+                    '#e3e4e5'
                 ],
                 formatter: function (x) {
                     return x + "%";

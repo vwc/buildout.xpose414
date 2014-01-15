@@ -13,7 +13,7 @@
         <li class="active"><a tal:attributes="href string:${context/absolute_url}/">Dezember 2013</a></li>
         <li><a data-toggle="modal" data-target="#myModal" href="#myModal">November 2013</a></li>
         <li><a tal:attributes="href string:${context/absolute_url}/">Oktober 2013</a></li>
-        <li><a tal:attributes="href string:${context/absolute_url}/@@dashboard-reports">more</a></li>
+        <li><a tal:attributes="href string:${context/absolute_url}/@@reports">more</a></li>
     </ul>
   <ul class="nav ws-nav bs-docs-sidenav app-sidebar-nav"
     tal:condition="viewlet/is_seotool_setup">
