@@ -119,7 +119,8 @@ class Tracking(grok.View):
     def metrics(self):
         context = aq_inner(self.context)
         data = getattr(context, 'report_ac')
-        return data
+        report = json.loads(data)
+        return report
 
 
 class RequestReport(grok.View):
@@ -130,8 +131,16 @@ class RequestReport(grok.View):
     def render(self):
         context = aq_inner(self.context)
         next_url = context.absolute_url()
-        self._build_report_ga()
+        self.clean_ac_record()
         return self.request.response.redirect(next_url)
+
+    def clean_ac_record(self):
+        context = aq_inner(self.context)
+        data = getattr(context, 'report_ac')
+        as_json = json.dumps(data)
+        setattr(context, 'report_ac', as_json)
+        modified(context)
+        return as_json
 
     def _build_report_ga(self):
         context = aq_inner(self.context)
